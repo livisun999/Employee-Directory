@@ -1,0 +1,10 @@
+.logout_Admin a,
+.logout_Admin a i
+{
+    font-weight: bold;
+    font-size: 15px;
+}
+.logout_Admin a i{
+    padding:3px 10px 0px 0px;
+}
+

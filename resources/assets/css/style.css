@@ -1,0 +1,43 @@
+body{
+
+}
+.row h1{
+    text-align: center;
+}
+#form_login_admin,
+#form_resign
+{
+    margin: 80px auto 10px;
+    border: solid 1px #8c8c8c;
+    border-radius: 4px;
+}
+.input_user{
+    margin: 80px auto 20px;
+}
+#form_login_admin {
+    width: 500px;
+    min-height: 300px;
+    height: auto;
+}
+#form_resign{
+
+}
+.DoB option{
+    width:30px;
+    height: 25px;
+}
+.error_login {
+    width:500px;
+    height:80px;
+    margin: 0px auto;
+}
+
+.row h2 {
+    padding:0px 0px 20px 0px;
+    text-decoration: underline;
+}
+.row ul li, .row  h2{
+    font-weight: bold;
+    text-align: center;
+    color: #FFFFFF;
+}
