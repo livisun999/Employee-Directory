@@ -12,6 +12,7 @@
             <div class="row">
                     <form action='postLogin' method="post" id="form_login_admin" name="form_login_admin" class="form-horizontal">
                     {!! csrf_field() !!}
+                        <input type="hidden" name="_token" value="{!!  csrf_token() !!}">
                     <div class="form-group input_user ">
                         <label for="username" class="col-lg-offset-1 col-sm-3 control-label"> Username </label>
                         <div class="col-sm-7">
@@ -55,7 +56,6 @@
     $(document).ready(function() {
         $("#form_login_admin").validate({
             rules: {
-
                 username: {
                     required: true,
                     rangelength: [2,50]

@@ -7,4 +7,19 @@
 .logout_Admin a i{
     padding:3px 10px 0px 0px;
 }
+.form_add_new form {
+    background-color: #FFFFFF;
+    margin: 70px 0px 0px 120px;
+    height: auto;
+    min-height: 450px;
+    border-radius: 5px;
+}
+.input_user {
+    margin-top: 50px;
+}
+.form_add_new form h1 {
+   text-align: center;
+    padding:70px 20px 0px;
+}
+
 

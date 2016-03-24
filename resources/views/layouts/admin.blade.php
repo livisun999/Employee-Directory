@@ -7,11 +7,14 @@
     <link href="{!! url('public/assets/Admin/css/theme.css') !!}" rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/ui.css') !!}" rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/customs.css') !!}" rel="stylesheet">
-    {{--<script type="text/javascript" src="public/assets/Admin/js/application.js"></script>--}}
-    {{--<script type="text/javascript" src="public/assets/Admin/js/sidebar_hover.js"></script>--}}
+    <script type="text/javascript" src="public/assets/Admin/plugins/jquery/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="public/assets/Admin/plugins/jquery-validation/jquery.validate.js"></script>
+    <script type="text/javascript" src="public/assets/Admin/js/application.js"></script>
+    <script type="text/javascript" src="public/assets/Admin/js/sidebar_hover.js"></script>
 
 </head>
 <body>
+@section('main-parent')
 <div class="sidebar">
     <div class="logopanel">
         <h1>
@@ -32,12 +35,12 @@
         </div>
 
         <ul class="nav nav-sidebar">
-            <li class=" nav-active active"><a href="#"><i class="icon-home"></i><span>Admin Manager</span></a></li>
+            <li class=" nav-active active"><a href="{{ URL::to('dashboard') }}"><i class="icon-home"></i><span>Admin Manager</span></a></li>
             <li class="nav-parent">
-                <a href="#"><i class="icon-puzzle"></i><span>New administrator</span> </a>
+                <a href="{{ URL::to('newadmin') }}"><i class="icon-puzzle"></i><span>New administrator</span> </a>
             </li>
             <li class="nav-parent">
-                <a href="#"><i class="icon-bulb"></i><span> List Admintrator</span> ></a>
+                <a href="{{URL::to('ListAdmin')}}"><i class="icon-bulb"></i><span> List Admintrator</span> </a>
             </li>
             <li class="nav-parent">
                 <a href=""><i class="icon-screen-desktop"></i><span>Profile</span> </a>
@@ -77,10 +80,6 @@
     </div>
 </div>
 
-
-
-
-
 <div class="main-content">
     <!-- BEGIN TOPBAR -->
     <div class="topbar">
@@ -110,7 +109,20 @@
         </div>
         <!-- header-right -->
     </div>
+    <div class="page-content page-thin">
+        <div class="row">
+            <div class="col-xlg-7 col-lg-7">
+                <div class="row">
+                    <div class="col-md-12">
+                        @yield('content')
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+@show
+
 
 </body>
 </html>
