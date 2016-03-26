@@ -55,7 +55,8 @@
     </div>
 </div>
 @stop
-<script style="text/javascript">
+@section('script_')
+<script type="text/javascript">
     $(document).ready(function() {
         $("#form_add_new_admin").validate({
             rules: {
@@ -70,15 +71,11 @@
                 password_confirmation:{
                     required: true,
                     rangelength: [6,50],
-                    equalTo:"#password"
+
                 },
                 Email:{
                     required: true,
                 },
-                Yourname: {
-                    required: true,
-                }
-
             },
             messages: {
                 username: {
@@ -92,7 +89,7 @@
                 password_confirmation:{
                     required: "Please enter the Re-Password",
                     rangelength: " The Password is the wrong length",
-                    equalTo: "Please Check Password and Re-Password"
+
                 },
                 Email:{
                     required:"Please enter the Email",
@@ -102,3 +99,4 @@
         });
     });
 </script>
+@stop

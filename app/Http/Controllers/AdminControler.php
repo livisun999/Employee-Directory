@@ -34,7 +34,8 @@ class AdminControler extends controller {
     public function postLogin(AdminLoginRequest $request)
     {
         if (Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>1,'changePass'=>0 ]) ) {
-            return view('admin.changePassword')->with('name',$request->username,'email','password');
+
+            return Redirect()->route('changePassword');
         }
         if (Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>1,'changePass'=>1 ]) ) {
             $use_ = new User();
@@ -98,14 +99,15 @@ class AdminControler extends controller {
         $Re_pass = $request->New_password_confirmation;
 
         $getname = User::find(Auth::user()->id);
-        if (Auth::attempt([ 'name' => $name_, 'password' => $current_pass]) &&
-            ((!empty($getname)) && ($New_pass === $Re_pass))) {
-                $getname->name= $name_;
+//        if (Auth::attempt([ 'name' => $name_, 'password' => $current_pass]) &&
+//            ((!empty($getname)) && ($New_pass === $Re_pass))) {
+
                 $getname->password = Hash::make($New_pass);
                 $getname->changePass = 1;
                 $getname->save();
-                return view('admin.dashboard');
-        }
+                return view('admin.index');
+        echo $request->username;
+ //       }
     }
 
     public function getListAdmin(){

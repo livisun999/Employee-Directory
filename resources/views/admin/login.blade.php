@@ -4,15 +4,15 @@
         <title> Đăng Nhập Hệ Thống Admin </title>
         <link href="{!! url('resources/assets/css/bootstrap.css') !!}" rel="stylesheet">
         <link href="{!! url('resources/assets/css/style.css') !!}" rel="stylesheet">
-        <script type="text/javascript" src="resources/assets/js/jquery-1.9.1.js"></script>
-        <script type="text/javascript" src="resources/assets/js/jquery.validate.js"></script>
+        <script type="text/javascript" src="public/assets/Admin/js/jquery-1.9.1.js"></script>
+        <script type="text/javascript" src="public/assets/Admin/js/jquery.validate.js"></script>
     </head>
     <body>
         <div class="container">
             <div class="row">
                     <form action='postLogin' method="post" id="form_login_admin" name="form_login_admin" class="form-horizontal">
                     {!! csrf_field() !!}
-                        <input type="hidden" name="_token" value="{!!  csrf_token() !!}">
+                        <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                     <div class="form-group input_user ">
                         <label for="username" class="col-lg-offset-1 col-sm-3 control-label"> Username </label>
                         <div class="col-sm-7">
@@ -52,7 +52,7 @@
         </div>
     </body>
 </html>
-<script style="text/javascript">
+<script type="text/javascript">
     $(document).ready(function() {
         $("#form_login_admin").validate({
             rules: {
@@ -75,8 +75,6 @@
                     required: "Please enter the Password",
                     rangelength: " The Password is the wrong length"
                 },
-
-
             }
         });
     });

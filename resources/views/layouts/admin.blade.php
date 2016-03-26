@@ -7,10 +7,10 @@
     <link href="{!! url('public/assets/Admin/css/theme.css') !!}" rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/ui.css') !!}" rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/customs.css') !!}" rel="stylesheet">
-    <script type="text/javascript" src="public/assets/Admin/plugins/jquery/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="public/assets/Admin/plugins/jquery-validation/jquery.validate.js"></script>
-    <script type="text/javascript" src="public/assets/Admin/js/application.js"></script>
-    <script type="text/javascript" src="public/assets/Admin/js/sidebar_hover.js"></script>
+
+
+    <script type="text/javascript" src="public/assets/Admin/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="public/assets/Admin/js/jquery.validate.js"></script>
 
 </head>
 <body>
@@ -115,14 +115,15 @@
                 <div class="row">
                     <div class="col-md-12">
                         @yield('content')
+
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-@show
-
+    </div> <!-- end .page-content-->
+</div> <!-- end .main-content-->
 
 </body>
 </html>
+@show
+@yield('script_')
