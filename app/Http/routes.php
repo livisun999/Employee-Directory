@@ -27,21 +27,25 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
-//    Route::group(['middleware'=>'auth'], function(){
-        Route::get('/login',['as'=>'login','uses'=>'AdminControler@getLogin']);
-        Route::post('/postLogin',['as'=>'postLogin','uses'=>'AdminControler@postLogin']);
-        Route::get('/postLogin',['as'=>'postLogin','uses'=>'AdminControler@dashboard']);
-        Route::get('dashboard',['as'=>'dashboard','uses'=>'AdminControler@dashboard']);
-        Route::get('/resign',['as'=>'resign','uses'=>'AdminControler@getResign']);
-        Route::get('logout',['as'=>'logout','uses'=>'AdminControler@getLogout']);
 
-        Route::post('postNewAdmin',['as'=>'newAdmin','uses'=>'AdminControler@postNewAdmin']);
-        Route::get('newadmin',['as'=>'newadmin','uses'=>'AdminControler@getNewAdmin']);
-        Route::get('ListAdmin',['as'=>'ListAdmin','uses'=>'AdminControler@getListAdmin']);
-        Route::get('changePassword',['as'=>'changePassword','uses'=>'AdminControler@getChanePassword']);
-        Route::post('postChangePassword',['as'=>'postChangePassword','uses'=>'AdminControler@postChangePassword']);
-//
+        Route::get('/login', ['as' => 'login', 'uses' => 'AdminControler@getLogin']);
+        Route::post('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@postLogin']);
+        
+        Route::group(['middleware'=>'auth'], function(){
+                Route::get('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@dashboard']);
+                Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'AdminControler@dashboard']);
+                Route::get('/resign', ['as' => 'resign', 'uses' => 'AdminControler@getResign']);
+                Route::get('logout', ['as' => 'logout', 'uses' => 'AdminControler@getLogout']);
+
+                Route::post('postNewAdmin', ['as' => 'newAdmin', 'uses' => 'AdminControler@postNewAdmin']);
+                Route::get('newadmin', ['as' => 'newadmin', 'uses' => 'AdminControler@getNewAdmin']);
+                Route::get('ListAdmin', ['as' => 'ListAdmin', 'uses' => 'AdminControler@getListAdmin']);
+                Route::get('changePassword', ['as' => 'changePassword', 'uses' => 'AdminControler@getChanePassword']);
+                Route::post('postChangePassword', ['as' => 'postChangePassword', 'uses' => 'AdminControler@postChangePassword']);
+        });
+
+
+
 //    });
 
 });
