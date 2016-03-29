@@ -30,7 +30,7 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('/login', ['as' => 'login', 'uses' => 'AdminControler@getLogin']);
         Route::post('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@postLogin']);
-        
+
         Route::group(['middleware'=>'auth'], function(){
                 Route::get('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@dashboard']);
                 Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'AdminControler@dashboard']);
@@ -42,6 +42,8 @@ Route::group(['middleware' => ['web']], function () {
                 Route::get('ListAdmin', ['as' => 'ListAdmin', 'uses' => 'AdminControler@getListAdmin']);
                 Route::get('changePassword', ['as' => 'changePassword', 'uses' => 'AdminControler@getChanePassword']);
                 Route::post('postChangePassword', ['as' => 'postChangePassword', 'uses' => 'AdminControler@postChangePassword']);
+                Route::get('profile_admin',['as'=>'profile_admin','uses'=>'AdminControler@get_profile_admin']);
+                Route::post('profile_admin',['as'=>'profile_admin','uses'=>'AdminControler@post_profile_admin']);
         });
 
 

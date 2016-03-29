@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin</title>
+    <title>Admin @yield('title')</title>
     <link href="{!! url('public/assets/Admin/css/style.css') !!}" rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/rtl.css') !!}" rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/theme.css') !!}" rel="stylesheet">
@@ -43,7 +43,7 @@
                 <a href="{{URL::to('ListAdmin')}}"><i class="icon-bulb"></i><span> List Admintrator</span> </a>
             </li>
             <li class="nav-parent">
-                <a href=""><i class="icon-screen-desktop"></i><span>Profile</span> </a>
+                <a href="{{URL::to('profile_admin')}}"><i class="icon-screen-desktop"></i><span>Profile</span> </a>
 
             </li>
         </ul>
@@ -99,7 +99,7 @@
                 <li class="dropdown" id="user-header">
                     <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                         <img src="public/assets/Admin/images/profil_page/friend8.jpg" alt="user image">
-                        <span class="username">Hi, John Doe</span>
+                        <span class="username">Hi, {{Auth::user()->name}}</span>
                     </a>
                 </li>
                 <li class="logout_Admin">
@@ -109,16 +109,9 @@
         </div>
         <!-- header-right -->
     </div>
-    <div class="page-content page-thin">
+    <div class="page-content page-thin ">
         <div class="row">
-            <div class="col-xlg-7 col-lg-7">
-                <div class="row">
-                    <div class="col-md-12">
-                        @yield('content')
-
-                    </div>
-                </div>
-            </div>
+            @yield('content')
         </div>
     </div> <!-- end .page-content-->
 </div> <!-- end .main-content-->

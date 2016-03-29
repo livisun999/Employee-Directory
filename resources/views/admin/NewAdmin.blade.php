@@ -28,6 +28,13 @@
             </div>
 
             <div class="form-group">
+                <label for="yourname" class="col-lg-offset-1 col-sm-3 control-label"> Your Name</label>
+                <div class="col-sm-7">
+                    <input type="text" name="yourname" id="yourname" class="form-control" placeholder="your name">
+                </div>
+            </div>
+
+            <div class="form-group">
                 <label for="Email" class="col-lg-offset-1 col-sm-3 control-label"> Email</label>
                 <div class="col-sm-7">
                     <input type="email" name="Email" id="Email" class="form-control" placeholder="YourEmail@xxx.com">
@@ -42,7 +49,7 @@
             </div>
             <div class="error_login">
                 @if ( $errors->any() )
-                    <ul>
+                    <ul class="form_error">
                         <h2> * Form Error </h2>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>

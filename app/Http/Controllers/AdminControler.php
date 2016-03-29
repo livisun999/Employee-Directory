@@ -61,26 +61,50 @@ class AdminControler extends controller {
         return view('admin.NewAdmin');
     }
 
+    public  function check_is_admin(){
+        $ad_us = User::find(Auth::user()->id);
+        if($ad_us->role_id == 1){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public function check_is_acc($request){
+        $objUser = new USer();
+        $allUser = $objUser->all()->toArray();
+        foreach( $allUser as $users ){
+            if($request->username == $users['name']){
+               return false;
+            }
+        }
+        return true;
+    }
     // New Admin
     public function postNewAdmin(addNewAdminRequest $request){
-        $use = new User();
-        $use->name= $request->username;
-        $use->password = Hash::make($request->password);
-        $use->email = $request->Email;
-        $use->role_id = 1;
-        $use->changePass = 0;
-        $use->remember_token = $request->_token;
+        if($this->check_is_admin() && $this->check_is_acc($request)) {
+            $use = new User();
+            $use->name = $request->username;
+            $use->password = Hash::make($request->password);
+            $use->email = $request->Email;
+            $use->yourname = $request->yourname;
+            $use->role_id = 1;
+            $use->changePass = 0;
+            $use->remember_token = $request->_token;
 
-        $use->save();
+            $use->save();
 
-        $add_email = $request->Email;
-        // Mail To new Admin
-        Mail::send('admin.wellcome', array('email'=>$request->Email, 'name'=>$request->username, 'password'=>$request->password), function($message){
-            $message->to(Input::get('Email'))->subject('Welcome to Employee Directory. !');
-        });
-
-        return redirect()->route('ListAdmin')->with(['flash_level'=>'success','flash_message'=>'Success Complate Add New Admin']);
-
+            $add_email = $request->Email;
+            // Mail To new Admin
+            Mail::send('admin.wellcome', array('email' => $request->Email, 'name' => $request->username, 'password' => $request->password), function ($message) {
+                $message->to(Input::get('Email'))->subject('Welcome to Employee Directory. !');
+            });
+            echo 'Success';
+            return redirect()->route('ListAdmin')->with(['flash_level' => 'success', 'flash_message' => 'Success Complate Add New Admin']);
+        }
+        else{
+            return redirect()->route('newadmin');
+        }
     }
     public function getChanePassword (){
         return view('admin.changePassword');
@@ -99,20 +123,31 @@ class AdminControler extends controller {
         $Re_pass = $request->New_password_confirmation;
 
         $getname = User::find(Auth::user()->id);
-//        if (Auth::attempt([ 'name' => $name_, 'password' => $current_pass]) &&
-//            ((!empty($getname)) && ($New_pass === $Re_pass))) {
 
-                $getname->password = Hash::make($New_pass);
-                $getname->changePass = 1;
-                $getname->save();
-                return view('admin.index');
-        echo $request->username;
- //       }
+        if(Auth::attempt(['name'=>Auth::user()->name,'password' => $request->Current_password]) ) {
+
+            $getname->password = Hash::make($New_pass);
+            $getname->changePass = 1;
+            $getname->save();
+            return redirect()->route('dashboard');
+
+        }
+        else{
+            return Redirect()->route('changePassword');
+        }
+
     }
 
     public function getListAdmin(){
         $objUser = new USer();
         $allUser = $objUser->all()->toArray();
         return view('admin.ListAdmin')->with('allUsers',$allUser);
+    }
+    public function get_profile_admin(){
+        return view('admin.profile_admin');
+    }
+
+    public function post_profile_admin(){
+
     }
 }

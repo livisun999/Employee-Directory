@@ -2,8 +2,9 @@
 <html>
     <head>
         <title> Đăng Nhập Hệ Thống Admin </title>
-        <link href="{!! url('resources/assets/css/bootstrap.css') !!}" rel="stylesheet">
-        <link href="{!! url('resources/assets/css/style.css') !!}" rel="stylesheet">
+        <link href="{!! url('public/assets/Admin/css/bootstrap.css') !!}" rel="stylesheet">
+        <link href="{!! url('public/assets/Admin/css/style_login.css') !!}" rel="stylesheet">
+        <link href="{!! url('public/assets/Admin/css/customs.css') !!}" rel="stylesheet">
         <script type="text/javascript" src="public/assets/Admin/js/jquery-1.9.1.js"></script>
         <script type="text/javascript" src="public/assets/Admin/js/jquery.validate.js"></script>
     </head>
@@ -40,8 +41,8 @@
                 </form>
                 <div class="error_login">
                     @if ( $errors->any() )
-                        <ul>
-                            <h2> * Form Error </h2>
+                        <ul class="form_error">
+                            <h2> Form Error * </h2>
                             @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
                             @endforeach

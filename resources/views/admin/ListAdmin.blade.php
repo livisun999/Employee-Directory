@@ -1,22 +1,26 @@
 @extends('layouts.admin')
 @section('content')
-
-    <table class="table table-hover">
-        <tr>
+<div class="list_admin">
+    <h1> List Admin</h1>
+     <table class="table table-hover List_admin table-bordered">
+        <tr class="title_listAD">
             <td>Number </td>
             <td> User Name </td>
+            <td> Name </td>
             <td> Email </td>
             <td> Created at </td>
         </tr>
         {{--*/ $i = 1 /*--}}
         @foreach($allUsers as $users)
             <tr>
-                <td>{{$i}} </td>
+                <td class="stt">{{$i}} </td>
                 <td>{{$users['name']}} </td>
+                <td>{{$users['yourname']}} </td>
                 <td>{{$users['email']}} </td>
                 <td>{{$users['created_at']}} </td>
             </tr>
             {{--*/ $i++ /*--}}
         @endforeach
     </table>
+</div>
 @stop

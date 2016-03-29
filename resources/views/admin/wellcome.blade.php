@@ -3,4 +3,4 @@
 <p> Your Username And Password Login Employee Directory </p>
 <p> Username: {{$name}} </p>
 <p> Password: {{$password}} </p>
-<p> You need change your password in first login </p>
+<h1 style="color: red"> You need change your password in first login </h1>

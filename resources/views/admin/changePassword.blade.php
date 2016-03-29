@@ -12,8 +12,7 @@
             <div class="form-group">
                 <label for="username" class="col-lg-offset-1 col-sm-3 control-label"> User Name </label>
                 <div class="col-sm-7">
-                    <input type="text" name="username" id="username" class="form-control" value="{{Auth::user()->name}}"
-                           disabled>
+                    <input type="text" name="username" id="username" class="form-control" value="{{Auth::user()->name}}" disabled>
                 </div>
             </div>
 
@@ -48,7 +47,7 @@
             </div>
             <div class="error_login">
                 @if ( $errors->any() )
-                    <ul>
+                    <ul class="form_error">
                         <h2> * Form Error </h2>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
