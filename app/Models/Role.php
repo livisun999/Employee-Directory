@@ -8,7 +8,7 @@
  * Date: 30/03/2016
  * Time: 19:17
  */
-namespace App\Entities;
+namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model

@@ -1,9 +1,10 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Entities\User;
-use App\Entities\Role;
-
+use App\Models\User;
+use App\Models\Role;
+use App\Models\Depar;
+use App\Models\Employee;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -25,5 +26,35 @@ class UsersTableSeeder extends Seeder
             'yourname'=>'Admin1',
             'changePass'=>0
         ]);
+
+        Depar::create(array(
+            'Dep_name'=>'Phong nhan Su',
+            'Dep_master'=>'vuong',
+            'Dep_Phone' =>  '0972114187',
+            'Dep_number'=>'1'
+        ));
+        Depar::create(array(
+            'Dep_name'=>'Phong Hanh Chinh',
+            'Dep_master'=>'minh',
+            'Dep_Phone' =>  '0972114188',
+            'Dep_number'=>'2'
+        ));
+
+
+        Employee::create([
+            'name'=>'vuong',
+            'birthday'=>'1993/12/08',
+            'phone'=> '0972114187',
+            'email'=>'abc@gmail.com',
+            'depar_id'=>'1'
+        ]);
+        Employee::create([
+            'name'=>'minh',
+            'birthday'=>'1995/12/12',
+            'phone'=> '0972114188',
+            'email'=>'minh@gmail.com',
+            'depar_id'=>'2'
+        ]);
+
     }
 }

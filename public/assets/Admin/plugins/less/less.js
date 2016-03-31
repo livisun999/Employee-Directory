@@ -3183,7 +3183,7 @@ var Parser = function Parser(context, imports, fileInfo) {
             },
 
             //
-            // Entities are tokens which can be found inside an Expression
+            // Models are tokens which can be found inside an Expression
             //
             entities: {
                 //
@@ -3731,7 +3731,7 @@ var Parser = function Parser(context, imports, fileInfo) {
             },
 
             //
-            // Entities are the smallest recognized token,
+            // Models are the smallest recognized token,
             // and can be found inside a rule's value.
             //
             entity: function () {
@@ -4457,7 +4457,7 @@ var Parser = function Parser(context, imports, fileInfo) {
 
             //
             // Expressions either represent mathematical operations,
-            // or white-space delimited Entities.
+            // or white-space delimited Models.
             //
             //     1px solid black
             //     @var * 2
