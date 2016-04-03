@@ -11,6 +11,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+
 class Depar extends Model
 {
     protected $table = 'Depar';

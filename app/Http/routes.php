@@ -32,6 +32,9 @@ Route::group(['middleware' => ['web']], function () {
         Route::post('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@postLogin']);
 
         Route::group(['middleware'=>'auth'], function(){
+
+                // Route Admin
+
                 Route::get('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@dashboard']);
                 Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'AdminControler@dashboard']);
                 Route::get('/resign', ['as' => 'resign', 'uses' => 'AdminControler@getResign']);
@@ -44,6 +47,13 @@ Route::group(['middleware' => ['web']], function () {
                 Route::post('postChangePassword', ['as' => 'postChangePassword', 'uses' => 'AdminControler@postChangePassword']);
                 Route::get('profile_admin',['as'=>'profile_admin','uses'=>'AdminControler@get_profile_admin']);
                 Route::post('profile_admin',['as'=>'profile_admin','uses'=>'AdminControler@post_profile_admin']);
+
+                // route department
+
+                Route::get('/listdepartment',['as=>getListdepart','uses'=>'DepartmentControler@getListdepart']);
+
+                Route::post('/postListDepartment',['as'=>'postListDepartment','uses'=>'DepartmentControler@postListDepartment']);
+
         });
 
 

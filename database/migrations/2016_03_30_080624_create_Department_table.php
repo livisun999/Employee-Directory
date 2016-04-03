@@ -17,7 +17,7 @@ class CreateDepartmentTable extends Migration
             $table->string('Dep_name');
             $table->string('Dep_master');
             $table->integer('Dep_Phone');
-            $table->tinyInteger('Dep_number');
+            $table->string('Dep_number');
             $table->timestamps();
         });
     }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin @yield('title')</title>
+    <title>Admin Control @yield('title')</title>
     <link href="{!! url('public/assets/Admin/css/style.css') !!}" rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/rtl.css') !!}" rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/theme.css') !!}" rel="stylesheet">
@@ -10,6 +10,7 @@
 
 
     <script type="text/javascript" src="public/assets/Admin/js/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="public/assets/Admin/js/bootstrap.js"></script>
     <script type="text/javascript" src="public/assets/Admin/js/jquery.validate.js"></script>
 
 </head>
@@ -54,7 +55,7 @@
                 <a href="#"><i class="icon-puzzle"></i><span>Add department</span> </a>
             </li>
             <li class="nav-parent">
-                <a href="#"><i class="icon-bulb"></i><span> List departments</span> </a>
+                <a href="{{URL::to('listdepartment')}}"><i class="icon-bulb"></i><span> List departments</span> </a>
             </li>
             <li class="nav-parent">
                 <a href=""><i class="icon-screen-desktop"></i><span>View department detail</span> </a>

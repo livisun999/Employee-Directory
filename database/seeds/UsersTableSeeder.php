@@ -28,21 +28,21 @@ class UsersTableSeeder extends Seeder
         ]);
 
         Depar::create(array(
-            'Dep_name'=>'Phong nhan Su',
-            'Dep_master'=>'vuong',
+            'Dep_name'=>'Phòng nhân Sự',
+            'Dep_master'=>'vương',
             'Dep_Phone' =>  '0972114187',
-            'Dep_number'=>'1'
+            'Dep_number'=>'E-01'
         ));
         Depar::create(array(
-            'Dep_name'=>'Phong Hanh Chinh',
+            'Dep_name'=>'Phòng Hành Chính',
             'Dep_master'=>'minh',
             'Dep_Phone' =>  '0972114188',
-            'Dep_number'=>'2'
+            'Dep_number'=>'B-02'
         ));
 
 
         Employee::create([
-            'name'=>'vuong',
+            'name'=>'vương',
             'birthday'=>'1993/12/08',
             'phone'=> '0972114187',
             'email'=>'abc@gmail.com',
@@ -55,6 +55,12 @@ class UsersTableSeeder extends Seeder
             'email'=>'minh@gmail.com',
             'depar_id'=>'2'
         ]);
-
+        Employee::create([
+            'name'=>'Thanh Lich',
+            'birthday'=>'1996/12/12',
+            'phone'=> '0972114199',
+            'email'=>'thanhlich_ulis@gmail.com',
+            'depar_id'=>'2'
+        ]);
     }
 }
