@@ -28,6 +28,4 @@ class DepartmentControler extends Controller {
             'list_employee'=>$list_employee
         ]);
     }
-
-
 }

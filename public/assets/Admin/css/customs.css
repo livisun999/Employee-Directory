@@ -92,3 +92,19 @@
     border-radius: 4px;
     margin-bottom:50px;
 }
+.modal-header h1 {
+    text-align: center;
+    font-weight: bold;
+    font-size: 22px;
+}
+.modal-content {
+    height: auto;
+    min-height:250px;
+}
+.modal-body {
+    height:auto;
+    min-height: 170px;
+}
+.modal-body table td{
+    margin-top:40px;
+}

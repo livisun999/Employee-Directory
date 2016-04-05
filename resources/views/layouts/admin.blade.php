@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Admin Control @yield('title')</title>
+    <link href="{!! url('public/assets/Admin/css/bootstrap.css') !!}"rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/style.css') !!}" rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/rtl.css') !!}" rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/theme.css') !!}" rel="stylesheet">

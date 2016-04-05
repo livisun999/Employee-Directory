@@ -23,8 +23,18 @@
                            data-phone="{{$depar['Dep_Phone']}}"
                            data-number="{{$depar['Dep_number']}}"
                            data-name = "{{$depar['Dep_name']}}"
-                           data-id = {{$depar['id']}}>
-                                {{$depar['Dep_name']}}
+                           data-id = "{{$depar['id']}}"
+                           data-employee = "
+                                @foreach($list_employee as $employ)
+                                    @if($employ['depar_id'] == $depar['id'])
+                                        {{$employ['name'] }}
+                                   &nbsp
+                                    @endif
+                                @endforeach
+                            "
+                        >
+                            {{$depar['Dep_name']}}
+
                         </a>
                     </td>
                     <td>{{$depar['Dep_master']}} </td>
@@ -35,6 +45,8 @@
             @endforeach
         </table>
     </div>
+
+
     <!-- MODAL SHOW DEPARTMENT DETAIL -->
     <div class="container">
         <!-- Modal -->
@@ -45,35 +57,28 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h2 class="modal-title">DEPARTMENT DETAIL</h2>
+                        <h1 class="modal-title name"></h1>
                     </div>
                     <div class="modal-body">
-                        <p class="abc">{{--*/ $c = 1  /*--}} </p>
-                        <table>
+
+                        <table class="col-sm-12 table-modal">
                             <tr>
                                 <td> Room Number: </td>
                                 <td class="room_number"> </td>
-                            </tr>
-                            <tr >
-                                <td> Name: </td>
-                                <td class="name"> </td>
                             </tr>
                             <tr>
                                 <td> Phone: </td>
                                 <td class="phone"></td>
                             </tr>
-                            <tr >
+                            <tr>
                                 <td> Manager: </td>
                                 <td class="master"> </td>
                             </tr>
+
                             <tr>
                                 <td> Employee </td>
                                 <td class="employee_">
-                                    @foreach($list_employee as $employ)
-                                        @if($employ['depar_id'] == $c)
-                                            {{$employ['name']}}
-                                        @endif
-                                    @endforeach
+
                                 </td>
                             </tr>
                         </table>
@@ -98,12 +103,16 @@
                 var number = $(this).attr('data-number');
                 var id = $(this).attr('data-id');
 
+                var em = $(this).attr('data-employee');
+
+                $('.employee_').html('<b>' + em + '</b>');
+
                 $('.room_number').html(" <b>&nbsp; " + number + "</b>");
                 $('.name').html(" <b>&nbsp; " + name + "</b>");
                 $('.master').html(" <b>&nbsp; " + master + "</b>");
                 $('.phone').html(" <b>&nbsp; " + phone + "</b>");
-                $('.abc').html($id);
-                var a = $('.abc').html();
+
+
             });
         });
     </script>
@@ -117,4 +126,11 @@
     var dep_master = $(this).attr('data-master');
     // dùng biến master truyền vào modal, tương tự với phone và number
     };
+    nếu không có điều kiện thì sẽ in ra.
+    cần điều kiện để in đúng cái mình muốn
+
+    phần js đầu tiên hiển thị phần thông tin của thằng cần lấy
+    lên phần modal
+
+
 -->
