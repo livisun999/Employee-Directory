@@ -2,13 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b6bf0944-8209-4bf3-bd4b-bbf5e33598c2" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/blade.xml" afterPath="$PROJECT_DIR$/.idea/blade.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/DepartmentControler.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/DepartmentControler.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/public/assets/Admin/css/customs.css" afterPath="$PROJECT_DIR$/public/assets/Admin/css/customs.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/Department/List_department.blade.php" afterPath="$PROJECT_DIR$/resources/views/Department/List_department.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/admin/ListAdmin.blade.php" afterPath="$PROJECT_DIR$/resources/views/admin/ListAdmin.blade.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" afterPath="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
     </list>
     <ignored path="Person.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,8 +30,8 @@
           <file leaf-file-name="admin.blade.php" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="29.666666">
-                  <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
+                <state vertical-scroll-proportion="-5.3333335">
+                  <caret line="9" column="85" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="85" />
                   <folding />
                 </state>
               </provider>
@@ -75,8 +70,8 @@
           <file leaf-file-name="List_department.blade.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/resources/views/Department/List_department.blade.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.5143339">
-                  <caret line="74" column="54" selection-start-line="74" selection-start-column="54" selection-end-line="74" selection-end-column="54" />
+                <state vertical-scroll-proportion="0.4940978">
+                  <caret line="96" column="44" selection-start-line="96" selection-start-column="32" selection-end-line="96" selection-end-column="44" />
                   <folding />
                 </state>
               </provider>
@@ -153,8 +148,8 @@
           <file leaf-file-name="customs.css" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/public/assets/Admin/css/customs.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state vertical-scroll-proportion="0.84822935">
-                  <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+                <state vertical-scroll-proportion="0.8735244">
+                  <caret line="124" column="14" selection-start-line="124" selection-start-column="14" selection-end-line="124" selection-end-column="14" />
                   <folding />
                 </state>
               </provider>
@@ -219,8 +214,8 @@
         <option value="$PROJECT_DIR$/app/Http/Controllers/DepartmentControler.php" />
         <option value="$PROJECT_DIR$/resources/views/admin/ListAdmin.blade.php" />
         <option value="$PROJECT_DIR$/resources/views/layouts/admin.blade.php" />
-        <option value="$PROJECT_DIR$/public/assets/Admin/css/customs.css" />
         <option value="$PROJECT_DIR$/resources/views/Department/List_department.blade.php" />
+        <option value="$PROJECT_DIR$/public/assets/Admin/css/customs.css" />
       </list>
     </option>
   </component>
@@ -1076,24 +1071,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/layouts/admin.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="29.666666">
-          <caret line="25" column="31" selection-start-line="25" selection-start-column="31" selection-end-line="25" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/assets/Admin/css/customs.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.84822935">
-          <caret line="110" column="0" selection-start-line="110" selection-start-column="0" selection-end-line="110" selection-end-column="0" />
+        <state vertical-scroll-proportion="-5.3333335">
+          <caret line="9" column="85" selection-start-line="9" selection-start-column="3" selection-end-line="9" selection-end-column="85" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/Department/List_department.blade.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5143339">
-          <caret line="74" column="54" selection-start-line="74" selection-start-column="54" selection-end-line="74" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.4940978">
+          <caret line="96" column="44" selection-start-line="96" selection-start-column="32" selection-end-line="96" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/assets/Admin/css/customs.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.8735244">
+          <caret line="124" column="14" selection-start-line="124" selection-start-column="14" selection-end-line="124" selection-end-column="14" />
           <folding />
         </state>
       </provider>

@@ -17,20 +17,31 @@
             @foreach($allDepart as $depar)
                 <tr>
                     <td class="stt">{{$i}} </td>
-                    <td>
+                    <td class="click_modal">
                         <a href="#" data-toggle="modal" data-target="#myModal" class="show_modal"
                            data-master="{{$depar['Dep_master']}}"
                            data-phone="{{$depar['Dep_Phone']}}"
                            data-number="{{$depar['Dep_number']}}"
                            data-name = "{{$depar['Dep_name']}}"
                            data-id = "{{$depar['id']}}"
+
                            data-employee = "
+                                <div class=employee_name>
+                                {{--*/ $t = 1 /*--}}
                                 @foreach($list_employee as $employ)
                                     @if($employ['depar_id'] == $depar['id'])
+                                   <br>
+                                        {{$t}}
+                                   )
                                         {{$employ['name'] }}
+                                    {{--*/ $t++ /*--}}
                                    &nbsp
+
                                     @endif
+
                                 @endforeach
+                                   </div>
+
                             "
                         >
                             {{$depar['Dep_name']}}
@@ -63,25 +74,25 @@
 
                         <table class="col-sm-12 table-modal">
                             <tr>
-                                <td> Room Number: </td>
-                                <td class="room_number"> </td>
-                            </tr>
-                            <tr>
-                                <td> Phone: </td>
-                                <td class="phone"></td>
-                            </tr>
-                            <tr>
-                                <td> Manager: </td>
-                                <td class="master"> </td>
-                            </tr>
+                                <td> Room Number:
+                                    <span class="room_number"> </span>
+                                </td>
+                                <td> Phone:
+                                    <span class="phone"></span>
+                                </td>
 
-                            <tr>
-                                <td> Employee </td>
-                                <td class="employee_">
-
+                                <td> Manager:
+                                    <span class="master"> </span>
                                 </td>
                             </tr>
+
+
                         </table>
+                        <div class="view_employee">
+                            <p><strong> Employee:</strong>
+                                <span class="employee_"> </span>
+                            </p>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -103,14 +114,14 @@
                 var number = $(this).attr('data-number');
                 var id = $(this).attr('data-id');
 
-                var em = $(this).attr('data-employee');
+                var employee = $(this).attr('data-employee');
 
-                $('.employee_').html('<b>' + em + '</b>');
+                $('.employee_').html( employee);
 
                 $('.room_number').html(" <b>&nbsp; " + number + "</b>");
                 $('.name').html(" <b>&nbsp; " + name + "</b>");
                 $('.master').html(" <b>&nbsp; " + master + "</b>");
-                $('.phone').html(" <b>&nbsp; " + phone + "</b>");
+                $('.phone').html(" <b>&nbsp; 0 " + phone + "</b>");
 
 
             });

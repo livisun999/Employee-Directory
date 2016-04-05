@@ -92,6 +92,9 @@
     border-radius: 4px;
     margin-bottom:50px;
 }
+.modal-header{
+    border-bottom:solid 1px #880000;
+}
 .modal-header h1 {
     text-align: center;
     font-weight: bold;
@@ -105,6 +108,19 @@
     height:auto;
     min-height: 170px;
 }
-.modal-body table td{
-    margin-top:40px;
+.view_employee {
+    border-top:solid 1px #d9e3cb;
+    margin-top: 40px;
+}
+.table-modal{
+    margin-bottom:0px;
+}
+.view_employee .employee_ {
+    margin-left:70px;
+}
+.employee_name {
+    margin:-15px 0px 0px 70px;
+}
+.modal-footer {
+    border-top:solid 1px #880000;
 }
