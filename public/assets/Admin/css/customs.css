@@ -19,7 +19,7 @@
 }
 .form_add_new form h1 {
    text-align: center;
-    padding:70px 20px 0px;
+    padding:70px 20px 30px;
 }
 .error_login {
     width:500px;
@@ -94,23 +94,29 @@
 }
 .modal-header{
     border-bottom:solid 1px #880000;
+    background-color: #319DB5;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
 }
 .modal-header h1 {
     text-align: center;
     font-weight: bold;
     font-size: 22px;
+
 }
 .modal-content {
     height: auto;
     min-height:250px;
+    border-radius: 2px;
 }
 .modal-body {
     height:auto;
     min-height: 170px;
 }
+
 .view_employee {
+    margin-top:40px;
     border-top:solid 1px #d9e3cb;
-    margin-top: 40px;
 }
 .table-modal{
     margin-bottom:0px;
@@ -121,6 +127,13 @@
 .employee_name {
     margin:-15px 0px 0px 70px;
 }
-.modal-footer {
-    border-top:solid 1px #880000;
+
+.form_bt {
+    margin-top:50px;
+}
+.Action .glyphicon-pencil {
+    margin-right: 10px;
+}
+.border_employee_{
+    margin-top:70px;
 }

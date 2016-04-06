@@ -25,8 +25,6 @@ class addNewAdminRequest extends Request
     {
         return [
             'username'=>'required',
-            'password'=>'required',
-            'password_confirmation'=>'required|same:password',
             'Email'=>'required',
         ];
     }
@@ -34,9 +32,7 @@ class addNewAdminRequest extends Request
     {
         return [
             'username.required'=>'Please Enter The Username',
-            'password.required'=>'Please Enter The Password',
-            'password_confirmation.require'=>'Please Enter The Re-Password',
-            'password_confimation.same'=>'Check Password and Re-Password',
+
             'Email.require'=>'Please Enter the Email',
         ];
     }

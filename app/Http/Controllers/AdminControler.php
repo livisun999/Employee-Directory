@@ -80,12 +80,17 @@ class AdminControler extends controller {
         }
         return true;
     }
+    function RandomString($length = 10) {
+        return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
+    }
+
     // New Admin
     public function postNewAdmin(addNewAdminRequest $request){
         if($this->check_is_admin() && $this->check_is_acc($request)) {
             $use = new User();
             $use->name = $request->username;
-            $use->password = Hash::make($request->password);
+            $new_pass = $this->RandomString();
+            $use->password = Hash::make($new_pass);
             $use->email = $request->Email;
             $use->yourname = $request->yourname;
             $use->role_id = 1;
@@ -96,7 +101,7 @@ class AdminControler extends controller {
 
             $add_email = $request->Email;
             // Mail To new Admin
-            Mail::send('admin.wellcome', array('email' => $request->Email, 'name' => $request->username, 'password' => $request->password), function ($message) {
+            Mail::send('admin.wellcome', array('email' => $request->Email, 'name' => $request->username, 'password' => $new_pass), function ($message) {
                 $message->to(Input::get('Email'))->subject('Welcome to Employee Directory. !');
             });
             echo 'Success';
