@@ -39,7 +39,7 @@
         <ul class="nav nav-sidebar">
             <li class=" nav-active active"><a href="{{ URL::to('dashboard') }}"><i class="icon-home"></i><span>Admin Manager</span></a></li>
             <li class="nav-parent">
-                <a href="{{ URL::to('newadmin') }}"><i class="icon-puzzle"></i><span>New administrator</span> </a>
+                <a href="{{ URL::to('newadmin') }}" class="test_"><i class="icon-puzzle"></i><span>New administrator</span> </a>
             </li>
             <li class="nav-parent">
                 <a href="{{URL::to('ListAdmin')}}"><i class="icon-bulb"></i><span> List Admintrator</span> </a>
@@ -58,12 +58,8 @@
             <li class="nav-parent">
                 <a href="{{URL::to('listdepartment')}}"><i class="icon-bulb"></i><span> List departments</span> </a>
             </li>
-            <li class="nav-parent">
-                <a href=""><i class="icon-screen-desktop"></i><span>View department detail</span> </a>
-            </li>
-            <li class="nav-parent">
-                <a href=""><i class="icon-screen-desktop"></i><span>View employees in a department</span>  </a>
-            </li>
+
+
         </ul>
 
         <ul class="nav nav-sidebar">
@@ -121,4 +117,7 @@
 </body>
 </html>
 @show
-@yield('script_')
+@section('script_')
+    
+@show
+

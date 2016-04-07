@@ -34,6 +34,7 @@
                                         {{$t}}
                                    )
                                         {{$employ['name'] }}
+
                                     {{--*/ $t++ /*--}}
                                    &nbsp
 
@@ -43,13 +44,13 @@
                                    </div>
 
                             "
-                        >
+                           >
                             {{$depar['Dep_name']}}
 
                         </a>
                     </td>
                     <td>{{$depar['Dep_master']}} </td>
-                    <td>{{$depar['Dep_Phone']}} </td>
+                    <td>0{{$depar['Dep_Phone']}} </td>
                     <td>{{$depar['Dep_number']}} </td>
                     <td class="Action">
                         <a href="#" data-toggle="modal" data-target="#myModal" class="edit_depaerment"
@@ -60,7 +61,7 @@
                            data-id = "{{$depar['id']}}"
 
                            data-employee = "
-                                <div>
+                                <div class=employee_name>
                                 {{--*/ $e = 1 /*--}}
                            @foreach($list_employee as $employ)
                                @if($employ['depar_id'] == $depar['id'])
@@ -73,6 +74,18 @@
                                @endif
                            @endforeach
                                 </div>
+                            "
+                           data-opiton_employee = "
+                                <select >
+                                    @foreach($list_employee as $employ)
+                                       @if($employ['depar_id'] == $depar['id'])
+                                               <option>
+                                               {{$employ['name'] }}
+                                               <//option>
+                                           @endif
+
+                                    @endforeach
+                                </select>
                             ">
                             <span class="glyphicon glyphicon-pencil edit_depaerment" data-toggle="tooltip" data-placement="top" title="Edit"></span>
                         </a>
@@ -124,7 +137,7 @@
 
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary close_modal" data-dismiss="modal">Close</button>
                     </div>
                 </div>
 
@@ -134,6 +147,7 @@
     </div>
 @stop
 @section('script_')
+    @parent
     <script type="text/javascript">
         $(document).ready(function() {
 
@@ -149,9 +163,10 @@
                 $('.room_number').html(" <b>&nbsp; " + number + "</b>");
                 $('.name').html(" <b>&nbsp; " + name + "</b>");
                 $('.master').html(" <b>&nbsp; " + master + "</b>");
-                $('.phone').html(" <b>&nbsp; 0 " + phone + "</b>");
+                $('.phone').html(" <b>&nbsp;  " +"0" + phone + "</b>");
 
                 $('.view_employee').removeClass('border_employee_');
+                $('.close_modal').html('Close');
             });
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
@@ -164,15 +179,20 @@
                 var number = $(this).attr('data-number');
                 var id = $(this).attr('data-id');
                 var employee = $(this).attr('data-employee');
+                var option_employee =  $(this).attr('data-opiton_employee');
+//
+//                alert(option_employee);
 
                 $('.name').html(" <b>&nbsp; " + name + "</b>");
 
                 $('.employee_').html( employee);
                 $('.room_number').html(" <input type='text' value='" + number + "' > ");
-                $('.master').html(" <input type='text' value='" + master + "' > ");
+                $('.master').html(option_employee);
                 $('.phone').html(" <input type='text' value='0" + phone + "' > ");
 
-                $('.view_employee').addClass('border_employee_')
+                $('.view_employee').addClass('border_employee_');
+                $('.close_modal').html('Update');
+
             });
         });
     </script>
