@@ -28,19 +28,17 @@
                            data-employee = "
                                 <div class=employee_name>
                                 {{--*/ $t = 1 /*--}}
-                                @foreach($list_employee as $employ)
-                                    @if($employ['depar_id'] == $depar['id'])
-                                   <br>
-                                        {{$t}}
-                                   )
-                                        {{$employ['name'] }}
-
-                                    {{--*/ $t++ /*--}}
-                                   &nbsp
-
-                                    @endif
-
-                                @endforeach
+                                   <table class='col-sm-8'>
+                                        @foreach($list_employee as $employ)
+                                            @if($employ['depar_id'] == $depar['id'])
+                                                <tr>
+                                                    <td class='col-sm-1'> {{$t}}) </td>
+                                                    <td class='col-sm-8'> {{$employ['name'] }} </td>
+                                                </tr>
+                                            {{--*/ $t++ /*--}}
+                                            @endif
+                                        @endforeach
+                                    </table>
                                    </div>
 
                             "
@@ -61,18 +59,20 @@
                            data-id = "{{$depar['id']}}"
 
                            data-employee = "
-                                <div class=employee_name>
+                                <div class='employee_name'>
                                 {{--*/ $e = 1 /*--}}
-                           @foreach($list_employee as $employ)
-                               @if($employ['depar_id'] == $depar['id'])
-                                  <br>
-                                  {{$e}}
-                                  )
-                                  {{$employ['name'] }}
-                                  {{--*/ $e++ /*--}}
-                                  &nbsp
-                               @endif
-                           @endforeach
+                           <table class='col-sm-8'>
+                               @foreach($list_employee as $employ)
+                                   @if($employ['depar_id'] == $depar['id'])
+                                      <tr>
+                                        <td class='col-sm-1'> {{$e}}) </td>
+                                        <td class='col-sm-8'> {{$employ['name'] }} </td>
+                                        <td class='col-sm-3'> <a href='#' ><span class='glyphicon glyphicon-trash delete_depaerment' data-toggle='tooltip' data-placement='top' title='Delete'></span></a> </td>
+
+                                      {{--*/ $e++ /*--}}
+                                   @endif
+                               @endforeach
+                            </table>
                                 </div>
                             "
                            data-opiton_employee = "

@@ -53,7 +53,7 @@
         <ul class="nav nav-sidebar">
             <li class=" nav-active active"><a href="dashboard.html"><i class="icon-home"></i><span>Department management </span></a></li>
             <li class="nav-parent">
-                <a href="#"><i class="icon-puzzle"></i><span>Add department</span> </a>
+                <a href="{{URL::to('newdepartment')}}"><i class="icon-puzzle"></i><span>Add department</span> </a>
             </li>
             <li class="nav-parent">
                 <a href="{{URL::to('listdepartment')}}"><i class="icon-bulb"></i><span> List departments</span> </a>
@@ -118,6 +118,12 @@
 </html>
 @show
 @section('script_')
-    
+    <script>
+        $(document).ready(function(){
+           $('.test_').click(function(){
+                alert('dm');
+            });
+        });
+    </script>
 @show
 

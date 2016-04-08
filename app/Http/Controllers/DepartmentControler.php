@@ -13,9 +13,7 @@ use App\Models\Employee;
 
 class DepartmentControler extends Controller {
 
-//    public function getListdepart(){
-//       return view('Department.List_department');
-//    }
+
     public function getListdepart(){
         $objDepart = new Depar();
         $objDepart = $objDepart->all()->toArray();
@@ -28,4 +26,11 @@ class DepartmentControler extends Controller {
             'list_employee'=>$list_employee
         ]);
     }
+    public function new_department(){
+        $ojbEmployee = new Employee();
+        $list_employee = $ojbEmployee->all()->toArray();
+        return view('Department.new_department')->with('employee_name',$list_employee);
+    }
+
+
 }
