@@ -30,7 +30,7 @@
                 </div>
             </div>
             <div class="form-group form_bt">
-                <div class="col-sm-offset-4 col-sm-9">
+                <div class="col-sm-offset-3 col-sm-9">
                     <button type="reset" class="btn btn-default"> Reset </button>
                     <button type="submit" class="btn btn-primary"> Creat </button>
 
@@ -61,6 +61,9 @@
                     required: true,
                     rangelength: [2,50]
                 },
+                yourname: {
+                    required: true,
+                },
 
                 Email:{
                     required: true,
@@ -70,6 +73,9 @@
                 username: {
                     required: "Please enter the Username",
                     rangelength: "The username is the wrong length"
+                },
+                yourname: {
+                    required: "Please enter the Your name",
                 },
 
                 Email:{

@@ -39,7 +39,7 @@ class AdminControler extends controller {
         }
         if (Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>1,'changePass'=>1 ]) ) {
             $use_ = new User();
-            return redirect()->route('dashboard');
+            return redirect()->route('listdepartment');
         }
 
         return redirect()->back()->withInput();

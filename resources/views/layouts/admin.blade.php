@@ -118,12 +118,6 @@
 </html>
 @show
 @section('script_')
-    <script>
-        $(document).ready(function(){
-           $('.test_').click(function(){
-                alert('dm');
-            });
-        });
-    </script>
+
 @show
 

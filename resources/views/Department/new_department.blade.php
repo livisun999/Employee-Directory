@@ -3,7 +3,7 @@
 @section('content')
 <div class="new_department container form_add_new">
     <div class="row">
-    <form action='postNewAdmin' method="post" id="form_add_new_admin" name="form_add_new_admin" class="form-horizontal col-sm-8">
+    <form action='postNewDepartment' method="post" id="form_add_new_admin" name="form_add_new_admin" class="form-horizontal col-sm-8">
         {!! csrf_field() !!}
         <input type="hidden" name="_token" value="{!!  csrf_token() !!}">
         <h1> New Department </h1>
@@ -26,14 +26,14 @@
         <div class="form-group">
             <label for="DepartmentPhone" class="col-lg-offset-1 col-sm-3 control-label"> Office Phone</label>
             <div class="col-sm-6">
-                <input type="email" name="DepartmentPhone" id="DepartmentPhone" class="form-control" placeholder="Office Phone @xxx.com">
+                <input type="text" name="DepartmentPhone" id="DepartmentPhone" class="form-control" placeholder="Office Phone @xxx.com">
             </div>
         </div>
 
         <div class="form-group">
             <label class="col-lg-offset-1 col-sm-3 control-label"> Manager</label>
             <div class="col-sm-6">
-                <select class="form-control">
+                <select class="form-control" name="depMaster">
                     @foreach($employee_name as $list_employee)
                         <option>{{$list_employee['name']}} </option>
                     @endforeach

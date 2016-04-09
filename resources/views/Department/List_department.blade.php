@@ -42,6 +42,7 @@
                                    </div>
 
                             "
+                           data-backdrop="static"
                            >
                             {{$depar['Dep_name']}}
 
@@ -86,7 +87,9 @@
 
                                     @endforeach
                                 </select>
-                            ">
+                            "
+                           data-backdrop="static"
+                            >
                             <span class="glyphicon glyphicon-pencil edit_depaerment" data-toggle="tooltip" data-placement="top" title="Edit"></span>
                         </a>
                         <a href="#" ><span class="glyphicon glyphicon-trash delete_depaerment" data-toggle="tooltip" data-placement="top" title="Delete"></span></a>
@@ -112,7 +115,6 @@
                     </div>
 
                     <div class="modal-body">
-
                         <table class="col-sm-12 table-modal">
                             <tr>
                                 <td> Room Number:
@@ -126,8 +128,6 @@
                                     <span class="master"> </span>
                                 </td>
                             </tr>
-
-
                         </table>
                         <div class="view_employee ">
                             <p><strong> Employee:</strong>
@@ -167,6 +167,7 @@
 
                 $('.view_employee').removeClass('border_employee_');
                 $('.close_modal').html('Close');
+                $('.modal-footer').html('<button type="button" class="btn btn-primary" data-dismiss="modal"> Close</button>');
             });
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
@@ -191,9 +192,13 @@
                 $('.phone').html(" <input type='text' value='0" + phone + "' > ");
 
                 $('.view_employee').addClass('border_employee_');
-                $('.close_modal').html('Update');
 
+                $('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>' +
+                        '<button type="button" class="btn btn-primary close_modal update_department" data-dismiss="modal">Update</button>');
             });
+
+            
+
         });
     </script>
 @stop

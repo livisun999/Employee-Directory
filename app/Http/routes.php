@@ -50,10 +50,11 @@ Route::group(['middleware' => ['web']], function () {
 
                 // route department
 
-                Route::get('/listdepartment',['as=>getListdepart','uses'=>'DepartmentControler@getListdepart']);
+                Route::get('listdepartment',['as'=>'listdepartment','uses'=>'DepartmentControler@getListdepart']);
 
                 Route::post('/postListDepartment',['as'=>'postListDepartment','uses'=>'DepartmentControler@postListDepartment']);
                 Route::get('/newdepartment',['as=>newdepartment','uses'=>'DepartmentControler@new_department']);
+                Route::post('/postNewDepartment',['as'=>'postNewDepartment','uses'=>'DepartmentControler@postNewDepartment']);
         });
 
 

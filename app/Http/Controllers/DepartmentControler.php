@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\newDepartmentRequest;
 use App\Models\Depar;
 use App\Models\Employee;
 
@@ -31,6 +32,15 @@ class DepartmentControler extends Controller {
         $list_employee = $ojbEmployee->all()->toArray();
         return view('Department.new_department')->with('employee_name',$list_employee);
     }
+    public function postNewDepartment(newDepartmentRequest $request){
 
+        $department = new Depar();
+        $department->Dep_name = $request->DepartmentName;
+        $department->Dep_master = $request->depMaster;
+        $department->Dep_Phone = $request->DepartmentPhone;
+        $department->Dep_number = $request->RoomNumber;
 
+        $department->save();
+        return redirect()->route('listdepartment');
+    }
 }
