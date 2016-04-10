@@ -68,7 +68,7 @@
                 <a href="#"><i class="icon-puzzle"></i><span>New administrator</span> </a>
             </li>
             <li class="nav-parent">
-                <a href="#"><i class="icon-bulb"></i><span> List Admintrator</span> </a>
+                <a href="{{URL::to('listemployee')}}"><i class="icon-bulb"></i><span> List Employee</span> </a>
             </li>
             <li class="nav-parent">
                 <a href=""><i class="icon-screen-desktop"></i><span>Profile</span> </a>

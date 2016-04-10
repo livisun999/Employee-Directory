@@ -74,10 +74,21 @@
     height:auto;
     background-color: #FFFFFF;
 }
-
+.pr_left {
+    height: auto;
+    min-height: 500px;
+}
 .pr_left img{
     margin-top:100px;
     margin-left:20px;
+}
+.user-img {
+    height: auto;
+    min-height:400px;
+}
+.img_change {
+    height: auto;
+    min-height:100px;
 }
 .pr_right {
     margin-top:110px;
@@ -87,8 +98,9 @@
 }
 .text_profile {
     padding:10px;
-    background-color: #5bc0de;
+    background-color: #00aced;
     text-align: center;
+    color:#FFFFFF;
     border-radius: 4px;
     margin-bottom:50px;
 }
@@ -143,4 +155,7 @@
     font-weight: bold;
     font-size: 16px;
     text-decoration: underline;
+}
+.img_change {
+    marign-top:100px;
 }
