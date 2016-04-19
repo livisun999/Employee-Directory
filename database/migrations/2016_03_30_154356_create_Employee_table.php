@@ -26,7 +26,7 @@ class CreateEmployeeTable extends Migration
 
             $table->foreign('depar_id')->references('id')->on('Depar');
         });
-
+        DB::statement('ALTER TABLE `employee` MODIFY `depar_id` INTEGER UNSIGNED NULL;')
     }
 
     /**

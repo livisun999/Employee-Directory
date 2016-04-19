@@ -19,4 +19,8 @@ class Employee extends Model
     public function depar(){
         return $this->hasOne();
     }
+    public function removeDepartment(){
+    	$this->depar_id = NULL;
+     	return true;
+    }
 }

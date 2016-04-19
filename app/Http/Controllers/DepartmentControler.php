@@ -13,8 +13,15 @@ use App\Models\Depar;
 use App\Models\Employee;
 
 class DepartmentControler extends Controller {
-
-
+    private function removeFromDepartment($ems, $department){
+        foreach ($ems as $em) {
+            $employee = Employee::find($em);
+            if($employee && $employee->depar_id == $department){
+                $employee->removeDepartment();
+                $employee->save();
+            }
+        }
+    }
     public function getListdepart(){
         $objDepart = new Depar();
         $objDepart = $objDepart->all()->toArray();
@@ -23,8 +30,7 @@ class DepartmentControler extends Controller {
         $list_employee = $ojbEmployee->all()->toArray();
 
         return view('Department.List_department')->with([
-            'allDepart' => $objDepart,
-            'list_employee'=>$list_employee
+            'allDepart' => $objDepart
         ]);
     }
     public function new_department(){
@@ -42,5 +48,30 @@ class DepartmentControler extends Controller {
 
         $department->save();
         return redirect()->route('listdepartment');
+    }
+
+    public function postEditDepartment(newDepartmentRequest $request){
+        $id = $request->input('depId');
+        $department = Depar::find($id);
+        $department->Dep_name = $request->DepartmentName;
+        $department->Dep_master = $request->depMaster;
+        $department->Dep_Phone = $request->DepartmentPhone;
+        $department->Dep_number = $request->RoomNumber;
+        $department->save();
+
+        $ems = $request->removeList;
+        if(sizeof($ems) > 0){
+            $this->removeFromDepartment($ems, $id);
+        }
+        $employees = Employee::where('depar_id',$id)->get(array('id','name'));
+        $data = array('dep' => $department, 'employees' => $employees);
+        return json_encode($data);
+    }
+
+    public function getDepartmentDetails($id){
+        $department = Depar::find($id);
+        $employees = Employee::where('depar_id',$id)->get(array('id','name'));
+        $data = array('dep' => $department, 'employees' => $employees);
+        return json_encode($data);
     }
 }

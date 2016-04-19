@@ -15,7 +15,5 @@ use Illuminate\Database\Eloquent\Model;
 class Depar extends Model
 {
     protected $table = 'Depar';
-
     protected $fillable = ['Dep_name','Dep_master','Dep_phone','Dep_number'];
-
 }

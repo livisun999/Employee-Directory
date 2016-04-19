@@ -13115,3 +13115,17 @@ body.rtl .layout-options .img-sidebar-right {
 .sidebar-condensed:not(.sidebar-collapsed) .main-content {
   margin-right: 190px;
 }
+
+input[type="text"].trans{
+    background: none;
+    border: none;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    font-size: 125%;
+}
+
+input[type="text"].trans:focus{
+  background: white;
+  color: black;
+}

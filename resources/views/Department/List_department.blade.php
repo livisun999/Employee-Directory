@@ -17,79 +17,23 @@
                     </tr>
                     {{--*/ $i = 1 /*--}}
                     @foreach($allDepart as $depar)
-                        <tr>
+                        <tr id="depart_{{$depar['id']}}">
                             <td class="stt">{{$i}} </td>
                             <td class="click_modal">
-                                <a href="#" data-toggle="modal" data-target="#myModal" class="show_modal"
-                                   data-master="{{$depar['Dep_master']}}"
-                                   data-phone="{{$depar['Dep_Phone']}}"
-                                   data-number="{{$depar['Dep_number']}}"
-                                   data-name = "{{$depar['Dep_name']}}"
+                                <a href="#" data-toggle="modal" data-target="#myModal"  class="show_modal"
                                    data-id = "{{$depar['id']}}"
-
-                                   data-employee = "
-                                        <div class=employee_name>
-                                        {{--*/ $t = 1 /*--}}
-                                           <table class='col-sm-8'>
-                                                @foreach($list_employee as $employ)
-                                                    @if($employ['depar_id'] == $depar['id'])
-                                                        <tr>
-                                                            <td class='col-sm-1'> {{$t}}) </td>
-                                                            <td class='col-sm-8'> {{$employ['name'] }} </td>
-                                                        </tr>
-                                                    {{--*/ $t++ /*--}}
-                                                    @endif
-                                                @endforeach
-                                            </table>
-                                           </div>
-
-                                    "
                                    data-backdrop="static"
                                    >
                                     {{$depar['Dep_name']}}
 
                                 </a>
                             </td>
-                            <td>{{$depar['Dep_master']}} </td>
-                            <td>0{{$depar['Dep_Phone']}} </td>
+                            <td class='dep_master'>{{$depar['Dep_master']}} </td>
+                            <td class='dep_phone'>0{{$depar['Dep_Phone']}} </td>
                             <td class="number_room">{{$depar['Dep_number']}} </td>
                             <td class="Action">
                                 <a href="#" data-toggle="modal" data-target="#myModal" class="edit_depaerment"
-                                   data-master="{{$depar['Dep_master']}}"
-                                   data-phone="{{$depar['Dep_Phone']}}"
-                                   data-number="{{$depar['Dep_number']}}"
-                                   data-name = "{{$depar['Dep_name']}}"
                                    data-id = "{{$depar['id']}}"
-
-                                   data-employee = "
-                                        <div class='employee_name'>
-                                        {{--*/ $e = 1 /*--}}
-                                   <table class='col-sm-8'>
-                                       @foreach($list_employee as $employ)
-                                           @if($employ['depar_id'] == $depar['id'])
-                                              <tr>
-                                                <td class='col-sm-1'> {{$e}}) </td>
-                                                <td class='col-sm-8'> {{$employ['name'] }} </td>
-                                                <td class='col-sm-3'> <a href='#' ><span class='glyphicon glyphicon-trash ' data-toggle='tooltip' data-placement='top' title='Delete'></span></a> </td>
-
-                                              {{--*/ $e++ /*--}}
-                                           @endif
-                                       @endforeach
-                                    </table>
-                                        </div>
-                                    "
-                                   data-opiton_employee = "
-                                        <select >
-                                            @foreach($list_employee as $employ)
-                                               @if($employ['depar_id'] == $depar['id'])
-                                                       <option>
-                                                       {{$employ['name'] }}
-                                                       <//option>
-                                                   @endif
-
-                                            @endforeach
-                                        </select>
-                                    "
                                    data-backdrop="static"
                                     >
                                     <span class="glyphicon glyphicon-pencil edit_depaerment" data-toggle="tooltip" data-placement="top" title="Edit"></span>
@@ -133,7 +77,7 @@
                                 </table>
                                 <div class="view_employee ">
                                     <p><strong> Employee:</strong>
-                                        <span class="employee_"> </span>
+                                        <span class="employee_"><ul style="margin-left: 60px; list-style: decimal;"></ul></span>
                                     </p>
                                 </div>
 
@@ -153,52 +97,165 @@
 @section('script_')
     @parent
     <script type="text/javascript">
+        function createModal(data){
+            $('.room_number').html(" <b>&nbsp; " + data.dep.Dep_number + "</b>");
+            $('.name').html(" <b>&nbsp; " + data.dep.Dep_name + "</b>");
+            $('.master').html(" <b>&nbsp; " + data.dep.Dep_master + "</b>");
+            $('.phone').html(" <b>&nbsp;  " +"0" + data.dep.Dep_Phone + "</b>");
+            if(!$('.employee_>ul').length){
+                $('.employee_').append('<ul style="margin-left: 60px; list-style: decimal;"></ul>');
+            }
+            var employeeList = $('.employee_>ul');
+            employeeList.empty();
+            var employees = data.employees;
+            for(var i = 0; i < employees.length; i++){
+                var li = $('<li></li>');
+                li.text(employees[i].name);
+                li.id = employees[i].id;
+                employeeList.append(li);
+            }
+            $('.view_employee').removeClass('border_employee_');
+            $('.close_modal').html('Close');
+            $('.modal-footer').html('<button type="button" class="btn btn-primary" data-dismiss="modal"> Close</button>');
+        }
+
+        function createEditModal(data){
+            var token = '{!! csrf_token() !!}';   
+            if(data == null) return;
+            var dpid = data.dep.id;
+            var removeList  = [];
+            $('.name').html(" <input type='text' class='trans' value='" + data.dep.Dep_name + "' > ");
+
+            $('.room_number').html(" <input type='text' value='" + data.dep.Dep_number + "' > ");
+            $('.master').html('');
+
+            $('.phone').html(" <input type='text' value='0" + data.dep.Dep_Phone + "' > ");
+
+            if(!$('.employee_>ul').length){
+                $('.employee_').append('<ul style="margin-left: 60px; width: 250px; list-style: decimal;"></ul>');
+            }
+            $('.master').empty();
+            if(!$('.master>select').length){
+                $('.master').append('<select></select>');
+            }
+            var employeeList = $('.employee_>ul');
+            employeeList.empty();
+            var employeeOptions = $('.master>select');
+            employeeOptions.empty(); 
+            var employees = data.employees;
+
+            for(var i = 0; i < employees.length; i++){
+                var li = $('<li></li>');
+                li.text(employees[i].name);
+                var removeEmpl = $('<a title="remove from department" class="pull-right" href="javascript:void(0)" role="remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>');
+                removeEmpl.attr('data-id',employees[i].id);
+                li.append(removeEmpl);
+                employeeList.append(li);
+                removeEmpl.bind('click', function(){
+                    var ico = $(this).find('span');
+                    var id = $(this).attr('data-id');
+                    if($(this).attr('role') == 'remove'){
+                        removeList.push(id);
+                        ico.css('color', 'orange');
+                        ico.attr('class', 'glyphicon glyphicon-repeat');
+                        $(this).attr('title', 'undo');
+                        $(this).attr('role', 'undo');
+                    } else {
+                        removeList.splice(removeList.indexOf(id), 1);
+                        ico.css('color', '');
+                        ico.attr('class', 'glyphicon glyphicon-remove');
+                        $(this).attr('title', 'remove from department');
+                        $(this).attr('role', 'remove');
+                    }
+                });
+
+                var option = $('<option></option>');
+                option.text(employees[i].name);
+                option.val(employees[i].name);
+                if(employees[i].name == data.dep.Dep_master){
+                    option.attr('selected', 'selected');
+                }
+                employeeOptions.append(option);
+            }
+            function renderDepartmentRow(dep){
+                var id = dep.id;
+                var row = '#depart_'+id;
+                if(!(row).length) return;
+                var a = $(row+'>.show_modal').text(dep.Dep_name);
+                $(row+'>.dep_master').text(dep.Dep_master);
+                $(row+'>.dep_phone').text(dep.Dep_Phone);
+                $(row+'>.room_number').text(dep.Dep_number);
+            }
+            $('.view_employee').addClass('border_employee_');
+            $('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>' +
+                    '<button type="button" class="btn btn-primary close_modal update_department" data-dismiss="modal">Update</button>');
+            $('.update_department').bind('click', function(){
+                $.ajax({
+                    url: 'postEditDepartment',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: {
+                        'depId': dpid,
+                        'depMaster': $('.master>select').val(), 
+                        'DepartmentName':  $('.name>input').val(),
+                        'RoomNumber': $('.room_number>input').val(),
+                        'DepartmentPhone': $('.phone>input').val(),
+                        'removeList': removeList,
+                        '_token': token
+                    },
+                    complete: function(){
+
+                    },
+                    success: function(data){
+
+                        var message =  data.message;
+                        if(typeof message === 'undefined'){
+                            message = "department was updated";
+                        }
+                        
+                       createNoty('success', message, 5000);
+                       renderDepartmentRow(data.dep);
+                    },
+                    error: function(){
+                        var message =  data.message;
+                        if(typeof message === 'undefined'){
+                            message = "department can not updated";
+                        }
+                        createNoty('error', message, 5000);   
+                    }
+                });
+            });
+        }
+
         $(document).ready(function() {
+            $('a.show_modal').click(function() {
+                var depId = $(this).attr('data-id');
+                //createModal(data);
+                $.ajax({
+                    url: 'getDepartmentDetails/'+depId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        createModal(data);
+                    }
+                });
 
-            $('.show_modal').click(function() {
-                var name = $(this).attr('data-name');
-                var master = $(this).attr('data-master');
-                var phone = $(this).attr('data-phone');
-                var number = $(this).attr('data-number');
-                var id = $(this).attr('data-id');
-                var employee = $(this).attr('data-employee');
-
-                $('.employee_').html( employee);
-                $('.room_number').html(" <b>&nbsp; " + number + "</b>");
-                $('.name').html(" <b>&nbsp; " + name + "</b>");
-                $('.master').html(" <b>&nbsp; " + master + "</b>");
-                $('.phone').html(" <b>&nbsp;  " +"0" + phone + "</b>");
-
-                $('.view_employee').removeClass('border_employee_');
-                $('.close_modal').html('Close');
-                $('.modal-footer').html('<button type="button" class="btn btn-primary" data-dismiss="modal"> Close</button>');
             });
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })
 
-            $('.edit_depaerment').click(function(){
-                var name = $(this).attr('data-name');
-                var master = $(this).attr('data-master');
-                var phone = $(this).attr('data-phone');
-                var number = $(this).attr('data-number');
-                var id = $(this).attr('data-id');
-                var employee = $(this).attr('data-employee');
-                var option_employee =  $(this).attr('data-opiton_employee');
-//
-//                alert(option_employee);
-
-                $('.name').html(" <b>&nbsp; " + name + "</b>");
-
-                $('.employee_').html( employee);
-                $('.room_number').html(" <input type='text' value='" + number + "' > ");
-                $('.master').html(option_employee);
-                $('.phone').html(" <input type='text' value='0" + phone + "' > ");
-
-                $('.view_employee').addClass('border_employee_');
-
-                $('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>' +
-                        '<button type="button" class="btn btn-primary close_modal update_department" data-dismiss="modal">Update</button>');
+            $('a.edit_depaerment').click(function(e){
+                var depId = $(this).attr('data-id');
+                //createModal(data);
+                $.ajax({
+                    url: 'getDepartmentDetails/'+depId,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data){
+                        createEditModal(data);
+                    }
+                });
             });
 
 //            $('.delete_depaerment').click(function(){
