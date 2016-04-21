@@ -13129,3 +13129,6 @@ input[type="text"].trans:focus{
   background: white;
   color: black;
 }
+.em-act-sm{
+  padding: 0 6px;
+}

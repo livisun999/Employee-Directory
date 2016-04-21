@@ -23,4 +23,17 @@ class Employee extends Model
     	$this->depar_id = NULL;
      	return true;
     }
+    public static function findByName($name){
+        $sql = "`name` LIKE '%:key%'
+            ORDER BY CASE
+                WHEN `name` = ':key' THEN 1
+                WHEN `name` = ':key%' THEN 2
+                WHEN `name` = '%:key' THEN 3
+                WHEN `name` = '%:key%' THEN 4
+                ELSE 5
+            END, `name` ASC";
+        $sql = str_replace(':key', $name, $sql);
+    	$results = self::whereRaw($sql)->get();
+    	return $results;
+    } 
 }

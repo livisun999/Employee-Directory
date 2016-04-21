@@ -57,8 +57,10 @@ Route::group(['middleware' => ['web']], function () {
                 Route::post('/postNewDepartment',['as'=>'postNewDepartment','uses'=>'DepartmentControler@postNewDepartment']);
                 Route::post('postEditDepartment', ['as' => 'postEditDepartment', 'uses'=>'DepartmentControler@postEditDepartment']);
                 Route::get('getDepartmentDetails/{id}', ['as' => 'getDepartmentDetails', 'uses'=>'DepartmentControler@getDepartmentDetails']);
-
+                // route for employee
                 Route::get('listemployee',['as'=>'listemployee','uses'=>'EmployeeController@getListEmployee']);
+                Route::post('searchemployee',['as'=>'searchemployee','uses'=>'EmployeeController@searchEmployeeByName']);
+                Route::get('employee/profile/{id}', ['as'=>'emprofile', 'uses'=> 'EmployeeController@getProfile']);
         });
 
 

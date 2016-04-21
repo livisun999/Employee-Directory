@@ -30,8 +30,10 @@
             </div>
             <h4>Bryan Raynolds</h4>
             <div class="dropdown user-login">
-                <form action="search-result.html" method="post" class="searchform" id="search-results">
-                    <input class="form-control" name="keyword" placeholder="Search..." type="text">
+                <form action="searchemployee" method="post" class="searchform" id="search-results">
+                    {!! csrf_field() !!}
+                    <input class="form-control" name="name" placeholder="Search employee..." type="text">
+                    }
                 </form>
             </div>
         </div>

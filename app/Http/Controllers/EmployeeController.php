@@ -25,6 +25,25 @@ class EmployeeController extends controller
             'allDepart' => $objDepart,
             'list_employee'=>$list_employee
         ]);
+    }
+    public function getProfile($id){
+        $profile = Employee::find($id);
+        if(!$profile){
+           return response()->json([
+                'message'=> 'profile not found'
+                ], 404); 
+        }
+        return response()->json($profile); 
+    }
+    public function searchEmployeeByName(){
+        $name = "minh";
+        if(!$name){
+            return response()->json([
+                'message'=> 'bad request'
+                ], 400);
+        }
 
+        $results = Employee::findByName($name);
+        return response()->json(['info'=>[], 'result'=>$results]);
     }
 }

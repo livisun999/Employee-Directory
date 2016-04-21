@@ -89,7 +89,31 @@
 
                     </div>
                 </div>
+            </div>
+            <!-- MODAL SHOW EMPLOYEE DETAIL -->
+            <div class="container">
+                <!--Modal employee -->
+                <div class="modal fade" id="emModal" role="dialog">
+                    <div class="modal-dialog modal-lg">
 
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h1 class="modal-title"> Thông Tin Nhân Viên</h1>
+                            </div>
+
+                            <div class="modal-body">
+                                thông tin ở đây
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary close_modal" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>            
             </div>
         </div>
     </div>
@@ -112,19 +136,37 @@
                 var li = $('<li></li>');
                 li.text(employees[i].name);
                 li.id = employees[i].id;
+                var detail =  $('<a title="profile" class="em-act-sm pull-right" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>');
+                detail.attr('data-id',employees[i].id);
+                detail.on('click', function(){
+                    var id = $(this).attr('data-id');
+                    $.ajax({
+                        url: 'employee/profile/'+id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data){
+                            createEmployeeModal(data);
+                            $('#emModal').modal('show');
+                        }
+                    });
+                });
+                li.append(detail);
                 employeeList.append(li);
             }
             $('.view_employee').removeClass('border_employee_');
-            $('.close_modal').html('Close');
-            $('.modal-footer').html('<button type="button" class="btn btn-primary" data-dismiss="modal"> Close</button>');
+            $('#myModal .close_modal').html('Close');
+            $('#myModal .modal-footer').html('<button type="button" class="btn btn-primary" data-dismiss="modal"> Close</button>');
         }
 
+        function createEmployeeModal(data){
+            $('#emModal .modal-body').text(JSON.stringify(data));
+        }
         function createEditModal(data){
             var token = '{!! csrf_token() !!}';   
             if(data == null) return;
             var dpid = data.dep.id;
             var removeList  = [];
-            $('.name').html(" <input type='text' class='trans' value='" + data.dep.Dep_name + "' > ");
+            $('.name').html(" <input required type='text' class='trans' value='" + data.dep.Dep_name + "' > ");
 
             $('.room_number').html(" <input type='text' value='" + data.dep.Dep_number + "' > ");
             $('.master').html('');
@@ -147,11 +189,26 @@
             for(var i = 0; i < employees.length; i++){
                 var li = $('<li></li>');
                 li.text(employees[i].name);
-                var removeEmpl = $('<a title="remove from department" class="pull-right" href="javascript:void(0)" role="remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>');
+                var removeEmpl = $('<a title="remove from department" class="em-act-sm pull-right" href="javascript:void(0)" role="remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>');
                 removeEmpl.attr('data-id',employees[i].id);
+                var detail =  $('<a title="profile" class="em-act-sm pull-right" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>');
+                detail.attr('data-id',employees[i].id);
+                detail.on('click', function(){
+                    var id = $(this).attr('data-id');
+                    $.ajax({
+                        url: 'employee/profile/'+id,
+                        type: 'GET',
+                        dataType: 'json',
+                        success: function(data){
+                            createEmployeeModal(data);
+                            $('#emModal').modal('show');
+                        }
+                    });
+                });
                 li.append(removeEmpl);
+                li.append(detail);
                 employeeList.append(li);
-                removeEmpl.bind('click', function(){
+                removeEmpl.on('click', function(){
                     var ico = $(this).find('span');
                     var id = $(this).attr('data-id');
                     if($(this).attr('role') == 'remove'){
@@ -187,7 +244,7 @@
                 $(row+'>.room_number').text(dep.Dep_number);
             }
             $('.view_employee').addClass('border_employee_');
-            $('.modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>' +
+            $('#myModal .modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>' +
                     '<button type="button" class="btn btn-primary close_modal update_department" data-dismiss="modal">Update</button>');
             $('.update_department').bind('click', function(){
                 $.ajax({
@@ -263,6 +320,13 @@
 //                alert(cc);
 //            });
 
+        });
+        $(document).on('show.bs.modal', '.modal', function () {
+            var zIndex = 1040 + (10 * $('.modal:visible').length);
+            $(this).css('z-index', zIndex);
+            setTimeout(function() {
+                $('.modal-backdrop').not('.modal-stack').css('z-index', zIndex - 1).addClass('modal-stack');
+            }, 0);
         });
     </script>
 @stop
