@@ -9,6 +9,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Depar;
 
 class Employee extends Model
 {
@@ -16,8 +17,15 @@ class Employee extends Model
 
     protected $fillable = ['name','image', 'birthday','phone','email', 'mobile', 'office', 'adress', 'job_title', 'sex', 'type', 'status', 'wawe', 'wage_cur', 'work_from','depar_id'];
 
-    public function depar(){
-        return $this->hasOne();
+    public function department($col = ["*"]){
+        $this->department = Depar::find($this->depar_id, $col);
+    }
+    public static function allWithDep($col = ["*"]){
+        $all = self::all();
+        foreach ($all as $em) {
+            $em->department($col);
+        }
+        return $all;
     }
     public function removeDepartment(){
     	$this->depar_id = NULL;

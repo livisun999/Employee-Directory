@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Extentions\AjaxResponse;
 use Illuminate\Routing\Controller;
 use App\Models\Depar;
 use App\Models\Employee;
@@ -15,25 +16,16 @@ use App\Models\Employee;
 class EmployeeController extends controller
 {
     public function getListEmployee (){
-        $objDepart = new Depar();
-        $objDepart = $objDepart->all()->toArray();
-
-        $ojbEmployee = new Employee();
-        $list_employee = $ojbEmployee->all()->toArray();
+        $list = Employee::allWithDep(['Dep_name', 'id']);
 
         return view('Employee.list_employee')->with([
-            'allDepart' => $objDepart,
-            'list_employee'=>$list_employee
+            'list_employee'=>$list,
         ]);
     }
     public function getProfile($id){
         $profile = Employee::find($id);
-        if(!$profile){
-           return response()->json([
-                'message'=> 'profile not found'
-                ], 404); 
-        }
-        return response()->json($profile); 
+        $profile->department(['Dep_name', 'id']);
+        return ajaxResponse::ok($profile); 
     }
     public function searchEmployeeByName(){
         $name = "minh";
@@ -44,6 +36,6 @@ class EmployeeController extends controller
         }
 
         $results = Employee::findByName($name);
-        return response()->json(['info'=>[], 'result'=>$results]);
+        return ajaxResponse::ok(['info'=>[], 'result'=>$results]);
     }
 }
