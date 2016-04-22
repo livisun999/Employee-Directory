@@ -29,13 +29,11 @@ class UsersTableSeeder extends Seeder
 
         Depar::create(array(
             'Dep_name'=>'Phòng nhân Sự',
-            'Dep_master'=>'vương',
             'Dep_Phone' =>  '0972114187',
             'Dep_number'=>'E-01'
         ));
         Depar::create(array(
             'Dep_name'=>'Phòng Hành Chính',
-            'Dep_master'=>'minh',
             'Dep_Phone' =>  '0972114188',
             'Dep_number'=>'B-02'
         ));
@@ -46,6 +44,14 @@ class UsersTableSeeder extends Seeder
             'birthday'=>'1993/12/08',
             'phone'=> '0972114187',
             'email'=>'abc@gmail.com',
+            'mobile'=>'0972114187',
+            'office'=>'0972114187',
+            'job_title'=>'trưởng phòng',
+            'sex'=>'nam',
+            'type'=>'full time',
+            'adress'=>'Hà Nội, VN',
+            'work_from'=>'2010/12/08',
+            'wage'=>'2000000',
             'depar_id'=>'1'
         ]);
         Employee::create([
@@ -53,6 +59,14 @@ class UsersTableSeeder extends Seeder
             'birthday'=>'1995/12/12',
             'phone'=> '0972114188',
             'email'=>'minh@gmail.com',
+            'mobile'=>'0972114187',
+            'office'=>'0972114187',
+            'job_title'=>'trưởng phòng',
+            'sex'=>'nam',
+            'type'=>'full time',
+            'adress'=>'Hà Nội, VN',
+            'work_from'=>'2010/12/08',
+            'wage'=>'2000000',
             'depar_id'=>'2'
         ]);
         Employee::create([
@@ -60,6 +74,14 @@ class UsersTableSeeder extends Seeder
             'birthday'=>'1996/12/12',
             'phone'=> '0972114199',
             'email'=>'thanhlich_ulis@gmail.com',
+            'mobile'=>'0972114187',
+            'office'=>'0972114187',
+            'job_title'=>'trưởng phòng',
+            'sex'=>'nam',
+            'type'=>'full time',
+            'adress'=>'Hà Nội, VN',
+            'work_from'=>'2010/12/08',
+            'wage'=>'2000000',
             'depar_id'=>'2'
         ]);
     }

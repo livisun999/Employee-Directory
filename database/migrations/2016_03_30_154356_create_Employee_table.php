@@ -16,19 +16,27 @@ class CreateEmployeeTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->date('birthday');
-            $table->integer('phone');
+            $table->string('phone');
+            $table->string('mobile');
+            $table->string('office');
             $table->string('email');
             $table->string('image');
             $table->string('job_title');
-            $table->unsignedInteger('depar_id');
+            $table->string('sex');
+            $table->string('type');
+            $table->string('status');
+            $table->bigInteger('wage')->unsigned();
+            $table->string('wage_cur')->default('vnđ');
+            $table->date('work_from');
+            $table->string('adress');
+            $table->unsignedInteger('depar_id')->nullable();
             $table->rememberToken();
             $table->timestamps();
-
-            $table->foreign('depar_id')->references('id')->on('Depar');
+            $table->foreign('depar_id')->references('id')->on('employee');
         });
-        DB::statement('ALTER TABLE `employee` MODIFY `depar_id` INTEGER UNSIGNED NULL;')
-    }
 
+        DB::statement('ALTER TABLE `Depar` ADD FOREIGN KEY (`Dep_master`)REFERENCES employee(`id`)');
+    }
     /**
      * Reverse the migrations.
      *

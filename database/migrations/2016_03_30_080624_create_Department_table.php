@@ -15,7 +15,7 @@ class CreateDepartmentTable extends Migration
         Schema::create('Depar', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Dep_name');
-            $table->string('Dep_master');
+            $table->unsignedInteger('Dep_master')->nullable();
             $table->integer('Dep_Phone');
             $table->string('Dep_number');
             $table->timestamps();

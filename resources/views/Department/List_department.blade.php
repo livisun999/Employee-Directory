@@ -28,7 +28,9 @@
 
                                 </a>
                             </td>
-                            <td class='dep_master'>{{$depar['Dep_master']}} </td>
+                            <td class='dep_master'>
+                                <a href="#emModal" data-id="1">{{$depar['Dep_master']}}</a>
+                            </td>
                             <td class='dep_phone'>0{{$depar['Dep_Phone']}} </td>
                             <td class="number_room">{{$depar['Dep_number']}} </td>
                             <td class="Action">
@@ -104,8 +106,68 @@
                             </div>
 
                             <div class="modal-body">
-                                thông tin ở đây
-
+                                <div class="genaral-info">
+                                    <div class="user-image profile-img">
+                                        <img src="http://localhost/Employee-Directory/public/assets/Admin/images/profil_page/friend8.jpg" class="img-responsive img-circle" />
+                                    </div>
+                                    <div class="info">
+                                        <div class="em-name data" data="name">Lục Văn Minh</div>
+                                        <div class="data" data="job_title">giám đốc công nghệ</div>
+                                        <div class="depart"></div>
+                                    </div>
+                                </div>
+                                <div class="detail-info">
+                                    <div class="colum2">
+                                        <div class="info-title">contact info</div>
+                                        <table>
+                                           <tr>
+                                               <td>E-mail</td>
+                                               <td class="data" data="email">luk.mink@gmail.com</td>
+                                           </tr>
+                                           <tr>
+                                               <td>phone</td>
+                                               <td class="data" data="phone">0969407641</td>
+                                           </tr>
+                                           <tr>
+                                               <td>mobile</td>
+                                               <td class="data" data="mobile">0969407641</td>
+                                           </tr>
+                                           <tr>
+                                               <td>office</td>
+                                               <td class="data" data="office">0969407641</td>
+                                           </tr>
+                                           <tr>
+                                               <td>adress</td>
+                                               <td class="data" data="adress">ktx my dinh</td>
+                                           </tr>
+                                        </table>
+                                    </div>
+                                    <div class="colum2">
+                                        <div class="info-title">other info</div>
+                                        <table>
+                                           <tr>
+                                               <td>sex</td>
+                                               <td class="data" data="sex">nam</td>
+                                           </tr> 
+                                           <tr>
+                                               <td>birthday</td>
+                                               <td class="data" data="birthday">01/01/1995</td>
+                                           </tr>
+                                           <tr>
+                                               <td>type</td>
+                                               <td class="data" data="type">full time</td>
+                                           </tr>
+                                           <tr>
+                                               <td>wage rates</td>
+                                               <td><span class="data wage" data="wage">200000</span><span class="data" data="wage_cur">vnd</span></td>
+                                           </tr>
+                                           <tr>
+                                               <td>work from</td>
+                                               <td class="data" data="work-from">02/01/1995</td>
+                                           </tr>
+                                        </table>
+                                    </div>
+                                </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-primary close_modal" data-dismiss="modal">Close</button>
@@ -138,18 +200,7 @@
                 li.id = employees[i].id;
                 var detail =  $('<a title="profile" class="em-act-sm pull-right" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>');
                 detail.attr('data-id',employees[i].id);
-                detail.on('click', function(){
-                    var id = $(this).attr('data-id');
-                    $.ajax({
-                        url: 'employee/profile/'+id,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data){
-                            createEmployeeModal(data);
-                            $('#emModal').modal('show');
-                        }
-                    });
-                });
+                detail.on('click', getProfile);
                 li.append(detail);
                 employeeList.append(li);
             }
@@ -157,9 +208,24 @@
             $('#myModal .close_modal').html('Close');
             $('#myModal .modal-footer').html('<button type="button" class="btn btn-primary" data-dismiss="modal"> Close</button>');
         }
-
+        function getProfile(){
+            var id = $(this).attr('data-id');
+            $.ajax({
+                url: 'employee/profile/'+id,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data){
+                    createEmployeeModal(data);
+                    $('#emModal').modal('show');
+                }
+            });
+        }
         function createEmployeeModal(data){
-            $('#emModal .modal-body').text(JSON.stringify(data));
+            $('#emModal .data').each(function(){
+                var feild = $(this).attr('data');
+                $(this).text(data[feild]);
+                console.log(data);
+            });
         }
         function createEditModal(data){
             var token = '{!! csrf_token() !!}';   
@@ -193,18 +259,7 @@
                 removeEmpl.attr('data-id',employees[i].id);
                 var detail =  $('<a title="profile" class="em-act-sm pull-right" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>');
                 detail.attr('data-id',employees[i].id);
-                detail.on('click', function(){
-                    var id = $(this).attr('data-id');
-                    $.ajax({
-                        url: 'employee/profile/'+id,
-                        type: 'GET',
-                        dataType: 'json',
-                        success: function(data){
-                            createEmployeeModal(data);
-                            $('#emModal').modal('show');
-                        }
-                    });
-                });
+                detail.on('click', getProfile);
                 li.append(removeEmpl);
                 li.append(detail);
                 employeeList.append(li);
@@ -239,7 +294,7 @@
                 var row = '#depart_'+id;
                 if(!(row).length) return;
                 var a = $(row+'>.show_modal').text(dep.Dep_name);
-                $(row+'>.dep_master').text(dep.Dep_master);
+                $(row+'>.dep_master a').text(dep.Dep_master);
                 $(row+'>.dep_phone').text(dep.Dep_Phone);
                 $(row+'>.room_number').text(dep.Dep_number);
             }
@@ -285,6 +340,7 @@
         }
 
         $(document).ready(function() {
+            $('a[href="#emModal"]').bind('click', getProfile);
             $('a.show_modal').click(function() {
                 var depId = $(this).attr('data-id');
                 //createModal(data);

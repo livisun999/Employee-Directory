@@ -14,7 +14,7 @@ class Employee extends Model
 {
     protected $table = 'employee';
 
-    protected $fillable = ['name','birthday','phone','email','depar_id'];
+    protected $fillable = ['name','image', 'birthday','phone','email', 'mobile', 'office', 'adress', 'job_title', 'sex', 'type', 'status', 'wawe', 'wage_cur', 'work_from','depar_id'];
 
     public function depar(){
         return $this->hasOne();
