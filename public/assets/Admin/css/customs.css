@@ -159,3 +159,62 @@
 .img_change {
     marign-top:100px;
 }
+#emModal .info{
+    margin-top: 40px;
+}
+#emModal .info,
+#Edit_emModal .info
+{
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 20px;
+}
+#emModal .genaral-info
+,#Edit_emModal .genaral-info {
+    margin-left: 150px;
+    padding-bottom: 30px;
+}
+#emModal .profile-img,
+#Edit_emModal .profile-img
+{
+    width: 150px;
+    display: inline-block;
+}
+#emModal .em-name,
+#Edit_emModal .em-name
+{
+    font-size: 200%;
+    font-weight: bold;
+}
+#emModal .detail-info,
+#Edit_emModal .detail-info
+{
+    border-top: solid 3px #ccc;
+    padding-top: 15px;
+}
+#emModal .info-title,
+#Edit_emModal .info-title
+{
+    margin-bottom: 15px;
+    color: green;
+    font-size: 120%;
+    font-weight: bold;
+}
+#emModal .colum2>table,
+#Edit_emModal .colum2>table
+{
+    table-layout:fixed;
+    width: 90%;
+    font-weight: bold;
+}
+
+.colum2{
+    display: inline-block;
+    width: 49%;
+}
+.info div {
+    margin-bottom:10px;
+}
+.Em_img {
+    padding-top:20px;
+}
