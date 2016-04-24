@@ -231,3 +231,10 @@ table th {
 .menu_active span{
     color: #fff601;
 }
+.prevpic{
+    width: 50%;
+}
+
+.form-hint-error{
+    color: orangered;
+}

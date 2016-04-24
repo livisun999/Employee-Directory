@@ -13,6 +13,7 @@ use Illuminate\Routing\Controller;
 use App\Models\Depar;
 use App\Models\Employee;
 use App\Http\Requests\EmployeeProfileRequest;
+use App\Http\Requests\HandledEmployeeProfileRequest;
 
 class EmployeeController extends controller
 {
@@ -29,7 +30,7 @@ class EmployeeController extends controller
         $profile->department(['Dep_name', 'id']);
         return ajaxResponse::ok($profile); 
     }
-    public function updateProfile(EmployeeProfileRequest $request, $eid){
+    public function updateProfile(HandledEmployeeProfileRequest $request, $eid){
         $employee = Employee::findOrFail($eid);
         $request->bindTo($employee);
         $employee->save();
@@ -49,6 +50,19 @@ class EmployeeController extends controller
         return ajaxResponse::ok(['info'=>[], 'result'=>$results]);
     }
     public function getNewEmployee (){
-        return view('Employee.new_employee');
+        $listDepartment = Depar::all(["Dep_name", "id"]);
+        return view('Employee.new_employee')->with([
+            'listDepartment' => $listDepartment
+            ]);
+    }
+    public function postNewEmployee(EmployeeProfileRequest $request){
+        $employee = new Employee();
+        $request->bindTo($employee);
+        $employee->save();
+        die(json_encode($this->validate($request)));
+        if($request->addNext){
+            return Redirect()->back()->withInput();
+        }
+        return Redirect()->route('listemployee');
     }
 }

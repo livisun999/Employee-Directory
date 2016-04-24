@@ -19,10 +19,6 @@ class EmployeeProfileRequest extends Request
         return true;
     }
 
-    protected function failedValidation(Validator $validator)
-    {   
-        throw (new CustomException('form validate error(s)', 400))->data($validator->errors());
-    }
     /**
      * Get the validation rules that apply to the request.
      *
