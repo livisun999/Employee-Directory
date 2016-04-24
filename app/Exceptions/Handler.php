@@ -5,9 +5,12 @@ namespace App\Exceptions;
 use Exception;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Database\Eloquent\ModelNotFoundException as ModelNotFoundException;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
+use App\Exceptions\CustomException;
+use App\Extentions\AjaxResponse;
 
 class Handler extends ExceptionHandler
 {
@@ -45,21 +48,40 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $e)
     {
-        // if ($request->ajax() || $request->wantsJson()) {
-        //     $message = 'error';
-        //     $code = 500;
-        //     die($e);
-        //     if ($e instanceof ModelNotFoundException)
-        //     {
-        //         $message = "model not found";
-        //         $code = 404;
-        //     } else {
-        //         $message = $e->getMessage(());
-        //         $code = $e->getStatusCode();
-        //     }
-
-        //     return response()->json(['status'=> 'error', 'message'=>$message], $code);
-        // }
+        if ($request->ajax() || $request->wantsJson()) {
+            $message = 'error';
+            $code = 500;
+            $data = null;
+            if($e){
+                if ($e instanceof ModelNotFoundException)
+                {
+                    $message = "model not found";
+                    $code = 404;
+                } elseif ($e instanceof AuthorizationException) {
+                    $message = "authorization required";
+                    $code = 401;
+                }elseif ($e instanceof TokenMismatchException){
+                    $message = "xsrf token mismatch";
+                    $code = 400;
+                } elseif ($e instanceof CustomException){
+                     $message = $e->getMessage();
+                     $code = $e->getStatusCode();
+                     if($e->hasData()){
+                        $data = $e->getData();
+                     }
+                } elseif ($e instanceof ValidationException) {
+                    $message = $e->getMessageProvider();
+                    $data = $e->errors();
+                    $code = 400;
+                }  else {
+                    if($e->getMessage()){
+                        $message = $e->getMessage();
+                    }
+                }  
+            }
+            
+            return AjaxResponse::errorData($data, $message, $code);
+        }
         
         return parent::render($request, $e);
     }

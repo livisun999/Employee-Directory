@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <title>Admin Control @yield('title')</title>
     <link href="{!! url('public/assets/Admin/css/bootstrap.css') !!}"rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/style.css') !!}" rel="stylesheet">
@@ -12,6 +13,7 @@
     <script type="text/javascript" src="public/assets/Admin/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="public/assets/Admin/js/bootstrap.js"></script>
     <script type="text/javascript" src="public/assets/Admin/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="public/assets/Admin/js/jquery.cookie.js"></script>
     <script type="text/javascript" src="public/assets/Admin/plugins/noty/jquery.noty.packaged.min.js"></script>
     <script type="text/javascript" src="public/assets/Admin/js/main.js"></script>
 </head>
@@ -67,7 +69,7 @@
         <ul class="nav nav-sidebar">
             <li class=" nav-active active"><a href="dashboard.html"><i class="icon-home"></i><span>Employee management  </span></a></li>
             <li class="nav-parent">
-                <a href="#"><i class="icon-puzzle"></i><span>New administrator</span> </a>
+                <a href="#"><i class="icon-puzzle"></i><span>New employee</span> </a>
             </li>
             <li class="nav-parent">
                 <a href="{{URL::to('listemployee')}}"><i class="icon-bulb"></i><span> List Employee</span> </a>

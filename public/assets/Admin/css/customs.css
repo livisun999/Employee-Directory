@@ -157,43 +157,43 @@
     text-decoration: underline;
 }
 .img_change {
-    marign-top:100px;
+    margin-top:100px;
 }
 #emModal .info{
     margin-top: 40px;
 }
 #emModal .info,
-#Edit_emModal .info
+#edit_emModal .info
 {
     display: inline-block;
     vertical-align: top;
     padding-left: 20px;
 }
-#emModal .genaral-info
-,#Edit_emModal .genaral-info {
+#emModal .genaral-info,
+#edit_emModal .genaral-info {
     margin-left: 150px;
     padding-bottom: 30px;
 }
 #emModal .profile-img,
-#Edit_emModal .profile-img
+#edit_emModal .profile-img
 {
     width: 150px;
     display: inline-block;
 }
 #emModal .em-name,
-#Edit_emModal .em-name
+#edit_emModal .em-name
 {
     font-size: 200%;
     font-weight: bold;
 }
 #emModal .detail-info,
-#Edit_emModal .detail-info
+#edit_emModal .detail-info
 {
     border-top: solid 3px #ccc;
     padding-top: 15px;
 }
 #emModal .info-title,
-#Edit_emModal .info-title
+#edit_emModal .info-title
 {
     margin-bottom: 15px;
     color: green;
@@ -201,7 +201,7 @@
     font-weight: bold;
 }
 #emModal .colum2>table,
-#Edit_emModal .colum2>table
+#edit_emModal .colum2>table
 {
     table-layout:fixed;
     width: 90%;
