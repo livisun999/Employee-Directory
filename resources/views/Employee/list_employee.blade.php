@@ -66,7 +66,7 @@
                                     </div>
                                     <div class="depart form-group">
                                         <label for="Em_depart" class="col-sm-4 "> Department: </label>
-                                        <select id="Em_depart" name="depar_id" class="col-sm-8">
+                                        <select id="Em_depart" name="depar_id" class="selectpicker col-sm-8">
                                             @foreach($list_department as $department)
                                                 <option value="{{$department->id}}">
                                                     {{$department->Dep_name}}
@@ -254,7 +254,6 @@
                 });
             }
          function renderToText(id, data){
-            console.log([id, data]);
             $(id+' .data').each(function(){
                 var uri = $(this).attr('data').split('.');
                 var text = data;

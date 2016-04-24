@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="row form_add_new">
-            <form action='postNewEmployee' method="post" id="form_add_new_employee" name="form_add_new_employee" class="form-horizontal col-sm-8">
+            <form action='postNewEmployee' method="post" id="form_add_new_employee" name="form_add_new_employee" role="form" class="form-horizontal col-sm-8">
                 {!! csrf_field() !!}
                 <input type="hidden" name="_token" value="{!!  csrf_token() !!}">
                 <h1> Add New Employee </h1>
@@ -15,26 +15,101 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="Em_mail" class="col-lg-offset-1 col-sm-2 control-label"> Email</label>
+                    <label for="Em_mail" class="col-lg-offset-1 col-sm-2 control-label"> Job title</label>
                     <div class="col-sm-7">
-                        <input type="text" name="Em_mail" id="Em_mail" class="form-control" placeholder="YourEmail@xxx.com">
+                        <input type="text" name="Em_mail" id="Em_mail" class="form-control" placeholder="email@xxx.com">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label for="Em_phone" class="col-lg-offset-1 col-sm-2 control-label"> Phone</label>
+                    <label for="Em_phone" class="col-lg-offset-1 col-sm-2 control-label"> Department</label>
                     <div class="col-sm-7">
-                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Your Phone">
+                        <select class="form-control">
+                            <option>davbdaj dvjajd djav</option>
+                            <option>dvaj dkabskd dkab</option>
+                        </select>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="Em_" class="col-lg-offset-1 col-sm-2 control-label"> Phone</label>
-                    <div class="col-sm-7">
-                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Your Phone">
+                    <label for="Em_" class="col-sm-2 control-label"> Phone</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Phone">
+                        <div class="form-info"></div>
+                    </div>
+                    <label for="Em_" class="col-sm-2 control-label"> Phone</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Phone">
+                        <div class="form-info"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Em_" class="col-sm-2 control-label"> Phone</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Phone">
+                        <div class="form-info"></div>
+                    </div>
+                    <label for="Em_" class="col-sm-2 control-label"> Phone</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Phone">
+                        <div class="form-info"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Em_" class="col-sm-2 control-label"> Phone</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Phone">
+                        <div class="form-info"></div>
+                    </div>
+                    <label for="Em_" class="col-sm-2 control-label"> Phone</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Phone">
+                        <div class="form-info"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Em_" class="col-sm-2 control-label"> Phone</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Phone">
+                        <div class="form-info"></div>
+                    </div>
+                    <label for="Em_" class="col-sm-2 control-label"> Phone</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Phone">
+                        <div class="form-info"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Em_" class="col-sm-2 control-label"> Phone</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Phone">
+                        <div class="form-info"></div>
+                    </div>
+                    <label for="Em_" class="col-sm-2 control-label"> Phone</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Phone">
+                        <div class="form-info"></div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="Em_" class="col-sm-2 control-label"> Phone</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Phone">
+                        <div class="form-info"></div>
+                    </div>
+                    <label for="Em_" class="col-sm-2 control-label"> Phone</label>
+                    <div class="col-sm-4">
+                        <input type="text" name="Em_phone" id="Em_phone" class="form-control" placeholder="Phone">
+                        <div class="form-info"></div>
                     </div>
                 </div>
                 <div class="form-group form_bt">
                     <div class="col-sm-offset-3 col-sm-9">
+                        <div style="padding-left: 20px" class="checkbox">
+                        <label>
+                            <input type="checkbox" checked="checked">
+                            Add another employee
+                        </label>
+                        </div>
                         <button type="reset" class="btn btn-default"> Reset </button>
                         <button type="submit" class="btn btn-primary"> Creat </button>
 

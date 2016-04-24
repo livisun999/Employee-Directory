@@ -13136,3 +13136,7 @@ input[type="text"].trans:focus{
 input.error{
   border: inset 2px red;;
 }
+.selectpicker{
+    background-color: #ECEDEE;
+    border: 1px solid #ECEDEE;
+}
