@@ -29,7 +29,7 @@
                                 </a>
                             </td>
                             <td class='dep_master'>
-                                <a href="#emModal" data-id="1">{{$depar['Dep_master']}}</a>
+                                <a href="javascript:void(0);" class="getEmInfo" data-id="{{$depar->master->id}}">{{$depar->master->name}}</a>
                             </td>
                             <td class='dep_phone'>0{{$depar['Dep_Phone']}} </td>
                             <td class="number_room">{{$depar['Dep_number']}} </td>
@@ -113,7 +113,7 @@
                                     <div class="info">
                                         <div class="em-name data" data="name">Lục Văn Minh</div>
                                         <div class="data" data="job_title">giám đốc công nghệ</div>
-                                        <div class="depart"></div>
+                                        <div class="depart data" data="department.Dep_name"></div>
                                     </div>
                                 </div>
                                 <div class="detail-info">
@@ -184,10 +184,10 @@
     @parent
     <script type="text/javascript">
         function createModal(data){
-            $('.room_number').html(" <b>&nbsp; " + data.dep.Dep_number + "</b>");
-            $('.name').html(" <b>&nbsp; " + data.dep.Dep_name + "</b>");
-            $('.master').html(" <b>&nbsp; " + data.dep.Dep_master + "</b>");
-            $('.phone').html(" <b>&nbsp;  " +"0" + data.dep.Dep_Phone + "</b>");
+            $('.room_number').html(" <b>&nbsp; " + data.Dep_number + "</b>");
+            $('.name').html(" <b>&nbsp; " + data.Dep_name + "</b>");
+            $('.master').html(" <b>&nbsp; " + data.Dep_master_name + "</b>");
+            $('.phone').html(" <b>&nbsp;  " +"0" + data.Dep_Phone + "</b>");
             if(!$('.employee_>ul').length){
                 $('.employee_').append('<ul style="margin-left: 60px; list-style: decimal;"></ul>');
             }
@@ -214,30 +214,33 @@
                 url: 'employee/profile/'+id,
                 type: 'GET',
                 dataType: 'json',
-                success: function(data){
-                    createEmployeeModal(data);
+                success: function(response){
+                    createEmployeeModal(response.data);
                     $('#emModal').modal('show');
                 }
             });
         }
         function createEmployeeModal(data){
             $('#emModal .data').each(function(){
-                var feild = $(this).attr('data');
-                $(this).text(data[feild]);
-                console.log(data);
+                var uri = $(this).attr('data').split('.');
+                var text = data;
+                for (var i = 0; i < uri.length; i++) {
+                    text = text[uri[i]];
+                }
+                $(this).text(text);
             });
         }
         function createEditModal(data){
             var token = '{!! csrf_token() !!}';   
             if(data == null) return;
-            var dpid = data.dep.id;
+            var dpid = data.id;
             var removeList  = [];
-            $('.name').html(" <input required type='text' class='trans' value='" + data.dep.Dep_name + "' > ");
+            $('.name').html(" <input required type='text' class='trans' value='" + data.Dep_name + "' > ");
 
-            $('.room_number').html(" <input type='text' value='" + data.dep.Dep_number + "' > ");
+            $('.room_number').html(" <input type='text' value='" + data.Dep_number + "' > ");
             $('.master').html('');
 
-            $('.phone').html(" <input type='text' value='0" + data.dep.Dep_Phone + "' > ");
+            $('.phone').html(" <input type='text' value='0" + data.Dep_Phone + "' > ");
 
             if(!$('.employee_>ul').length){
                 $('.employee_').append('<ul style="margin-left: 60px; width: 250px; list-style: decimal;"></ul>');
@@ -283,8 +286,8 @@
 
                 var option = $('<option></option>');
                 option.text(employees[i].name);
-                option.val(employees[i].name);
-                if(employees[i].name == data.dep.Dep_master){
+                option.val(employees[i].id);
+                if(employees[i].name == data.Dep_master){
                     option.attr('selected', 'selected');
                 }
                 employeeOptions.append(option);
@@ -294,7 +297,8 @@
                 var row = '#depart_'+id;
                 if(!(row).length) return;
                 var a = $(row+'>.show_modal').text(dep.Dep_name);
-                $(row+'>.dep_master a').text(dep.Dep_master);
+                $(row+'>.dep_master a').text(dep.master.name);
+                $(row+'>.dep_master a').attr('data-id', dep.master.id);
                 $(row+'>.dep_phone').text(dep.Dep_Phone);
                 $(row+'>.room_number').text(dep.Dep_number);
             }
@@ -318,15 +322,15 @@
                     complete: function(){
 
                     },
-                    success: function(data){
+                    success: function(response){
 
-                        var message =  data.message;
-                        if(typeof message === 'undefined'){
+                        var message =  response.message;
+                        if(!message){
                             message = "department was updated";
                         }
                         
                        createNoty('success', message, 5000);
-                       renderDepartmentRow(data.dep);
+                       renderDepartmentRow(response.data);
                     },
                     error: function(){
                         var message =  data.message;
@@ -348,8 +352,8 @@
                     url: 'getDepartmentDetails/'+depId,
                     type: 'GET',
                     dataType: 'json',
-                    success: function(data){
-                        createModal(data);
+                    success: function(response){
+                        createModal(response.data);
                     }
                 });
 
@@ -357,7 +361,7 @@
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })
-
+            $('a.getEmInfo, button.getEmInfo').click(getProfile);
             $('a.edit_depaerment').click(function(e){
                 var depId = $(this).attr('data-id');
                 //createModal(data);
@@ -365,8 +369,8 @@
                     url: 'getDepartmentDetails/'+depId,
                     type: 'GET',
                     dataType: 'json',
-                    success: function(data){
-                        createEditModal(data);
+                    success: function(response){
+                        createEditModal(response.data);
                     }
                 });
             });

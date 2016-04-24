@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Extentions\AjaxResponse;
 use App\Http\Requests\newDepartmentRequest;
 use App\Models\Depar;
 use App\Models\Employee;
@@ -15,22 +16,22 @@ use App\Models\Employee;
 class DepartmentControler extends Controller {
     private function removeFromDepartment($ems, $department){
         $saved = 0;
+        $dep = Depar::find($department);
         foreach ($ems as $em) {
             $employee = Employee::find($em);
             if($employee && $employee->depar_id == $department){
                 $employee->removeDepartment();
                 $saved  += $employee->save();
+                if($em == $dep->Dep_master){
+                    $dep->Dep_master = NULL;
+                    $dep->save();
+                }
             }
         }
         return ($saved==sizeof($ems));
     }
     public function getListdepart(){
-        $objDepart = new Depar();
-        $objDepart = $objDepart->all()->toArray();
-
-        $ojbEmployee = new Employee();
-        $list_employee = $ojbEmployee->all()->toArray();
-
+        $objDepart = Depar::allMaster(['name', 'id']);
         return view('Department.List_department')->with([
             'allDepart' => $objDepart
         ]);
@@ -54,53 +55,25 @@ class DepartmentControler extends Controller {
 
     public function postEditDepartment(newDepartmentRequest $request){
         $id = $request->input('depId');
-        if(!$id){
-            return response()->json([
-                'message' => 'bad request',
-            ], 400);
-        }
-
-        $department = Depar::find($id);
-        if(!$department){
-            return response()->json([
-                'message' => 'department not found',
-            ], 404);
-        }
-
+        $department = Depar::findOrFail($id);
         $department->Dep_name = $request->DepartmentName;
         $department->Dep_master = $request->depMaster;
         $department->Dep_Phone = $request->DepartmentPhone;
         $department->Dep_number = $request->RoomNumber;
         $saved = $department->save();
-        if(!$saved){
-            return response()->json([
-                'message' => 'object can not be saved',
-            ], 500);
+        $remov = $request->input("removeList");
+        if(is_array($remov) && sizeof($remov) > 0){
+            $this->removeFromDepartment($remov, $id);
         }
-
-        $ems = $request->removeList;
-        if(sizeof($ems) > 0){
-            $done = $this->removeFromDepartment($ems, $id);
-            if(!$done){
-                return response()->json([
-                    'message' => 'object can not be saved',
-                ], 500);       
-            }
-        }
-        $employees = Employee::where('depar_id',$id)->get(array('id','name'));
-        $data = array('dep' => $department, 'employees' => $employees);
-        return response()->json($data);
+        $department->employees();
+        $department->master(['name', 'id']);
+        return AjaxResponse::ok($department, "department was updated");
     }
 
     public function getDepartmentDetails($id){
-        $department = Depar::find($id);
-        if(!$department){
-            return response()->json([
-                'message' => 'department not found',
-            ], 404);
-        }
-        $employees = Employee::where('depar_id',$id)->get(array('id','name'));
-        $data = array('dep' => $department, 'employees' => $employees);
-        return response()->json($data);
+        $department = Depar::findOrFail($id);
+        $department->master(['name', 'id']);
+        $department->load('employees');
+        return AjaxResponse::ok($department);
     }
 }
