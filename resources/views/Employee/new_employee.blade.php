@@ -55,7 +55,7 @@
                 <div class="form-group">
                     <label class="col-lg-offset-1 col-sm-2 control-label"> Department</label>
                     <div class="col-sm-7">
-                        <select name="dep_id" class="form-control">
+                        <select name="depar_id" class="form-control">
                             @foreach($listDepartment as $dep)
                                 <option value="{{$dep->id}}">{{$dep->Dep_name}}</option>
                             @endforeach
@@ -121,7 +121,7 @@
                     </div>
                     <label for="Em_" class="col-sm-2 control-label"> birthday</label>
                     <div class="col-sm-4">
-                        <input type="date" name="birthday"  class="form-control" placeholder="birthday">
+                        <input type="date" name="birthday"  class="form-control" placeholder="birthday" value="{{old('birthday')}}">
                         @if($errors->has("birthday"))
                             @foreach($errors->get("birthday") as $error)
                                 <div class="form-hint form-hint-error">{{$error}}</div>
@@ -145,10 +145,10 @@
                     <label for="Em_" class="col-sm-2 control-label">status</label>
                     <div class="col-sm-4">
                         <select name="status" class="form-control">
-                            <option value="nomal">nomal</option>
-                            <option value="leave">leave</option>
-                            <option value="misson">misson</option>
-                            <option value="other">other</option>
+                            <option value="nomal" @if(old('status') == "nomal") checked @endif>nomal</option>
+                            <option value="leave" @if(old('status') == "leave") checked @endif>leave</option>
+                            <option value="misson" @if(old('status') == "misson") checked @endif>misson</option>
+                            <option value="other" @if(old('status') == "other") checked @endif>other</option>
                         </select>
                         <div class="form-info"></div>
                     </div>
@@ -156,7 +156,7 @@
                 <div class="form-group">
                     <label for="Em_" class="col-sm-2 control-label"> wage</label>
                     <div class="col-sm-4">
-                        <input type="number" name="wage"  class="form-control" placeholder="wage rate">
+                        <input type="number" name="wage"  class="form-control" placeholder="wage rate" value="{{old('wage')}}">
                         @if($errors->has("wage"))
                             @foreach($errors->get("wage") as $error)
                                 <div class="form-hint form-hint-error">{{$error}}</div>
@@ -165,7 +165,7 @@
                     </div>
                     <label for="Em_" class="col-sm-2 control-label"> paid by</label>
                     <div class="col-sm-4">
-                        <input type="text" name="wage_cur"  class="form-control" placeholder="wage_cur" value="vnđ">
+                        <input type="text" name="wage_cur"  class="form-control" placeholder="wage_cur" value="{{null!=old('wage_cur')?old('wage_cur'):'vnđ'}}">
                         @if($errors->has("wage_cur"))
                             @foreach($errors->get("wage_cur") as $error)
                                 <div class="form-hint form-hint-error">{{$error}}</div>
@@ -179,7 +179,7 @@
                         <div><a href="#addtion-input" class="toggleshow showup">show more infomation</a></div>
                         <div style="padding-left: 20px" class="checkbox">
                         <label>
-                            <input type="checkbox" name="addNext" checked="checked">
+                            <input type="checkbox" name="addNext" @if(old('addNext')) checked @endif>
                             Add another employee
                         </label>
                         </div>

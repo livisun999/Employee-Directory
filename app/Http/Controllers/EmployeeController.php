@@ -59,7 +59,6 @@ class EmployeeController extends controller
         $employee = new Employee();
         $request->bindTo($employee);
         $employee->save();
-        die(json_encode($this->validate($request)));
         if($request->addNext){
             return Redirect()->back()->withInput();
         }
