@@ -150,12 +150,17 @@ function updateProfile(e) {
     var url = "employee/update/" + id;
     resetErrorReportForm("#edit_emModal");
     if (!validate("#em-update")) return false;
-    var data = new FormData($(this)[0]);
+    var data = new FormData($('#em-update')[0]);
+    // var image = $('#em-update input[name=image]')[0].files[0];
+    // data.append('image', image);
+    //var data = $(this).serialize();
     $.ajax({
         type: "POST",
         url: url,
         data: data, // serializes the form's elements.
-        dataType: 'json',
+        cache: false,
+        contentType: false,
+        processData: false,
         success: function(data) {
             var message = data.message;
             if (!message || !message.length || message.length == 0) {
