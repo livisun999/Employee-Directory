@@ -14,6 +14,7 @@ use App\Models\Depar;
 use App\Models\Employee;
 use App\Http\Requests\EmployeeProfileRequest;
 use App\Http\Requests\HandledEmployeeProfileRequest;
+use Session;
 
 class EmployeeController extends controller
 {
@@ -33,10 +34,9 @@ class EmployeeController extends controller
     public function updateProfile(HandledEmployeeProfileRequest $request, $eid){
         $employee = Employee::findOrFail($eid);
         $request->bindTo($employee);
-        $employee->save();
+        $employee->saveWithImage();
         $employee->department(["Dep_name", "id"]);
         return AjaxResponse::ok($employee);
-
     }
     public function searchEmployeeByName(){
         $name = "minh";
@@ -58,7 +58,7 @@ class EmployeeController extends controller
     public function postNewEmployee(EmployeeProfileRequest $request){
         $employee = new Employee();
         $request->bindTo($employee);
-        $employee->save();
+        $employee->saveWithImage();
         Session::flash('success', 'create employee successfully'); 
         if($request->addNext){
             return Redirect()->back()->withInput();

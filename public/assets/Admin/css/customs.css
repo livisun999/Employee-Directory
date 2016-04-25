@@ -245,3 +245,11 @@ table th {
     box-shadow: none !important;
     color: #555555;
 }
+
+#edit_emModal .detail-info input[type=text],
+#edit_emModal .detail-info input[type=number],
+#edit_emModal .detail-info input[type=email],
+#edit_emModal .detail-info input[type=date]{
+    width: 100%;
+    line-height: normal;
+}

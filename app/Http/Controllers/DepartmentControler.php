@@ -31,9 +31,9 @@ class DepartmentControler extends Controller {
         return ($saved==sizeof($ems));
     }
     public function getListdepart(){
-        $objDepart = Depar::allMaster(['name', 'id']);
+        $allDepart = Depar::allMaster(['name', 'id']);
         return view('Department.List_department')->with([
-            'allDepart' => $objDepart
+            'allDepart' => $allDepart
         ]);
     }
     public function new_department(){

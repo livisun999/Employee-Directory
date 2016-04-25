@@ -1,35 +1,274 @@
 function createNoty(type, content, ttl) {
-        var n = noty({
-            text        : content,
-            type        : type,
-            dismissQueue: true,
-            layout      : 'topCenter',
-            theme       : 'defaultTheme'
-        });
-        if(typeof ttl ===  'number'){
-            setTimeout(function(){
-                $.noty.close(n.options.id);
-            }, ttl);
+    var n = noty({
+        text: content,
+        type: type,
+        dismissQueue: true,
+        layout: 'topCenter',
+        theme: 'defaultTheme'
+    });
+    if (typeof ttl === 'number') {
+        setTimeout(function() {
+            $.noty.close(n.options.id);
+        }, ttl);
+    }
+    return n;
+}
+
+function readURL(input, output) {
+
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+            $(output).attr('src', e.target.result);
         }
-        return n;
+
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function imgInputPrev(id) {
+    var input = $(id + " input[type='file']").first();
+    var output = $(id + " img.dataPreview").first();
+    $(input).change(function() {
+        readURL(this, output);
+    });
+}
+
+function getProfile(cb) {
+    var id = $(this).attr('data-id');
+    $.ajax({
+        url: 'employee/profile/' + id,
+        type: 'GET',
+        dataType: 'json',
+        success: function(response) {
+            if (typeof cb === 'function') cb(response.data, response.message);
+        },
+        error: function(e) {
+            var message = "unable to get profile";
+            createNoty('error', message, 5000);
+        }
+    });
+}
+
+function renderToText(id, data) {
+    $(id + ' .data').each(function() {
+        var uri = $(this).attr('data').split('.');
+        var text = data;
+        for (var i = 0; i < uri.length; i++) {
+            text = text[uri[i]];
+        }
+        $(this).text(text);
+    });
+}
+
+function createEmployeeModal(data, show) {
+    renderToText("#emModal", data);
+    if (data.image) {
+        var img = "public/uploads/profile_img/" + data.image;
+        $("#emModal .profile-img img").first().attr('src', img);
+    }
+    if (typeof show === 'undefined' || show) {
+        $('#emModal').modal('show');
     }
 
-        function readURL(input, output) {
+}
 
-            if (input.files && input.files[0]) {
-                var reader = new FileReader();
-
-                reader.onload = function (e) {
-                    $(output).attr('src', e.target.result);
-                }
-
-                reader.readAsDataURL(input.files[0]);
-            }
+function createEditEmployeeModal(data, show) {
+    $('#edit_emModal .data').each(function(d, e) {
+        var uri = $(this).attr('name').split('.');
+        var value = data;
+        for (var i = 0; i < uri.length; i++) {
+            value = value[uri[i]];
         }
-        function imgInputPrev(id){
-            var input = $(id+" input[type='file']").first();
-            var output = $(id+" img.dataPreview").first();
-            $(input).change(function(){
-                readURL(this, output);
+        $(this).val(value);
+    });
+    $('form#em-update').attr('data-id', data.id);
+    $('#edit_emModal #Em_depart option:selected').attr('selected', null);
+    $('#edit_emModal #Em_depart option').each(function() {
+        if (this.value == "" + data.depar_id) {
+            $(this).attr('selected', 'selected');
+        }
+    });
+    //$('#edit_emModal input[name="sex"]:checked').attr('checked', null);
+    $('#edit_emModal input[name="sex"]').each(function() {
+        if (this.value == data.sex) {
+            $(this).attr('checked', 'checked');
+        }
+    });
+    if (data.image) {
+        var img = "public/uploads/profile_img/" + data.image;
+    } else {
+        var img = "public/uploads/profile_img/default.png";
+    }
+    $("#edit_emModal .profile-img img").first().attr('src', img);
+    if (typeof show === 'undefined' || show) {
+        $('#edit_emModal').modal('show');
+    }
+}
+
+function resetErrorReportForm(form) {
+    $(form + ' input[title_nm]').each(function() {
+        $(this).removeClass('error');
+        $(this).attr('title', $(this).attr('title_nm'));
+    });
+}
+
+function validate(form) {
+    if ($(form)[0].checkValidity()) return true;
+    createNoty('warning', "validate faile, check your input", 3000);
+    var required = $(form).find('input:required').filter(function() {
+        return !this.value;
+    });
+    required.addClass('error');
+    required.each(function() {
+        $(this).attr('title_nm', $(this).attr('title'));
+        $(this).attr('title', 'this is a required field');
+    });
+    return false;
+}
+
+function errorReportForm(form, errors) {
+    for (var key in errors) {
+        var error = errors[key];
+        if (error) {
+            var input = $(form + ' input[name="?"]'.replace('?', key));
+            input.attr('title_nm', input.attr('title'));
+            var title = '';
+            input.addClass('error');
+            error.forEach(function() {
+                title += error + ", ";
             });
+            input.attr('title', title);
         }
+    }
+}
+
+function updateProfile(e) {
+    e.preventDefault();
+    var id = $(this).attr('data-id');
+    var url = "employee/update/" + id;
+    resetErrorReportForm("#edit_emModal");
+    if (!validate("#em-update")) return false;
+    var data = new FormData($(this)[0]);
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: data, // serializes the form's elements.
+        dataType: 'json',
+        success: function(data) {
+            var message = data.message;
+            if (!message || !message.length || message.length == 0) {
+                message = 'profile has up to date';
+            }
+            createNoty('success', message, 5000);
+            $('#edit_emModal').modal('hide');
+            renderToText("#emrow" + data.data.id, data.data);
+
+        },
+        error: function(e) {
+            var message = "unable to update profile";
+            createNoty('error', message, 5000);
+            var response = JSON.parse(e.responseText);
+            errorReportForm("#edit_emModal", response.data);
+        }
+    });
+
+    return false;
+}
+
+function createModal(data) {
+    $('.room_number').html(" <b>&nbsp; " + data.Dep_number + "</b>");
+    $('.name').html(" <b>&nbsp; " + data.Dep_name + "</b>");
+    $('.master').html(" <b>&nbsp; " + data.Dep_master_name + "</b>");
+    $('.phone').html(" <b>&nbsp;  " + "0" + data.Dep_Phone + "</b>");
+    if (!$('.employee_>ul').length) {
+        $('.employee_').append('<ul style="margin-left: 60px; list-style: decimal;"></ul>');
+    }
+    var employeeList = $('.employee_>ul');
+    employeeList.empty();
+    var employees = data.employees;
+    for (var i = 0; i < employees.length; i++) {
+        var li = $('<li></li>');
+        li.text(employees[i].name);
+        li.id = employees[i].id;
+        var detail = $('<a title="profile" class="em-act-sm pull-right" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>');
+        detail.attr('data-id', employees[i].id);
+        detail.on('click', getProfile);
+        li.append(detail);
+        employeeList.append(li);
+    }
+    $('.view_employee').removeClass('border_employee_');
+    $('#myModal .close_modal').html('Close');
+    $('#myModal .modal-footer').html('<button type="button" class="btn btn-primary" data-dismiss="modal"> Close</button>');
+}
+
+function createEditModal(data) {
+    var token = $("meta[name='csrf-token']").attr('content');
+    if (data == null) return;
+    var dpid = data.id;
+    var removeList = [];
+    $('.name').html(" <input required type='text' class='trans' value='" + data.Dep_name + "' > ");
+    $('.room_number').html(" <input type='text' value='" + data.Dep_number + "' > ");
+    $('.master').html('');
+    $('.phone').html(" <input type='text' value='0" + data.Dep_Phone + "' > ");
+    if (!$('.employee_>ul').length) {
+        $('.employee_').append('<ul style="margin-left: 60px; width: 250px; list-style: decimal;"></ul>');
+    }
+    $('.master').empty();
+    if (!$('.master>select').length) {
+        $('.master').append('<select></select>');
+    }
+    var employeeList = $('.employee_>ul');
+    employeeList.empty();
+    var employeeOptions = $('.master>select');
+    employeeOptions.empty();
+    var employees = data.employees;
+    for (var i = 0; i < employees.length; i++) {
+        var li = $('<li></li>');
+        li.text(employees[i].name);
+        var removeEmpl = $('<a title="remove from department" class="em-act-sm pull-right" href="javascript:void(0)" role="remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>');
+        removeEmpl.attr('data-id', employees[i].id);
+        var detail = $('<a title="profile" class="em-act-sm pull-right" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>');
+        detail.attr('data-id', employees[i].id);
+        detail.on('click', getProfile);
+        li.append(removeEmpl);
+        li.append(detail);
+        employeeList.append(li);
+        removeEmpl.on('click', function() {
+            var ico = $(this).find('span');
+            var id = $(this).attr('data-id');
+            if ($(this).attr('role') == 'remove') {
+                removeList.push(id);
+                ico.css('color', 'orange');
+                ico.attr('class', 'glyphicon glyphicon-repeat');
+                $(this).attr('title', 'undo');
+                $(this).attr('role', 'undo');
+            } else {
+                removeList.splice(removeList.indexOf(id), 1);
+                ico.css('color', '');
+                ico.attr('class', 'glyphicon glyphicon-remove');
+                $(this).attr('title', 'remove from department');
+                $(this).attr('role', 'remove');
+            }
+        });
+        var option = $('<option></option>');
+        option.text(employees[i].name);
+        option.val(employees[i].id);
+        if (employees[i].name == data.Dep_master) {
+            option.attr('selected', 'selected');
+        }
+        employeeOptions.append(option);
+    }
+}
+
+    function renderDepartmentRow(dep) {
+        var id = dep.id;
+        var row = '#depart_' + id;
+        if (!(row).length) return;
+        var a = $(row + '>.show_modal').text(dep.Dep_name);
+        $(row + '>.dep_master a').text(dep.master.name);
+        $(row + '>.dep_master a').attr('data-id', dep.master.id);
+        $(row + '>.dep_phone').text(dep.Dep_Phone);
+        $(row + '>.room_number').text(dep.Dep_number);
+    }

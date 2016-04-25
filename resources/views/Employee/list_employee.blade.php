@@ -46,13 +46,13 @@
                     </div>
 
                     <div class="modal-body">
-                        <form id="em-update">
+                        <form id="em-update" files="true" enctype="multipart/form-data">
                         {{csrf_field()}}
                             <div class="genaral-info">
-                                <div class="user-image profile-img">
-                                    <img src="http://localhost/Employee-Directory/public/assets/Admin/images/profil_page/friend8.jpg" class="img-responsive img-circle" />
+                                <div id="edit_profile_img" class="user-image profile-img">
+                                    <img src="public/uploads/profile_img/default.png" class="img-responsive img-circle dataPreview"/>
                                     <div class="Em_img form-group">
-                                        <input type="file" id="Em_img" class="choose_em_img col-sm-12">
+                                        <input type="file" name="image" id="Em_img" class="choose_em_img col-sm-12">
                                     </div>
                                 </div>
                                 <div class="info">
@@ -168,7 +168,7 @@
                             <div class="modal-body">
                                 <div class="genaral-info">
                                     <div class="user-image profile-img">
-                                        <img src="http://localhost/Employee-Directory/public/assets/Admin/images/profil_page/friend8.jpg" class="img-responsive img-circle" />
+                                        <img src="public/uploads/profile_img/default.png" class="img-responsive img-circle" />
                                     </div>
                                     <div class="info">
                                         <div class="em-name data" data="name">Lục Văn Minh</div>
@@ -238,133 +238,9 @@
                 </div>            
             </div>
             <script type="text/javascript">
-            function getProfile(cb){
-                var id = $(this).attr('data-id');
-                $.ajax({
-                    url: 'employee/profile/'+id,
-                    type: 'GET',
-                    dataType: 'json',
-                    success: function(response){
-                        if(typeof cb === 'function') cb(response.data, response.message);
-                    },
-                    error: function(e){
-                        var message = "unable to get profile";
-                        createNoty('error', message, 5000);
-                    }
-                });
-            }
-         function renderToText(id, data){
-            $(id+' .data').each(function(){
-                var uri = $(this).attr('data').split('.');
-                var text = data;
-                for (var i = 0; i < uri.length; i++) {
-                    text = text[uri[i]];
-                }
-                $(this).text(text);
-            });
-         } 
-
-        function createEmployeeModal(data, show){
-            renderToText("#emModal", data);    
-            if(typeof show === 'undefined' || show){
-                $('#emModal').modal('show');
-            }
             
-        }
-        function createEditEmployeeModal(data, show){
-            $('#edit_emModal .data').each(function(d, e){
-                var uri = $(this).attr('name').split('.');
-                var value = data;
-                for (var i = 0; i < uri.length; i++) {
-                    value = value[uri[i]];
-                }
-                $(this).val(value);
-            });
-            $('form#em-update').attr('data-id' ,data.id);
-            $('#edit_emModal #Em_depart option:selected').attr('selected', null);
-            $('#edit_emModal #Em_depart option').each(function(){
-                if(this.value == ""+data.depar_id){
-                    $(this).attr('selected', 'selected');
-                }
-            });
-            //$('#edit_emModal input[name="sex"]:checked').attr('checked', null);
-            $('#edit_emModal input[name="sex"]').each(function(){
-                if(this.value == data.sex){
-                    $(this).attr('checked', 'checked');
-                }
-            });
-
-            if(typeof show === 'undefined' || show){
-                $('#edit_emModal').modal('show');
-            }
-        }
-        function resetErrorReportForm(form){
-            $(form+' input[title_nm]').each(function(){
-                $(this).removeClass('error');
-                $(this).attr('title', $(this).attr('title_nm'));
-            });
-        }
-        function validate(form){
-            if($(form)[0].checkValidity()) return true;
-            createNoty('warning', "validate faile, check your input", 3000);
-            var required = $(form).find('input:required').filter(function() {
-                return !this.value;
-            });
-            required.addClass('error');
-            required.each(function(){
-                $(this).attr('title_nm', $(this).attr('title'));
-                $(this).attr('title', 'this is a required field');
-            });
-            return false;
-        }
-        function errorReportForm(form ,errors){
-            for(var key in errors){
-                var error = errors[key];
-                if(error){
-                    var input = $(form+' input[name="?"]'.replace('?',key));
-                    input.attr('title_nm', input.attr('title'));
-                    var title = '';
-                    input.addClass('error');
-                    error.forEach(function(){
-                       title += error +", ";
-                    });
-                    input.attr('title', title);
-                }
-            }
-        }
-        function updateProfile(e){
-            e.preventDefault();
-            var id = $(this).attr('data-id');
-            var url = "employee/update/"+ id;
-            resetErrorReportForm("#edit_emModal");
-            if(!validate("#em-update")) return false;
-            $.ajax({
-                   type: "POST",
-                   url: url,
-                   data: $(this).serialize(), // serializes the form's elements.
-                   dataType: 'json',
-                   success: function(data)
-                   {
-                        var message = data.message;
-                        if(!message || !message.length || message.length == 0){
-                            message = 'profile has up to date';
-                        }
-                       createNoty('success',message , 5000);
-                       $('#edit_emModal').modal('hide');
-                       renderToText("#emrow"+data.data.id, data.data);
-
-                   },
-                   error: function(e){
-                        var message = "unable to update profile";
-                        createNoty('error', message, 5000);
-                        var response = JSON.parse(e.responseText);
-                        errorReportForm("#edit_emModal",response.data);
-                   }
-            });
-
-            return false;
-            }
                 $(document).ready(function(){
+                    imgInputPrev('#edit_profile_img');
                     $('a.getEmInfo, button.getEmInfo').click(function(){
                         getProfile.call(this, createEmployeeModal);
                     });
