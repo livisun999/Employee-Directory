@@ -58,11 +58,11 @@
                                 <div class="info">
                                     <div class="em-name form-group">
                                         <label for="Em_name" class="col-sm-4"> Name: </label>
-                                        <input type="text" required="required" title="enter name here" class="Em_name col-sm-8 data" id="Em_name" name="name" value="">
+                                        <input type="text" required="required" title="enter name here" class="Em_name col-sm-8 form-input data" id="Em_name" name="name" value="">
                                     </div>
                                     <div class="form-group">
                                         <label for="Em_job_title" class="col-sm-4"> Job Title: </label>
-                                        <input type="text" title="enter job title here" heare" " class="Em_job_title col-sm-8 data" name="job_title" id="Em_job_title" value="">
+                                        <input type="text" title="enter job title here" heare" " class="Em_job_title col-sm-8 form-input data" name="job_title" id="Em_job_title" value="">
                                     </div>
                                     <div class="depart form-group">
                                         <label for="Em_depart" class="col-sm-4 "> Department: </label>

@@ -59,6 +59,7 @@ class EmployeeController extends controller
         $employee = new Employee();
         $request->bindTo($employee);
         $employee->save();
+        Session::flash('success', 'create employee successfully'); 
         if($request->addNext){
             return Redirect()->back()->withInput();
         }

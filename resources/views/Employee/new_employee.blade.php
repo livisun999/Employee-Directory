@@ -57,7 +57,7 @@
                     <div class="col-sm-7">
                         <select name="depar_id" class="form-control">
                             @foreach($listDepartment as $dep)
-                                <option value="{{$dep->id}}">{{$dep->Dep_name}}</option>
+                                <option value="{{$dep->id}}" @if(old('depar_id') == $dep->id) selected @endif>{{$dep->Dep_name}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -78,13 +78,13 @@
                     <label for="Em_" class="col-lg-offset-1 col-sm-2 control-label">sex</label>
                     <div class="col-sm-7">
                         <label class="radio-inline" style="margin-bottom: -7px;">
-                        <input type="radio" value="nam" name="sex" checked="checked"> Nam
+                        <input type="radio" value="nam" name="sex" @if(old('sex') == "nam" || old('sex') == null) checked @endif> Nam
                         </label>
                         <label class="radio-inline" style="margin-bottom: -7px;">
-                            <input type="radio" value="nữ" name="sex"> Nữ
+                            <input type="radio" value="nữ" name="sex" @if(old('sex') == "nữ") checked @endif> Nữ
                         </label>
                         <label class="radio-inline" style="margin-bottom: -7px;">
-                            <input type="radio" value="khác" name="sex"> Khác
+                            <input type="radio" value="khác" name="sex" @if(old('sex') == "khác") checked @endif> Khác
                         </label>
                     </div>
                 </div>

@@ -238,3 +238,10 @@ table th {
 .form-hint-error{
     color: orangered;
 }
+
+#em-update .form-input{
+    -webkit-box-shadow: none !important;
+    background-color: #ECEDEE;
+    box-shadow: none !important;
+    color: #555555;
+}
