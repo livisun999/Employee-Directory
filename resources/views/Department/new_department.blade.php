@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'New Deprtment')
 @section('content')
 <div class="new_department container form_add_new">
     <div class="row">

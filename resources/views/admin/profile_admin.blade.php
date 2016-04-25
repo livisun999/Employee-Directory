@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', ' - Profile')
+@section('title', ' Profile')
 @section('content')
 <div class="profile_ col-sm-12">
     <form action='postChangePassword' method="post" id="ChangePassword" name="ChangePassword" class="form-horizontal col-sm-12 ">

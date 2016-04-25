@@ -38,4 +38,7 @@ class EmployeeController extends controller
         $results = Employee::findByName($name);
         return ajaxResponse::ok(['info'=>[], 'result'=>$results]);
     }
+    public function getNewEmployee (){
+        return view('Employee.new_employee');
+    }
 }

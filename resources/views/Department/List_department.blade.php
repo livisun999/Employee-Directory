@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title',' - List Department')
+@section('title',' List Department')
 
 @section('content')
     <div class="container">

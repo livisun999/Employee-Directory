@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Admin Control @yield('title')</title>
+    <title> @yield('title')</title>
     <link href="{!! url('public/assets/Admin/css/bootstrap.css') !!}"rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/style.css') !!}" rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/rtl.css') !!}" rel="stylesheet">
@@ -28,12 +28,12 @@
             <div class="user-image">
                 <img src="public/assets/Admin/images/profil_page/friend8.jpg" class="img-responsive img-circle" alt="friend 8">
             </div>
-            <h4>Bryan Raynolds</h4>
+            <h4>{{Auth::user()->name}}</h4>
             <div class="dropdown user-login">
                 <form action="searchemployee" method="post" class="searchform" id="search-results">
                     {!! csrf_field() !!}
                     <input class="form-control" name="name" placeholder="Search employee..." type="text">
-                    }
+
                 </form>
             </div>
         </div>
@@ -54,8 +54,8 @@
 
         <ul class="nav nav-sidebar">
             <li class=" nav-active active"><a href="dashboard.html"><i class="icon-home"></i><span>Department management </span></a></li>
-            <li class="nav-parent">
-                <a href="{{URL::to('newdepartment')}}"><i class="icon-puzzle"></i><span>Add department</span> </a>
+            <li class="nav-parent ">
+                <a href="{{URL::to('newdepartment')}}"><i class="icon-puzzle "></i><span class="menu_active_border" >Add department</span> </a>
             </li>
             <li class="nav-parent">
                 <a href="{{URL::to('listdepartment')}}"><i class="icon-bulb"></i><span> List departments</span> </a>
@@ -65,17 +65,14 @@
         </ul>
 
         <ul class="nav nav-sidebar">
-            <li class=" nav-active active"><a href="dashboard.html"><i class="icon-home"></i><span>Employee management  </span></a></li>
-            <li class="nav-parent">
-                <a href="#"><i class="icon-puzzle"></i><span>New administrator</span> </a>
+            <li class=" nav-active active"><a href="dashboard.html"><i class="icon-home"></i><span>Employee management </span></a></li>
+            <li class="nav-parent" >
+                <a href="{{URL::to('newemployee')}}"><i class="icon-puzzle"></i><span>New administrator</span> </a>
             </li>
             <li class="nav-parent">
                 <a href="{{URL::to('listemployee')}}"><i class="icon-bulb"></i><span> List Employee</span> </a>
             </li>
-            <li class="nav-parent">
-                <a href=""><i class="icon-screen-desktop"></i><span>Profile</span> </a>
 
-            </li>
         </ul>
     </div>
 </div>
@@ -120,6 +117,12 @@
 </html>
 @show
 @section('script_')
-
+    <script>
+        $(document).ready(function(){
+            function menu_active (){
+                alert('dm');
+            }
+        });
+    </script>
 @show
 
