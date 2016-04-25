@@ -177,6 +177,7 @@
                     </div>
                 </div>            
             </div>
+            
         </div>
     </div>
 @stop
@@ -231,7 +232,7 @@
             });
         }
         function createEditModal(data){
-            var token = '{!! csrf_token() !!}';   
+            var token = $("meta[name='csrf-token']").attr('content');   
             if(data == null) return;
             var dpid = data.id;
             var removeList  = [];

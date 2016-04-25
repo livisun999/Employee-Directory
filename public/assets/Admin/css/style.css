@@ -13132,3 +13132,7 @@ input[type="text"].trans:focus{
 .em-act-sm{
   padding: 0 6px;
 }
+
+input.error{
+  border: inset 2px red;;
+}

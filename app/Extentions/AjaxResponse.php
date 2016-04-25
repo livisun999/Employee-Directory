@@ -11,8 +11,8 @@ class AjaxResponse extends Response{
 	  	);
 	  	if($data) $respone['data'] = $data;
 
-		parent::json($respone)->setStatusCode($http_code)->send(); 
-	  	exit(); 
+		parent::json($respone)->setStatusCode($http_code)->send();
+		exit(); 
 	}
 
 	public static function ok($data, $message = []){
@@ -25,6 +25,9 @@ class AjaxResponse extends Response{
 
 	public static function error($message, $code = 500){
 		self::noData($code, 'error', $message);
+	}
+	public static function errorData($data, $message = [], $code = 500){
+		self::send($code, 'error', $message, $data);
 	}
 	public function register()
     {

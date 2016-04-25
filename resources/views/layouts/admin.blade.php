@@ -1,7 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<<<<<<< HEAD
     <title> @yield('title')</title>
+=======
+    <meta name="csrf-token" content="{{csrf_token()}}">
+    <title>Admin Control @yield('title')</title>
+>>>>>>> a7799c607a740eba74ba078cc5f00adf9bbf5272
     <link href="{!! url('public/assets/Admin/css/bootstrap.css') !!}"rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/style.css') !!}" rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/rtl.css') !!}" rel="stylesheet">
@@ -12,6 +17,7 @@
     <script type="text/javascript" src="public/assets/Admin/js/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="public/assets/Admin/js/bootstrap.js"></script>
     <script type="text/javascript" src="public/assets/Admin/js/jquery.validate.js"></script>
+    <script type="text/javascript" src="public/assets/Admin/js/jquery.cookie.js"></script>
     <script type="text/javascript" src="public/assets/Admin/plugins/noty/jquery.noty.packaged.min.js"></script>
     <script type="text/javascript" src="public/assets/Admin/js/main.js"></script>
 </head>
@@ -65,9 +71,15 @@
         </ul>
 
         <ul class="nav nav-sidebar">
+<<<<<<< HEAD
             <li class=" nav-active active"><a href="dashboard.html"><i class="icon-home"></i><span>Employee management </span></a></li>
             <li class="nav-parent" >
                 <a href="{{URL::to('newemployee')}}"><i class="icon-puzzle"></i><span>New administrator</span> </a>
+=======
+            <li class=" nav-active active"><a href="dashboard.html"><i class="icon-home"></i><span>Employee management  </span></a></li>
+            <li class="nav-parent">
+                <a href="#"><i class="icon-puzzle"></i><span>New employee</span> </a>
+>>>>>>> a7799c607a740eba74ba078cc5f00adf9bbf5272
             </li>
             <li class="nav-parent">
                 <a href="{{URL::to('listemployee')}}"><i class="icon-bulb"></i><span> List Employee</span> </a>
