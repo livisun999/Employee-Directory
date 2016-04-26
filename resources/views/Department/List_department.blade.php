@@ -44,7 +44,7 @@
                                     >
                                     <span class="glyphicon glyphicon-pencil edit_depaerment" data-toggle="tooltip" data-placement="top" title="Edit"></span>
                                 </a>
-                                <a href="#" class="delete_depaerment" ><span class="glyphicon glyphicon-trash  {{$depar['id']}}" data-toggle="tooltip" data-placement="top" title="Delete"></span></a>
+                                <a data-id="{{$depar['id']}}" class="delete_depaerment" data-toggle="modal" href="#deletemodal"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
                             </td>
                         </tr>
                         {{--*/ $i++ /*--}}
@@ -52,7 +52,31 @@
                     @endforeach
                 </table>
             </div>
+            <!-- MODAL SHOW DEPARTMENT DETAIL -->
+            <div class="container">
+                <!-- Modal -->
+                <div class="modal fade" id="deletemodal" role="dialog">
+                    <div class="modal-dialog">
 
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h1 class="modal-title name">delete confrim</h1>
+                            </div>
+
+                            <div class="modal-body">
+                                are you sure tho delete this department?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary close_modal" data-dismiss="modal">yes</button>
+                                <button type="button" class="btn btn-default close_modal" data-dismiss="modal">no</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
             <!-- MODAL SHOW DEPARTMENT DETAIL -->
             <div class="container">
                 <!-- Modal -->

@@ -6,6 +6,7 @@
         <div class="row">
             <div class="list_admin">
                 <h1> List Employee</h1>
+                <h5>kết quả tìm kiếm cho {{old('name')}}</h5>
                 <table class="sortable table table-hover List_admin table-bordered ">
                     <tr>
                         <th> # </th>

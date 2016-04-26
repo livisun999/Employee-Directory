@@ -59,6 +59,9 @@ class Employee extends Model
             END, `name` ASC";
         $sql = str_replace(':key', $name, $sql);
     	$results = self::whereRaw($sql)->get();
+        foreach ($results as $employee) {
+            $employee->department(["Dep_name", "id"]);
+        }
     	return $results;
     } 
 }

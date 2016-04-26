@@ -66,8 +66,10 @@ function createEmployeeModal(data, show) {
     renderToText("#emModal", data);
     if (data.image) {
         var img = "public/uploads/profile_img/" + data.image;
-        $("#emModal .profile-img img").first().attr('src', img);
+    } else {
+        var img = "public/uploads/profile_img/default.png";
     }
+    $("#edit_emModal .profile-img img").first().attr('src', img);
     if (typeof show === 'undefined' || show) {
         $('#emModal').modal('show');
     }

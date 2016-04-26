@@ -33,10 +33,9 @@
             </div>
             <h4>{{Auth::user()->name}}</h4>
             <div class="dropdown user-login">
-                <form action="searchemployee" method="post" class="searchform" id="search-results">
-                    {!! csrf_field() !!}
+                <form action="searchemployee" method="get" class="searchform" id="search-results">
                     <input class="form-control" name="name" placeholder="Search employee..." type="text">
-
+                    {!! csrf_field() !!}
                 </form>
             </div>
         </div>
