@@ -187,7 +187,7 @@ function updateProfile(e) {
 function createModal(data) {
     $('.room_number').html(" <b>&nbsp; " + data.Dep_number + "</b>");
     $('.name').html(" <b>&nbsp; " + data.Dep_name + "</b>");
-    $('.master').html(" <b>&nbsp; " + data.Dep_master_name + "</b>");
+    $('.master').html(" <b>&nbsp; " + data.master.name + "</b>");
     $('.phone').html(" <b>&nbsp;  " + "0" + data.Dep_Phone + "</b>");
     if (!$('.employee_>ul').length) {
         $('.employee_').append('<ul style="margin-left: 60px; list-style: decimal;"></ul>');
@@ -246,6 +246,45 @@ function createEditModal(data) {
         li.append(removeEmpl);
         li.append(detail);
         employeeList.append(li);
+         $('.view_employee').addClass('border_employee_');
+        $('#myModal .modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>' +
+                    '<button type="button" class="btn btn-primary close_modal update_department" data-dismiss="modal">Update</button>');
+        $('.update_department').bind('click', function(){
+            $.ajax({
+                url: 'postEditDepartment',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'depId': dpid,
+                    'depMaster': $('.master>select').val(), 
+                    'DepartmentName':  $('.name>input').val(),
+                    'RoomNumber': $('.room_number>input').val(),
+                    'DepartmentPhone': $('.phone>input').val(),
+                    'removeList': removeList,
+                    '_token': token
+                },
+                complete: function(){
+
+                },
+                success: function(response){
+
+                    var message =  response.message;
+                    if(!message){
+                        message = "department was updated";
+                    }
+                    
+                   createNoty('success', message, 5000);
+                   renderDepartmentRow(response.data);
+                },
+                error: function(){
+                    var message =  data.message;
+                    if(typeof message === 'undefined'){
+                        message = "department can not updated";
+                    }
+                    createNoty('error', message, 5000);   
+                }
+            });
+        });
         removeEmpl.on('click', function() {
             var ico = $(this).find('span');
             var id = $(this).attr('data-id');
