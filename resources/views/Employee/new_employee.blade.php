@@ -4,7 +4,7 @@
 
     <div class="container">
         <div class="row form_add_new">
-            <form action='postnewemployee' method="post" id="form_add_new_employee" name="form_add_new_employee" role="form" class="form-horizontal col-sm-8">
+            <form action='postnewemployee' method="post" id="form_add_new_employee" name="form_add_new_employee" role="form" enctype="multipart/form-data" class="form-horizontal col-sm-8">
                 {!! csrf_field() !!}
                 <input type="hidden" name="_token" value="{!!  csrf_token() !!}">
                 <h1> Add New Employee </h1>

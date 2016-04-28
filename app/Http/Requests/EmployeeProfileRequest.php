@@ -3,8 +3,6 @@
 namespace App\Http\Requests;
 
 use App\Http\Requests\Request;
-use Illuminate\Contracts\Validation\Validator;
-use App\Exceptions\CustomException;
 use App\Models\Employee;
 
 class EmployeeProfileRequest extends Request
@@ -40,6 +38,10 @@ class EmployeeProfileRequest extends Request
         $em->wage = $this->wage;
         $em->wage_cur = $this->wage_cur;
         $em->work_from = $this->work_from;
+        if($this->hasFile('image')){
+            $file = $this->file('image');
+            $em->setImage($file);
+        }
         return $em;
     }
 

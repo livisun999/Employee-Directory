@@ -8,12 +8,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Extentions\AjaxResponse;
 use Illuminate\Routing\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use App\Models\Depar;
 use App\Models\Employee;
 use App\Http\Requests\EmployeeProfileRequest;
 use App\Http\Requests\HandledEmployeeProfileRequest;
+use App\Extentions\AjaxResponse;
+use Session;
 
 use Symfony\Component\HttpFoundation\Session\Session;
 
@@ -35,32 +38,31 @@ class EmployeeController extends controller
     public function updateProfile(HandledEmployeeProfileRequest $request, $eid){
         $employee = Employee::findOrFail($eid);
         $request->bindTo($employee);
-        $employee->save();
+        $employee->saveWithImage();
         $employee->department(["Dep_name", "id"]);
         return AjaxResponse::ok($employee);
-
     }
     public function searchEmployeeByName(){
-        $name = "minh";
-        if(!$name){
-            return response()->json([
-                'message'=> 'bad request'
-                ], 400);
-        }
-
+        $name = Input::get('name');
         $results = Employee::findByName($name);
-        return ajaxResponse::ok(['info'=>[], 'result'=>$results]);
+        $depList = Depar::all(['Dep_name', 'id']);
+        return view('Employee.search_result')->with([
+            'list_employee'=>$results, 
+            'list_department'=>$depList
+        ]);
     }
     public function getNewEmployee (){
         $listDepartment = Depar::all(["Dep_name", "id"]);
-        return view('Employee.new_employee')->with([
-            'listDepartment' => $listDepartment
-            ]);
+        return view('Employee.new_employee')
+                ->with([
+                    'listDepartment' => $listDepartment
+                ])
+                ->withInput();
     }
     public function postNewEmployee(EmployeeProfileRequest $request){
         $employee = new Employee();
         $request->bindTo($employee);
-        $employee->save();
+        $employee->saveWithImage();
         Session::flash('success', 'create employee successfully'); 
         if($request->addNext){
             return Redirect()->back()->withInput();

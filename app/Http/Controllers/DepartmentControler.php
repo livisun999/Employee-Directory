@@ -31,8 +31,15 @@ class DepartmentControler extends Controller {
         return ($saved==sizeof($ems));
     }
     public function getListdepart(){
+<<<<<<< HEAD
         $objDepart = Depar::allMaster(['name', 'id']);
         return view('Department.List_department')->with('allDepart', $objDepart);
+=======
+        $allDepart = Depar::allMaster(['name', 'id']);
+        return view('Department.List_department')->with([
+            'allDepart' => $allDepart
+        ]);
+>>>>>>> b563f99f7770e58d5db4d2a4c7b468828be955e8
     }
     public function new_department(){
         $ojbEmployee = new Employee();

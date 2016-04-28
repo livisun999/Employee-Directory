@@ -60,7 +60,7 @@ Route::group(['middleware' => ['web']], function () {
 
                 // route for employee
                 Route::get('listemployee',['as'=>'listemployee','uses'=>'EmployeeController@getListEmployee']);
-                Route::post('searchemployee',['as'=>'searchemployee','uses'=>'EmployeeController@searchEmployeeByName']);
+                Route::get('searchemployee',['as'=>'searchemployee','uses'=>'EmployeeController@searchEmployeeByName']);
                 Route::get('employee/profile/{id}', ['as'=>'emprofile', 'uses'=> 'EmployeeController@getProfile']);
                 Route::get('newemployee',['as'=>'newemployee','uses'=>'EmployeeController@getNewEmployee']);
                 Route::post('postnewemployee',['as'=>'postnewemployee','uses'=>'EmployeeController@postNewEmployee']);

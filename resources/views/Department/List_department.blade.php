@@ -29,7 +29,11 @@
                                 </a>
                             </td>
                             <td class='dep_master'>
+                                @if($depar->master)
                                 <a href="javascript:void(0);" class="getEmInfo" data-id="{{$depar->master->id}}">{{$depar->master->name}}</a>
+                                @else
+                                <a href="javascript:void(0);" class="getEmInfo" data-id=""></a>
+                                @endif
                             </td>
                             <td class='dep_phone'>0{{$depar['Dep_Phone']}} </td>
                             <td class="number_room">{{$depar['Dep_number']}} </td>
@@ -40,7 +44,7 @@
                                     >
                                     <span class="glyphicon glyphicon-pencil edit_depaerment" data-toggle="tooltip" data-placement="top" title="Edit"></span>
                                 </a>
-                                <a href="#" class="delete_depaerment" ><span class="glyphicon glyphicon-trash  {{$depar['id']}}" data-toggle="tooltip" data-placement="top" title="Delete"></span></a>
+                                <a data-id="{{$depar['id']}}" class="delete_depaerment" data-toggle="modal" href="#deletemodal"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
                             </td>
                         </tr>
                         {{--*/ $i++ /*--}}
@@ -48,7 +52,31 @@
                     @endforeach
                 </table>
             </div>
+            <!-- MODAL SHOW DEPARTMENT DETAIL -->
+            <div class="container">
+                <!-- Modal -->
+                <div class="modal fade" id="deletemodal" role="dialog">
+                    <div class="modal-dialog">
 
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h1 class="modal-title name">delete confrim</h1>
+                            </div>
+
+                            <div class="modal-body">
+                                are you sure tho delete this department?
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary close_modal" data-dismiss="modal">yes</button>
+                                <button type="button" class="btn btn-default close_modal" data-dismiss="modal">no</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
             <!-- MODAL SHOW DEPARTMENT DETAIL -->
             <div class="container">
                 <!-- Modal -->
@@ -184,168 +212,49 @@
 @section('script_')
     @parent
     <script type="text/javascript">
-        function createModal(data){
-            $('.room_number').html(" <b>&nbsp; " + data.Dep_number + "</b>");
-            $('.name').html(" <b>&nbsp; " + data.Dep_name + "</b>");
-            $('.master').html(" <b>&nbsp; " + data.Dep_master_name + "</b>");
-            $('.phone').html(" <b>&nbsp;  " +"0" + data.Dep_Phone + "</b>");
-            if(!$('.employee_>ul').length){
-                $('.employee_').append('<ul style="margin-left: 60px; list-style: decimal;"></ul>');
-            }
-            var employeeList = $('.employee_>ul');
-            employeeList.empty();
-            var employees = data.employees;
-            for(var i = 0; i < employees.length; i++){
-                var li = $('<li></li>');
-                li.text(employees[i].name);
-                li.id = employees[i].id;
-                var detail =  $('<a title="profile" class="em-act-sm pull-right" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>');
-                detail.attr('data-id',employees[i].id);
-                detail.on('click', getProfile);
-                li.append(detail);
-                employeeList.append(li);
-            }
-            $('.view_employee').removeClass('border_employee_');
-            $('#myModal .close_modal').html('Close');
-            $('#myModal .modal-footer').html('<button type="button" class="btn btn-primary" data-dismiss="modal"> Close</button>');
-        }
-        function getProfile(){
-            var id = $(this).attr('data-id');
-            $.ajax({
-                url: 'employee/profile/'+id,
-                type: 'GET',
-                dataType: 'json',
-                success: function(response){
-                    createEmployeeModal(response.data);
-                    $('#emModal').modal('show');
-                }
-            });
-        }
-        function createEmployeeModal(data){
-            $('#emModal .data').each(function(){
-                var uri = $(this).attr('data').split('.');
-                var text = data;
-                for (var i = 0; i < uri.length; i++) {
-                    text = text[uri[i]];
-                }
-                $(this).text(text);
-            });
-        }
-        function createEditModal(data){
-            var token = $("meta[name='csrf-token']").attr('content');   
-            if(data == null) return;
-            var dpid = data.id;
-            var removeList  = [];
-            $('.name').html(" <input required type='text' class='trans' value='" + data.Dep_name + "' > ");
-
-            $('.room_number').html(" <input type='text' value='" + data.Dep_number + "' > ");
-            $('.master').html('');
-
-            $('.phone').html(" <input type='text' value='0" + data.Dep_Phone + "' > ");
-
-            if(!$('.employee_>ul').length){
-                $('.employee_').append('<ul style="margin-left: 60px; width: 250px; list-style: decimal;"></ul>');
-            }
-            $('.master').empty();
-            if(!$('.master>select').length){
-                $('.master').append('<select></select>');
-            }
-            var employeeList = $('.employee_>ul');
-            employeeList.empty();
-            var employeeOptions = $('.master>select');
-            employeeOptions.empty(); 
-            var employees = data.employees;
-
-            for(var i = 0; i < employees.length; i++){
-                var li = $('<li></li>');
-                li.text(employees[i].name);
-                var removeEmpl = $('<a title="remove from department" class="em-act-sm pull-right" href="javascript:void(0)" role="remove"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>');
-                removeEmpl.attr('data-id',employees[i].id);
-                var detail =  $('<a title="profile" class="em-act-sm pull-right" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>');
-                detail.attr('data-id',employees[i].id);
-                detail.on('click', getProfile);
-                li.append(removeEmpl);
-                li.append(detail);
-                employeeList.append(li);
-                removeEmpl.on('click', function(){
-                    var ico = $(this).find('span');
-                    var id = $(this).attr('data-id');
-                    if($(this).attr('role') == 'remove'){
-                        removeList.push(id);
-                        ico.css('color', 'orange');
-                        ico.attr('class', 'glyphicon glyphicon-repeat');
-                        $(this).attr('title', 'undo');
-                        $(this).attr('role', 'undo');
-                    } else {
-                        removeList.splice(removeList.indexOf(id), 1);
-                        ico.css('color', '');
-                        ico.attr('class', 'glyphicon glyphicon-remove');
-                        $(this).attr('title', 'remove from department');
-                        $(this).attr('role', 'remove');
-                    }
-                });
-
-                var option = $('<option></option>');
-                option.text(employees[i].name);
-                option.val(employees[i].id);
-                if(employees[i].name == data.Dep_master){
-                    option.attr('selected', 'selected');
-                }
-                employeeOptions.append(option);
-            }
-            function renderDepartmentRow(dep){
-                var id = dep.id;
-                var row = '#depart_'+id;
-                if(!(row).length) return;
-                var a = $(row+'>.show_modal').text(dep.Dep_name);
-                $(row+'>.dep_master a').text(dep.master.name);
-                $(row+'>.dep_master a').attr('data-id', dep.master.id);
-                $(row+'>.dep_phone').text(dep.Dep_Phone);
-                $(row+'>.room_number').text(dep.Dep_number);
-            }
-            $('.view_employee').addClass('border_employee_');
-            $('#myModal .modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>' +
+        $('.view_employee').addClass('border_employee_');
+        $('#myModal .modal-footer').html('<button type="button" class="btn btn-default" data-dismiss="modal"> Close</button>' +
                     '<button type="button" class="btn btn-primary close_modal update_department" data-dismiss="modal">Update</button>');
-            $('.update_department').bind('click', function(){
-                $.ajax({
-                    url: 'postEditDepartment',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: {
-                        'depId': dpid,
-                        'depMaster': $('.master>select').val(), 
-                        'DepartmentName':  $('.name>input').val(),
-                        'RoomNumber': $('.room_number>input').val(),
-                        'DepartmentPhone': $('.phone>input').val(),
-                        'removeList': removeList,
-                        '_token': token
-                    },
-                    complete: function(){
+        $('.update_department').bind('click', function(){
+            $.ajax({
+                url: 'postEditDepartment',
+                type: 'POST',
+                dataType: 'json',
+                data: {
+                    'depId': dpid,
+                    'depMaster': $('.master>select').val(), 
+                    'DepartmentName':  $('.name>input').val(),
+                    'RoomNumber': $('.room_number>input').val(),
+                    'DepartmentPhone': $('.phone>input').val(),
+                    'removeList': removeList,
+                    '_token': token
+                },
+                complete: function(){
 
-                    },
-                    success: function(response){
+                },
+                success: function(response){
 
-                        var message =  response.message;
-                        if(!message){
-                            message = "department was updated";
-                        }
-                        
-                       createNoty('success', message, 5000);
-                       renderDepartmentRow(response.data);
-                    },
-                    error: function(){
-                        var message =  data.message;
-                        if(typeof message === 'undefined'){
-                            message = "department can not updated";
-                        }
-                        createNoty('error', message, 5000);   
+                    var message =  response.message;
+                    if(!message){
+                        message = "department was updated";
                     }
-                });
+                    
+                   createNoty('success', message, 5000);
+                   renderDepartmentRow(response.data);
+                },
+                error: function(){
+                    var message =  data.message;
+                    if(typeof message === 'undefined'){
+                        message = "department can not updated";
+                    }
+                    createNoty('error', message, 5000);   
+                }
             });
-        }
-
+        });
         $(document).ready(function() {
-            $('a[href="#emModal"]').bind('click', getProfile);
+            $('a.getEmInfo, button.getEmInfo').click(function(){
+                        getProfile.call(this, createEmployeeModal);
+            });
             $('a.show_modal').click(function() {
                 var depId = $(this).attr('data-id');
                 //createModal(data);
