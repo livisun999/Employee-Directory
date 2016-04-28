@@ -271,7 +271,6 @@
             $(function () {
                 $('[data-toggle="tooltip"]').tooltip()
             })
-            $('a.getEmInfo, button.getEmInfo').click(getProfile);
             $('a.edit_depaerment').click(function(e){
                 var depId = $(this).attr('data-id');
                 //createModal(data);
