@@ -42,7 +42,7 @@ return [
     |
     */
 
-    'port' => env('MAIL_PORT', 465),
+    'port' => env('MAIL_PORT', 587),
 
     /*
     |--------------------------------------------------------------------------
@@ -55,7 +55,7 @@ return [
     |
     */
 
-    'from' => ['address' => 'one@email.com', 'name' => 'Employee Directory'],
+    'from' => ['address' => 'someguy@somehost.com', 'name' => 'what the F**K'],
 
     /*
     |--------------------------------------------------------------------------
@@ -68,7 +68,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'ssl'),
+    'encryption' => 'tls',
 
     /*
     |--------------------------------------------------------------------------
@@ -109,4 +109,5 @@ return [
 
     'sendmail' => '/usr/sbin/sendmail -bs',
 
+    'pretend' => false,
 ];

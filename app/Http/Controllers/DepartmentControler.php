@@ -32,9 +32,7 @@ class DepartmentControler extends Controller {
     }
     public function getListdepart(){
         $objDepart = Depar::allMaster(['name', 'id']);
-        return view('Department.List_department')->with([
-            'allDepart' => $objDepart
-        ]);
+        return view('Department.List_department')->with('allDepart', $objDepart);
     }
     public function new_department(){
         $ojbEmployee = new Employee();

@@ -15,6 +15,8 @@ use App\Models\Employee;
 use App\Http\Requests\EmployeeProfileRequest;
 use App\Http\Requests\HandledEmployeeProfileRequest;
 
+use Symfony\Component\HttpFoundation\Session\Session;
+
 class EmployeeController extends controller
 {
     public function getListEmployee (){
