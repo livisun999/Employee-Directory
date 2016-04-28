@@ -6,7 +6,7 @@
         <div class="row">
             <div class="list_admin">
                 <h1> List Employee</h1>
-                <table class="sortable table table-hover List_admin table-bordered ">
+                <table class="sortable table table-hover list_employee table-bordered">
                     <tr>
                         <th> # </th>
                         <th> Name</th>

@@ -69,7 +69,7 @@ function createEmployeeModal(data, show) {
     } else {
         var img = "public/uploads/profile_img/default.png";
     }
-    $("#edit_emModal .profile-img img").first().attr('src', img);
+    $("#emModal .profile-img img").first().attr('src', img);
     if (typeof show === 'undefined' || show) {
         $('#emModal').modal('show');
     }
@@ -201,7 +201,9 @@ function createModal(data) {
         li.id = employees[i].id;
         var detail = $('<a title="profile" class="em-act-sm pull-right" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>');
         detail.attr('data-id', employees[i].id);
-        detail.on('click', getProfile);
+        detail.on('click', function(){
+            getProfile.call(this, createEmployeeModal);
+        });
         li.append(detail);
         employeeList.append(li);
     }
@@ -238,7 +240,9 @@ function createEditModal(data) {
         removeEmpl.attr('data-id', employees[i].id);
         var detail = $('<a title="profile" class="em-act-sm pull-right" href="javascript:void(0);"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>');
         detail.attr('data-id', employees[i].id);
-        detail.on('click', getProfile);
+        detail.on('click', function(){
+            getProfile.call(this, createEmployeeModal);
+        });
         li.append(removeEmpl);
         li.append(detail);
         employeeList.append(li);
