@@ -53,7 +53,7 @@ Route::group(['middleware' => ['web']], function () {
                 Route::get('listdepartment',['as'=>'listdepartment','uses'=>'DepartmentControler@getListdepart']);
 
                 Route::post('/postListDepartment',['as'=>'postListDepartment','uses'=>'DepartmentControler@postListDepartment']);
-                Route::get('/newdepartment',['as=>newdepartment','uses'=>'DepartmentControler@new_department']);
+                Route::get('/newdepartment',['as'=>'newdepartment','uses'=>'DepartmentControler@getNew_department']);
                 Route::post('/postNewDepartment',['as'=>'postNewDepartment','uses'=>'DepartmentControler@postNewDepartment']);
                 Route::post('postEditDepartment', ['as' => 'postEditDepartment', 'uses'=>'DepartmentControler@postEditDepartment']);
                 Route::get('getDepartmentDetails/{id}', ['as' => 'getDepartmentDetails', 'uses'=>'DepartmentControler@getDepartmentDetails']);

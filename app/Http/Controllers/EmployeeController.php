@@ -18,7 +18,7 @@ use App\Http\Requests\HandledEmployeeProfileRequest;
 use App\Extentions\AjaxResponse;
 use Session;
 
-use Symfony\Component\HttpFoundation\Session\Session;
+
 
 class EmployeeController extends controller
 {

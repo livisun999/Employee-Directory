@@ -70,23 +70,38 @@ class AdminControler extends controller {
             return false;
         }
     }
-    public function check_is_acc($request){
+    public function check_is_acc_exist($request){
         $objUser = new USer();
         $allUser = $objUser->all()->toArray();
         foreach( $allUser as $users ){
-            if($request->username == $users['name']){
+            $R_user = strtolower($request->username);
+            $D_user = strtolower($users['name']);
+            if($R_user == $D_user ){
                return false;
             }
         }
         return true;
     }
+    public function check_is_email_exist($request){
+        $objUser = new USer();
+        $allUser = $objUser->all()->toArray();
+        foreach( $allUser as $users ){
+            $R_mail = strtolower($request->Email);
+            $D_mail = strtolower($users['email']);
+            if( $R_mail == $D_mail){
+                return false;
+            }
+        }
+        return true;
+    }
+
     function RandomString($length = 10) {
         return substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, $length);
     }
 
     // New Admin
     public function postNewAdmin(addNewAdminRequest $request){
-        if($this->check_is_admin() && $this->check_is_acc($request)) {
+        if($this->check_is_admin() && $this->check_is_acc_exist($request)&& $this->check_is_email_exist($request)) {
             $use = new User();
             $use->name = $request->username;
             $new_pass = $this->RandomString();
@@ -108,7 +123,14 @@ class AdminControler extends controller {
             return redirect()->route('ListAdmin')->with(['flash_level' => 'success', 'flash_message' => 'Success Complate Add New Admin']);
         }
         else{
-            return redirect()->route('newadmin');
+            if(!$this->check_is_acc_exist($request)){
+                return redirect()->route('newadmin')->with(['flash_level' => 'danger', 'flash_message' => 'account is existing']);
+            }else{
+                if(!$this->check_is_email_exist($request)){
+                    return redirect()->route('newadmin')->with(['flash_level' => 'danger', 'flash_message' => 'email is existing']);
+                }
+            }
+            return redirect()->route('newadmin')->with(['flash_level' => 'danger', 'flash_message' => 'account and email is existing']);
         }
     }
     public function getChanePassword (){

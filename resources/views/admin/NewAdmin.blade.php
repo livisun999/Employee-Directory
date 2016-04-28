@@ -53,6 +53,7 @@
 </div>
 @stop
 @section('script_')
+    @parent
 <script type="text/javascript">
     $(document).ready(function() {
         $("#form_add_new_admin").validate({
@@ -62,12 +63,12 @@
                     rangelength: [2,50]
                 },
                 yourname: {
-                    required: true,
+                    required: true
                 },
 
                 Email:{
-                    required: true,
-                },
+                    required: true
+                }
             },
             messages: {
                 username: {
@@ -75,12 +76,12 @@
                     rangelength: "The username is the wrong length"
                 },
                 yourname: {
-                    required: "Please enter the Your name",
+                    required: "Please enter the Your name"
                 },
 
                 Email:{
-                    required:"Please enter the Email",
-                },
+                    required:"Please enter the Email"
+                }
 
             }
         });

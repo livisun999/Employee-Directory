@@ -66,7 +66,7 @@
                     <label for="Em_phone" class="col-lg-offset-1 col-sm-2 control-label"> image</label>
                     <div class="col-sm-7" id="imgInputPrev">
                         <img class="dataPreview prevpic" />
-                        <input type="file" name="image" value="{{old('image')}}"></input>
+                        <input> type="file" name="image" value="{{old('image')}}">
                         @if($errors->has("image"))
                             @foreach($errors->get("image") as $error)
                                 <div class="form-hint form-hint-error">{{$error}}</div>
@@ -203,12 +203,12 @@
                         rangelength: [2,50]
                     },
                     yourname: {
-                        required: true,
+                        required: true
                     },
 
                     Email:{
-                        required: true,
-                    },
+                        required: true
+                    }
                 },
                 messages: {
                     username: {
@@ -216,12 +216,12 @@
                         rangelength: "The username is the wrong length"
                     },
                     yourname: {
-                        required: "Please enter the Your name",
+                        required: "Please enter the Your name"
                     },
 
                     Email:{
-                        required:"Please enter the Email",
-                    },
+                        required:"Please enter the Email"
+                    }
 
                 }
             });

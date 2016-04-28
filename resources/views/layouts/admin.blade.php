@@ -41,7 +41,7 @@
         </div>
 
         <ul class="nav nav-sidebar">
-            <li class=" nav-active active"><a href="{{ URL::to('dashboard') }}"><i class="icon-home"></i><span>Admin Manager</span></a></li>
+            <li class=" nav-active active"><a href="javascript:void(0)"><i class="icon-home"></i><span>Admin Manager</span></a></li>
             <li class="nav-parent">
                 <a href="{{ URL::to('newadmin') }}" class="test_"><i class="icon-puzzle"></i><span>New administrator</span> </a>
             </li>
@@ -55,7 +55,7 @@
         </ul>
 
         <ul class="nav nav-sidebar">
-            <li class=" nav-active active"><a href="dashboard.html"><i class="icon-home"></i><span>Department management </span></a></li>
+            <li class=" nav-active active"><a href="javascript:void(0)"><i class="icon-home"></i><span>Department management </span></a></li>
             <li class="nav-parent ">
                 <a href="{{URL::to('newdepartment')}}"><i class="icon-puzzle "></i><span class="menu_active_border" >Add department</span> </a>
             </li>
@@ -67,7 +67,7 @@
         </ul>
 
         <ul class="nav nav-sidebar">
-            <li class=" nav-active active"><a href="dashboard.html"><i class="icon-home"></i><span>Employee management  </span></a></li>
+            <li class=" nav-active active"><a href="javascript:void(0)"><i class="icon-home"></i><span>Employee management  </span></a></li>
             <li class="nav-parent">
                 <a href="newemployee"><i class="icon-puzzle"></i><span>New employee</span> </a>
             </li>
@@ -109,6 +109,13 @@
         <!-- header-right -->
     </div>
     <div class="page-content page-thin ">
+        <div class="col-md-12">
+            @if(Session::has('flash_message'))
+                <div class="alert alert-{!! Session::get('flash_level') !!}">
+                    {!! Session::get('flash_message') !!}
+                </div>
+            @endif
+        </div>
         <div class="row">
             @yield('content')
         </div>
@@ -121,9 +128,7 @@
 @section('script_')
     <script>
         $(document).ready(function(){
-            function menu_active (){
-                alert('dm');
-            }
+            $('.alert').delay(4000).slideUp();
         });
     </script>
 @show
