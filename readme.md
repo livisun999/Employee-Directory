@@ -4,15 +4,15 @@
 
 **Employee-directry** là một ứng dụng web phất triển trên  framework  ```laravel 5.2```. đây là một ứng dụng quản lý nhân  sự  cho  các  doanh nghiệp hặc các tổ chức vừa và nhỏ với số lượng nhân sự không quá nhiều.
 ## thông tin
-> nhóm: ```MVH  K58-CB```
+- nhóm: ```MVH  K58-CB```
 
-> môn:  ```phát triển ứng dụng web```
+- môn:  ```phát triển ứng dụng web```
 
-> lớp: ```INT3306 2```
+- lớp: ```INT3306 2```
 
-> giảng viên: ```Lê Đình Thanh```
+- giảng viên: ```Lê Đình Thanh```
 
-> học kỳ: ```Kỳ năm học 2015 - 2016```
+- học kỳ: ```Kỳ năm học 2015 - 2016```
     
 ## Nhóm phát triển
 
