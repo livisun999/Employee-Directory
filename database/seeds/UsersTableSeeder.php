@@ -27,16 +27,7 @@ class UsersTableSeeder extends Seeder
             'changePass'=>0
         ]);
 
-        Depar::create(array(
-            'Dep_name'=>'Phòng nhân Sự',
-            'Dep_Phone' =>  '0972114187',
-            'Dep_number'=>'E-01'
-        ));
-        Depar::create(array(
-            'Dep_name'=>'Phòng Hành Chính',
-            'Dep_Phone' =>  '0972114188',
-            'Dep_number'=>'B-02'
-        ));
+
 
 
         Employee::create([
@@ -84,5 +75,17 @@ class UsersTableSeeder extends Seeder
             'wage'=>'2000000',
             'depar_id'=>'2'
         ]);
+        Depar::create(array(
+            'Dep_name'=>'Phòng nhân Sự',
+            'Dep_Phone' =>  '0972114187',
+            'Dep_number'=>'E-01',
+            'Dep_master'=>1
+        ));
+        Depar::create(array(
+            'Dep_name'=>'Phòng Hành Chính',
+            'Dep_Phone' =>  '0972114188',
+            'Dep_number'=>'B-02',
+            'Dep_master'=>2
+        ));
     }
 }
