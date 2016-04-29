@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title> @yield('title')</title>
     <meta name="csrf-token" content="{{csrf_token()}}">
-    <title>Admin Control @yield('title')</title>
+    <title> @yield('title')</title>
     <link href="{!! url('public/assets/Admin/css/bootstrap.css') !!}"rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/style.css') !!}" rel="stylesheet">
     <link href="{!! url('public/assets/Admin/css/rtl.css') !!}" rel="stylesheet">
@@ -23,13 +22,17 @@
 <div class="sidebar">
     <div class="logopanel">
         <h1>
-            <a href="dashboard.html"></a>
+            <a href="#">MVH - UET</a>
         </h1>
     </div>
     <div class="sidebar-inner">
         <div class="sidebar-top big-img">
             <div class="user-image">
-                <img src="public/assets/Admin/images/profil_page/friend8.jpg" class="img-responsive img-circle" alt="friend 8">
+        	@if(Auth::user()->image)
+        	<img src="public/uploads/admin_img/{{Auth::user()->image}}" class="img-responsive img-circle" alt="friend 8">
+        	@else
+            <img src="public/uploads/admin_img/default.png" class="img-responsive img-circle" alt="friend 8">
+            @endif
             </div>
             <h4>{{Auth::user()->name}}</h4>
             <div class="dropdown user-login">
@@ -97,7 +100,12 @@
             <ul class="header-menu nav navbar-nav">
                 <li class="dropdown" id="user-header">
                     <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                        <img src="public/assets/Admin/images/profil_page/friend8.jpg" alt="user image">
+                    	@if(Auth::user()->image)
+                    	<img src="public/uploads/admin_img/{{Auth::user()->image}}" alt="user image">
+                    	@else
+                        <img src="public/uploads/admin_img/default.png" alt="user image">
+                        @endif
+                        
                         <span class="username">Hi, {{Auth::user()->name}}</span>
                     </a>
                 </li>
@@ -110,8 +118,14 @@
     </div>
     <div class="page-content page-thin ">
         <div class="col-md-12">
+            @if($errors->any())
+            <div class="alert auto-hide alert-danger">
+                something went wrong here!
+            </div>
+            @endif
             @if(Session::has('flash_message'))
-                <div class="alert alert-{!! Session::get('flash_level') !!}">
+                <div class="alert auto-hide alert-{!! Session::has('flash_level')?Session::get('flash_level'):'default'
+                 !!}">
                     {!! Session::get('flash_message') !!}
                 </div>
             @endif

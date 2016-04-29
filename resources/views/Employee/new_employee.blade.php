@@ -66,7 +66,7 @@
                     <label for="Em_phone" class="col-lg-offset-1 col-sm-2 control-label"> image</label>
                     <div class="col-sm-7" id="imgInputPrev">
                         <img class="dataPreview prevpic" />
-                        <input type="file" name="image" value="{{old('image')}}">
+                        <input type="file" name="image" value="{{old('image')}}" accept="image/x-png, image/gif, image/jpeg" >
                         @if($errors->has("image"))
                             @foreach($errors->get("image") as $error)
                                 <div class="form-hint form-hint-error">{{$error}}</div>

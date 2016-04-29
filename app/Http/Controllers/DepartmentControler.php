@@ -12,6 +12,7 @@ use App\Extentions\AjaxResponse;
 use App\Http\Requests\newDepartmentRequest;
 use App\Models\Depar;
 use App\Models\Employee;
+use Session;
 
 class DepartmentControler extends Controller {
     private function removeFromDepartment($ems, $department){
@@ -47,31 +48,31 @@ class DepartmentControler extends Controller {
         return view('Department.new_department')->with('employee_name',$list_employee);
     }
     public function check_is_depart_exist($request){
-        $objDepart = new Depar();
-        $allDepart = $objDepart->all()->toArray();
-        foreach( $allDepart as $depart ){
-            $R_Dep_name = strtolower($request->DepartmentName);
-            $R_Dep_name = strtolower($depart['Dep_name']);
-            if( $R_Dep_name == $R_Dep_name){
-                return false;
-            }
-        }
-        return true;
+        return Depar::where([
+        	"Dep_name" => $request->DepartmentName
+        	])->count() != 0;
     }
     public function postNewDepartment(newDepartmentRequest $request){
-        if($this->check_is_depart_exist($request)){
+        if(!$this->check_is_depart_exist($request)){
             $department = new Depar();
             $department->Dep_name = $request->DepartmentName;
             $department->Dep_master = $request->depMaster;
             $department->Dep_Phone = $request->DepartmentPhone;
             $department->Dep_number = $request->RoomNumber;
-
             $check_sussces = $department->save();
             if($check_sussces){
-                return redirect()->route('listdepartment')->with(['flash_level' => 'succes', 'flash_message' => 'uccess Complate Add New Department ']);
+            	Session::flash("flash_message", "create department successfuly!");
+            	Session::flash("flash_level", "success");
+                return redirect()->route('listdepartment');
+            } else {
+            	Session::flash("flash_message", "can not save department!");
+            	Session::flash("flash_level", "danger");
             }
+        } else {
+        	Session::flash("flash_message", "department's already exits");
+        	Session::flash("flash_level", "danger");	
         }
-        return redirect()->route('newdepartment')->with(['flash_level' => 'danger', 'flash_message' => 'Create Department Error']);
+        return redirect()->route('newdepartment');
 
 
     }

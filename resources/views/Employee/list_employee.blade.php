@@ -52,7 +52,7 @@
                                 <div id="edit_profile_img" class="user-image profile-img">
                                     <img src="public/uploads/profile_img/default.png" class="img-responsive img-circle dataPreview"/>
                                     <div class="Em_img form-group">
-                                        <input type="file" name="image" id="Em_img" class="choose_em_img col-sm-12">
+                                        <input type="file" name="image" id="Em_img" class="choose_em_img col-sm-12" accept="image/x-png, image/gif, image/jpeg" >
                                     </div>
                                 </div>
                                 <div class="info">

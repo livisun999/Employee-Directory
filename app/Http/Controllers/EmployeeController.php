@@ -59,10 +59,11 @@ class EmployeeController extends controller
         $employee = new Employee();
         $request->bindTo($employee);
         $employee->saveWithImage();
-        Session::flash('success', 'create employee successfully'); 
+        Session::flash('flash_message', 'create employee successfully'); 
+        Session::flash('flash_level', 'success');
         if($request->addNext){
-            return Redirect()->back()->withInput(['flash_level' => 'danger', 'flash_message' => 'Error add new employee ']);
+            return Redirect()->back();
         }
-        return Redirect()->route('listemployee')->with(['flash_level' => 'success', 'flash_message' => 'success Complate Add New Employee ']);
+        return Redirect()->route('listemployee');
     }
 }

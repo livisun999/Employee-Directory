@@ -1565,7 +1565,7 @@ body:not(.sidebar-collapsed) .topbar .header-left .topnav .menutoggle:hover .men
   margin: 0;
 }
 .sidebar .logopanel h1 a {
-  background: url(../images/logo/logo-white.png) no-repeat;
+  color: white;
   display: block;
   height: 31px;
 }
@@ -6988,7 +6988,7 @@ body:not(.fixed-topbar) .main-content .page-content {
     font-family: 'Lato', arial, sans-serif;
     font-weight: 900;
     font-size: 25px;
-    background: url(../images/logo/logo-white.png) no-repeat;
+    color: white;
     height: 31px;
     margin-bottom: 15px;
     display: block;

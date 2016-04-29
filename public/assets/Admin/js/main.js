@@ -1,3 +1,9 @@
+$(document).ready(function(){
+	setTimeout(function(){
+		$('.alert.auto-hide').fadeOut();
+	}, 10000);
+});
+
 function createNoty(type, content, ttl) {
     var n = noty({
         text: content,

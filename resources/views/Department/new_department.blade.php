@@ -12,14 +12,24 @@
         <div class="form-group input_user ">
             <label for="DepartmentName" class="col-lg-offset-1 col-sm-3 control-label"> Department Name </label>
             <div class="col-sm-6">
-                <input type="text" name="DepartmentName" id="DepartmentName" class="form-control" placeholder="Department Name">
+                <input type="text" name="DepartmentName" id="DepartmentName" class="form-control" placeholder="Department Name" value="{{old('DepartmentName')}}">
+                @if($errors->has("DepartmentName"))
+                    @foreach($errors->get("DepartmentName") as $error)
+                        <div class="form-hint form-hint-error">{{$error}}</div>
+                    @endforeach
+                @endif
             </div>
         </div>
 
         <div class="form-group">
             <label for="RoomNumber" class="col-lg-offset-1 col-sm-3 control-label"> Room Number</label>
             <div class="col-sm-6">
-                <input type="text" name="RoomNumber" id="RoomNumber" class="form-control" placeholder="Room Number">
+                <input type="text" name="RoomNumber" id="RoomNumber" class="form-control" placeholder="Room Number"  value="{{old('RoomNumber')}}">
+                @if($errors->has("RoomNumber"))
+                    @foreach($errors->get("RoomNumber") as $error)
+                        <div class="form-hint form-hint-error">{{$error}}</div>
+                    @endforeach
+                @endif
             </div>
         </div>
 
@@ -27,6 +37,11 @@
             <label for="DepartmentPhone" class="col-lg-offset-1 col-sm-3 control-label"> Office Phone</label>
             <div class="col-sm-6">
                 <input type="text" name="DepartmentPhone" id="DepartmentPhone" class="form-control" placeholder="Office Phone @xxx.com">
+                @if($errors->has("DepartmentPhone"))
+                    @foreach($errors->get("DepartmentPhone") as $error)
+                        <div class="form-hint form-hint-error">{{$error}}</div>
+                    @endforeach
+                @endif
             </div>
         </div>
 
@@ -35,7 +50,13 @@
             <div class="col-sm-6">
                 <select class="form-control" name="depMaster">
                     @foreach($employee_name as $list_employee)
-                        <option>{{$list_employee['name']}} </option>
+                    	@if(old('depMaster') == $list_employee['id'])
+                    	<option value="{{$list_employee['id']}}" selected>
+                    	@else
+                    	<option value="{{$list_employee['id']}}">
+                    	@endif
+                        {{$list_employee['name']}}
+                        </option>
                     @endforeach
                 </select>
             </div>
@@ -46,17 +67,6 @@
                 <button type="submit" class="btn btn-primary"> Creat Department </button>
 
             </div>
-        </div>
-
-        <div class="error_login">
-            @if ( $errors->any() )
-                <ul class="form_error">
-                    <h2> * Form Error </h2>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif
         </div>
     </form>
     </div>

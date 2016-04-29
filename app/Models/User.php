@@ -14,8 +14,9 @@ use Illuminate\Database\Eloquent\Model;
 class User extends  Model
 {
     protected $table = 'users';
-    protected $imageFloder '/uploads/admin_img/';
+    protected $imageFolder = '/uploads/admin_img/';
     protected $imageFile = null;
+    protected $imageExt = null;
     protected $fillable = ['name','email','password', 'image'];
 
     public function role(){
@@ -26,11 +27,14 @@ class User extends  Model
         $ret = $id = $this->save();
         if(!$this->imageFile) return $ret;
         $file = $this->imageFile;
-        $fileName = 'profile_pic'.$this->id.'.'.$this->imageExt;
+        $fileName = 'admin_pic'.$this->id.'.'.$this->imageExt;
         $filePath = public_path().$this->imageFolder;
-        $this->image = $fileName;
-        $this->save();
-        return $file->move($filePath, $fileName);
+        $move = $file->move($filePath, $fileName);
+        if($move) {
+        	$this->image = $fileName;
+        	$this->save();
+    	}
+        return $move; 
     }
     public function setImage($file){
         $this->imageFile = $file;

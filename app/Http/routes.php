@@ -45,8 +45,8 @@ Route::group(['middleware' => ['web']], function () {
                 Route::get('ListAdmin', ['as' => 'ListAdmin', 'uses' => 'AdminControler@getListAdmin']);
                 Route::get('changePassword', ['as' => 'changePassword', 'uses' => 'AdminControler@getChanePassword']);
                 Route::post('postChangePassword', ['as' => 'postChangePassword', 'uses' => 'AdminControler@postChangePassword']);
-                Route::get('profile_admin',['as'=>'profile_admin','uses'=>'AdminControler@get_profile_admin']);
-                Route::post('profile_admin',['as'=>'profile_admin','uses'=>'AdminControler@post_profile_admin']);
+                Route::get('profile_admin',['as'=>'get_profile_admin','uses'=>'AdminControler@get_profile_admin']);
+                Route::post('profile_admin',['as'=>'post_profile_admin','uses'=>'AdminControler@post_profile_admin']);
 
                 // route department
 
