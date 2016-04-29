@@ -63,7 +63,9 @@ danh sách thành viên ```MVH K58-CB``` team:
 - tất cả data gửi lên đều phải qua  modul validate  để kiểm tra 
 
 ##  Hướng Dẫn:
-  - Khi clone ve: truoc tien can chay lenh: sudo composer install (tren ubuntu, MacOs)
+#### 1. cài đặt
+ 
+ - Khi clone ve: truoc tien can chay lenh: sudo composer install (tren ubuntu, MacOs)
                                             composer install (windows)
     Tren ubuntu va MacOs thi can phan quyen truy cap cho cac thu muc "Storage", "resources" ,public/uploads ,va "bootstrap"
   - Tao 1 co so du lieu moi voi ten la "demo_laravel".
@@ -77,4 +79,9 @@ danh sách thành viên ```MVH K58-CB``` team:
   - Tao data trong CSDL chay lenh: php artisan db:seed
 
 
-  tren trinh duyet: chay duong dan: localhost/Employee-Directory => trang chu
+  - tren trinh duyet: chay duong dan: localhost/Employee-Directory => trang chu
+  
+### 2. đăng nhập 
+tài khoản admin mặc định: ***admin1***
+mát khẩu admin mặc định: ***admin1***
+
