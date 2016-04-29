@@ -53,11 +53,7 @@ class EmployeeController extends controller
     }
     public function getNewEmployee (){
         $listDepartment = Depar::all(["Dep_name", "id"]);
-        return view('Employee.new_employee')
-                ->with([
-                    'listDepartment' => $listDepartment
-                ])
-                ->withInput();
+        return view('Employee.new_employee')->with('listDepartment', $listDepartment);
     }
     public function postNewEmployee(EmployeeProfileRequest $request){
         $employee = new Employee();
@@ -65,8 +61,8 @@ class EmployeeController extends controller
         $employee->saveWithImage();
         Session::flash('success', 'create employee successfully'); 
         if($request->addNext){
-            return Redirect()->back()->withInput();
+            return Redirect()->back()->withInput(['flash_level' => 'danger', 'flash_message' => 'Error add new employee ']);
         }
-        return Redirect()->route('listemployee');
+        return Redirect()->route('listemployee')->with(['flash_level' => 'success', 'flash_message' => 'success Complate Add New Employee ']);
     }
 }

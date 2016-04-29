@@ -62,7 +62,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="Em_job_title" class="col-sm-4"> Job Title: </label>
-                                        <input type="text" title="enter job title here" heare" " class="Em_job_title col-sm-8 form-input data" name="job_title" id="Em_job_title" value="">
+                                        <input type="text" title="enter job title here" heare=" "  class="Em_job_title col-sm-8 form-input data" name="job_title" id="Em_job_title" value="">
                                     </div>
                                     <div class="depart form-group">
                                         <label for="Em_depart" class="col-sm-4 "> Department: </label>
