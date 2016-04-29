@@ -82,6 +82,6 @@ danh sách thành viên ```MVH K58-CB``` team:
   - tren trinh duyet: chay duong dan: localhost/Employee-Directory => trang chu
   
 ### 2. đăng nhập 
-tài khoản admin mặc định: ***admin1***
-mát khẩu admin mặc định: ***admin1***
+tài khoản admin mặc định: ***admin1***  
+mát khẩu admin mặc định: ***admin1***   
 
