@@ -50,13 +50,16 @@ danh sách thành viên ```MVH K58-CB``` team:
 
 ## Yêu cầu phi chức năng
 #### 1. giao diện
+
 -  giao diện sán, thân thiện
--  
+
 #### 2. Bảo mật
+
 - mật khẩu người dùng được mã hóa
 - các tác vụ yêu cầu xác thực, được các  thực  phiên đăng nhập trước khi  thực hiện 
 
 #### 3. data validate
+
 - tất cả data gửi lên đều phải qua  modul validate  để kiểm tra 
 
 ##  Hướng Dẫn:
