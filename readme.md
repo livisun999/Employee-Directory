@@ -9,8 +9,8 @@
 - môn:  ```phát triển ứng dụng web```   
 - lớp: ```INT3306 2```  
 - giảng viên: ```Lê Đình Thanh```   
-- trường: ```ĐH Công Nghệ - ĐHQGHN``
-- học kỳ: ```Kỳ năm học 2015 - 2016```
+- trường: ```ĐH Công Nghệ - ĐHQGHN```
+- học kỳ: ```Kỳ 1 năm học 2015 - 2016```
 
 ## Nhóm phát triển
 
