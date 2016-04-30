@@ -18,7 +18,7 @@ class AdminProfileRequest extends Request
     }
 
     public function bindTo(User $u){
-        $u->name = $this->username;
+        $u->yourname = $this->username;
         $u->email = $this->email;
         if($this->hasFile('image')){
             $file = $this->file('image');

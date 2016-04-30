@@ -138,8 +138,8 @@
 </div> <!-- end .main-content-->
 <footer>
     <div class="F_infor">
-        <h4 class="text-center"> Developer by MVH Team!</h4>
-        <h5 class="text-center"> Contact to MVH Team: luk.mink@gmail.com </h5>
+        <h4 class="text-center"> Developed by MVH Team!</h4>
+        <h5 class="text-center"> Contact us: luk.mink@gmail.com </h5>
         <h5 class="text-center"> Phone: 0972 114 187</h5>
     </div>
 </footer>

@@ -174,12 +174,6 @@ class AdminControler extends controller {
     		Session::flash('flash_level', "warning");
     		Session::flash('flash_message', "your password was not correct");
     	} elseif(
-    		Auth::user()->name != $request->username &&
-    	 	$this->check_is_acc_exist($request->username)
-    	 	){
-    		Session::flash('flash_level', "warning");
-    		Session::flash('flash_message', "this email has been used by another user");
-    	} elseif(
     		Auth::user()->email != $request->email &&
     	 	$this->check_is_email_exist($request->username)
     	 	){

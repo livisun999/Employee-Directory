@@ -24,6 +24,7 @@ class UsersTableSeeder extends Seeder
             'password'=>\Hash::make('admin1'),
             'role_id'=>$role->id,
             'yourname'=>'Admin1',
+            'image' => 'admin_pic1.jpg',
             'changePass'=>0
         ]);
 
@@ -38,6 +39,7 @@ class UsersTableSeeder extends Seeder
             'mobile'=>'0972114187',
             'office'=>'0972114187',
             'job_title'=>'trưởng phòng',
+            'image'=> 'profile_pic2.jpg',
             'sex'=>'nam',
             'type'=>'full time',
             'adress'=>'Hà Nội, VN',
@@ -50,6 +52,7 @@ class UsersTableSeeder extends Seeder
             'birthday'=>'1995/12/12',
             'phone'=> '0972114188',
             'email'=>'minh@gmail.com',
+            'image'=> 'profile_pic1.jpg',
             'mobile'=>'0972114187',
             'office'=>'0972114187',
             'job_title'=>'trưởng phòng',
