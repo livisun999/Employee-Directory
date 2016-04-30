@@ -62,24 +62,42 @@ danh sách thành viên ```MVH K58-CB``` team:
 
 ##  Hướng Dẫn:
 #### 1. cài đặt
- 
- - Khi clone ve: truoc tien can chay lenh: sudo composer install (tren ubuntu, MacOs)
+ - clone repo về thư mục gốc của apache (có thể là www hoặc htdocs) bằng lệnh:  
+ ```{r, engine='bash', count_lines}
+git clone https://github.com/livisun999/Employee-Directory.git
+```
+ - khi clone repo về chạy lệnh : sudo composer install (tren ubuntu, MacOs)
                                             composer install (windows)
-    Tren ubuntu va MacOs thi can phan quyen truy cap cho cac thu muc "Storage", "resources" ,public/uploads ,va "bootstrap"
-  - Tao 1 co so du lieu moi voi ten la "demo_laravel".
-  - chinh sua lai cau hinh truy cap tai config/database.php  : 'host' => env('DB_HOST', '127.0.0.1'),
-                                                               'port': so cong ma apache dang chay
-                                                               'database': ten CSDL ban vua tao luc truoc (demo_laravel).
-                                                               'username': username cua ban tren CSDL (default la root)
-                                                               'password': password cua ban tren CSDL (default la '' )
+    trên linux và macos bạn phải cấp quền ghi cho các thư mục  "Storage", "resources" ,"public/uploads/profile_img", "public/uploads/admin_img" ,và "bootstrap"
+  - tạo cơ sở dữ liệu (csld) mới tên là "demo_laravel".
+  - chỉnh sửa lại cấu hình trong file "config/database.php"  : 'host' => env('DB_HOST', '127.0.0.1'),
+                                                               'port': cổng mysql
+                                                               'database': tên csld vừa tạo (demo_laravel).
+                                                               'username': username của bạn trên CSDL (default là root)
+                                                               'password': password của bạn trên CSDL (default là '' )
 
-  - Tao bang CSDL chay lenh: php artisan migrate
-  - Tao data trong CSDL chay lenh: php artisan db:seed
+  - khởi tại csql bằng lệnh: php artisan migrate
+  - tại dữ liệu mẫu bằng lệnh: php artisan db:seed
 
 
-  - tren trinh duyet: chay duong dan: localhost/Employee-Directory => trang chu
+  - trên trình duyệt gõ đường dẫn: localhost/Employee-Director
   
-### 2. đăng nhập 
+#### 2. đăng nhập 
 tài khoản admin mặc định: ***admin1***  
-mát khẩu admin mặc định: ***admin1***   
+mát khẩu admin mặc định: ***admin1*** 
+
+## licence
+
+đây vẫn là một sản phẩm đang trong qúa trình phát triển, một số chức năng vẫn còn thiếu sót. sản phẩm này chỉ mang ý nghĩa nghiên cứu và tìm hiểu về Ứng dúng web cũng như framework ```laravel 5.2```.
+
+với mục đích phi lợi nhuận và phi thương mại mọi cá nhân tổ chức đều có toàn quền sử dụng mã nguồn này cho mục đích học tập và nghên cứu.
+
+chúng tôi không chịu trách nhiệm cho bất cứ thiệt hại nào liên quan đến sản phầm này cho mọi mục đích ngoài học tập nghiên cứu.
+
+## liên hệ
+
+mọi thắc mắc, góp ý xin gửi về theo địa chỉ luk.mink@gmail.com  
+hoặc đặt câu hỏi trong phần github issues.
+
+chúng tôi rất sẵn lòng giải đáp.
 
