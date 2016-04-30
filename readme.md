@@ -48,11 +48,14 @@ danh sách thành viên ```MVH K58-CB``` team:
    
 ## mô tả hệ thống
 
+hệ thống xây dựng trên mô hình MVC , dựa theo kiến trúc của framework ```laravel 5.2```. ngoài ra còn sử dụng một số middleware như validate, authenticate để thực hiện các yêu cầu tiền  xứ lý và xác thực người dùng.
+
 ## Yêu cầu phi chức năng
 
 #### 1. giao diện
 
--  giao diện sán, thân thiện
+- sử dụng bootstrap và jquery.
+-  giao diện sáng, thân thiện.
 
 #### 2. Bảo mật
 
@@ -63,6 +66,13 @@ danh sách thành viên ```MVH K58-CB``` team:
 
 - tất cả data gửi lên đều phải qua  modul validate  để kiểm tra 
 
+#### 5. REST API
+
+- bên cạnh nhưng api trả về view thông thường hệ thống được thiết kế thêm một số chức năng theo cơ chế ***REST*** để tăng hiệu năng và trải nghiêm người dùng. mọi api trả về json đểu thiết kết để trả về cùng một cấu trúc kết qủa gồm ```status```: tráng thái kết qủa, ```message```: thông báo kèm theo và ```data```: nội dung kết qủa.
+
+#### 4. xứ lý ngoại lệ 
+
+- hệ thống thêm chức năng trả về thông báo lỗi dưới dạng json text.
 
 ##  Hướng Dẫn:
 #### 1. cài đặt
