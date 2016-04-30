@@ -82,12 +82,12 @@ git clone https://github.com/livisun999/Employee-Directory.git
 
 - tạo cơ sở dữ liệu (csld) mới tên là "demo_laravel".
 
-- chỉnh sửa lại cấu hình trong file "config/database.php":  
-    - 'host' => env('DB_HOST', '127.0.0.1'),   
-    - 'port': cổng mysql   
-    - 'database': tên csld vừa tạo (demo_laravel). 
-    - 'username': username của bạn trên CSDL (default là root) 
-    - 'password': password của bạn trên CSDL (default là '' )  
+- chỉnh sửa lại cấu hình trong file "config/database.php":
+    + 'host' => env('DB_HOST', '127.0.0.1'),   
+    + 'port': cổng mysql   
+    + 'database': tên csld vừa tạo (demo_laravel). 
+    + 'username': username của bạn trên CSDL (default là root) 
+    + 'password': password của bạn trên CSDL (default là '' )  
 
 - khởi tại csql bằng lệnh: ```php artisan migrate```
 - tại dữ liệu mẫu bằng lệnh: ```php artisan db:seed```
