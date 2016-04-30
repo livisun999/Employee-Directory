@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title','Change P')
+@section('title','Change Password')
 @section('content')
 <div class="container">
     <div class="row form_add_new">

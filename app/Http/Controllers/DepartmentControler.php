@@ -32,10 +32,6 @@ class DepartmentControler extends Controller {
         return ($saved==sizeof($ems));
     }
     public function getListdepart(){
-
-        $objDepart = Depar::allMaster(['name', 'id']);
-        return view('Department.List_department')->with('allDepart', $objDepart);
-
         $allDepart = Depar::allMaster(['name', 'id']);
         return view('Department.List_department')->with([
             'allDepart' => $allDepart
@@ -67,6 +63,7 @@ class DepartmentControler extends Controller {
             } else {
             	Session::flash("flash_message", "can not save department!");
             	Session::flash("flash_level", "danger");
+                return redirect()->route('listdepartment')->with(['flash_level' => 'succes', 'flash_message' => 'success Complate Add New Department ']);
             }
         } else {
         	Session::flash("flash_message", "department's already exits");

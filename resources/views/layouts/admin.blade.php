@@ -123,6 +123,7 @@
                 something went wrong here!
             </div>
             @endif
+        <div class="col-md-8 col-md-offset-3">
             @if(Session::has('flash_message'))
                 <div class="alert auto-hide alert-{!! Session::has('flash_level')?Session::get('flash_level'):'default'
                  !!}">
