@@ -3,6 +3,7 @@
 ***github repository:***  [https://github.com/livisun999/Employee-Directory](https://github.com/livisun999/Employee-Directory)
 
 **Employee-directry** là một ứng dụng web phất triển trên  framework  ```laravel 5.2```. đây là một ứng dụng quản lý nhân  sự  cho  các  doanh nghiệp hặc các tổ chức vừa và nhỏ với số lượng nhân sự không quá nhiều.
+
 ## thông tin
 
 - nhóm: ```MVH  K58-CB```   
@@ -45,8 +46,10 @@ danh sách thành viên ```MVH K58-CB``` team:
    - tìm kiếm nhân viên
    - xóa nhân viên
    
+## mô tả hệ thống
 
 ## Yêu cầu phi chức năng
+
 #### 1. giao diện
 
 -  giao diện sán, thân thiện
@@ -60,30 +63,36 @@ danh sách thành viên ```MVH K58-CB``` team:
 
 - tất cả data gửi lên đều phải qua  modul validate  để kiểm tra 
 
+
 ##  Hướng Dẫn:
 #### 1. cài đặt
  - clone repo về thư mục gốc của apache (có thể là www hoặc htdocs) bằng lệnh:  
  ```
 git clone https://github.com/livisun999/Employee-Directory.git
 ```
- - đet tải các dependencies chạy lệnh: 
+
+- để tải các dependencies chạy lệnh: 
     - trên linux và macos:  
     ```sudo composer install```
     - trên windows:
     ```composer install```
-- trên linux và macos bạn phải cấp quền ghi cho các thư mục  ```Storage```, ```resources``` , ```public/uploads/profile_img```, ```public/uploads/admin_img``` ,và ```bootstrap```
+
+- trên linux và macos bạn phải cấp quền ghi cho các thư mục:    
+```Storage```, ```resources``` , ```public/uploads/profile_img```, ```public/uploads/admin_img``` ,và ```bootstrap```
+
 - tạo cơ sở dữ liệu (csld) mới tên là "demo_laravel".
-- chỉnh sửa lại cấu hình trong file "config/database.php"  :   'host' => env('DB_HOST', '127.0.0.1'),   
-                                                               'port': cổng mysql   
-                                                               'database': tên csld vừa tạo (demo_laravel). 
-                                                               'username': username của bạn trên CSDL (default là root) 
-                                                               'password': password của bạn trên CSDL (default là '' )  
 
-  - khởi tại csql bằng lệnh: ```php artisan migrate```
-  - tại dữ liệu mẫu bằng lệnh: ```php artisan db:seed```
+- chỉnh sửa lại cấu hình trong file "config/database.php":
+    - 'host' => env('DB_HOST', '127.0.0.1'),   
+    -'port': cổng mysql   
+    -'database': tên csld vừa tạo (demo_laravel). 
+    -'username': username của bạn trên CSDL (default là root) 
+    -'password': password của bạn trên CSDL (default là '' )  
 
+- khởi tại csql bằng lệnh: ```php artisan migrate```
+- tại dữ liệu mẫu bằng lệnh: ```php artisan db:seed```
 
-  - trên trình duyệt gõ đường dẫn: ```localhost/Employee-Director```
+- trên trình duyệt gõ đường dẫn: ```localhost/Employee-Director```
   
 #### 2. đăng nhập 
 tài khoản admin mặc định: ***admin1***  
