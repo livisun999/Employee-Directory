@@ -30,13 +30,13 @@ Route::group(['middleware' => ['web']], function () {
 
         Route::get('/login', ['as' => 'login', 'uses' => 'AdminControler@getLogin']);
         Route::post('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@postLogin']);
-
+        Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'AdminControler@dashboard']);
         Route::group(['middleware'=>'auth'], function(){
 
                 // Route Admin
 
                 Route::get('/postLogin', ['as' => 'postLogin', 'uses' => 'AdminControler@dashboard']);
-                Route::get('dashboard', ['as' => 'dashboard', 'uses' => 'AdminControler@dashboard']);
+
                 Route::get('/resign', ['as' => 'resign', 'uses' => 'AdminControler@getResign']);
                 Route::get('logout', ['as' => 'logout', 'uses' => 'AdminControler@getLogout']);
 

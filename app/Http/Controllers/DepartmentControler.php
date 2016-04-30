@@ -31,10 +31,6 @@ class DepartmentControler extends Controller {
         return ($saved==sizeof($ems));
     }
     public function getListdepart(){
-
-        $objDepart = Depar::allMaster(['name', 'id']);
-        return view('Department.List_department')->with('allDepart', $objDepart);
-
         $allDepart = Depar::allMaster(['name', 'id']);
         return view('Department.List_department')->with([
             'allDepart' => $allDepart
@@ -68,7 +64,7 @@ class DepartmentControler extends Controller {
 
             $check_sussces = $department->save();
             if($check_sussces){
-                return redirect()->route('listdepartment')->with(['flash_level' => 'succes', 'flash_message' => 'uccess Complate Add New Department ']);
+                return redirect()->route('listdepartment')->with(['flash_level' => 'succes', 'flash_message' => 'success Complate Add New Department ']);
             }
         }
         return redirect()->route('newdepartment')->with(['flash_level' => 'danger', 'flash_message' => 'Create Department Error']);

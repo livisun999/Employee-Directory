@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 
 
 use App\Http\Requests\changePasswordRequest;
+use App\Models\Depar;
+use App\Models\Employee;
 use App\User;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -35,14 +37,14 @@ class AdminControler extends controller {
     {
         if (Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>1,'changePass'=>0 ]) ) {
 
-            return Redirect()->route('changePassword');
+            return Redirect()->route('changePassword')->with(['flash_level' => 'danger', 'flash_message' => 'please change password in first login']);;
         }
         if (Auth::attempt([ 'name' => $request->username, 'password' => $request->password,'role_id'=>1,'changePass'=>1 ]) ) {
             $use_ = new User();
-            return redirect()->route('listdepartment');
+            return redirect()->route('listdepartment')->with(['flash_level' => 'success', 'flash_message' => 'login Success']);;
         }
 
-        return redirect()->back()->withInput();
+        return redirect()->route('login')->with(['flash_level' => 'danger', 'flash_message' => 'login error, Please check your name or password and try again']);
         echo $request->username;
 
     }
@@ -50,8 +52,13 @@ class AdminControler extends controller {
         return view('resign');
     }
     public function dashboard(){
-        return view('admin.index');
+        $allDepart = Depar::allMaster();
+        $allEmploy = Employee::allWithDep();
 
+        return view('layouts.index')->with([
+            'allDepart'=> $allDepart,
+            'allEmploy'=> $allEmploy
+        ]);
     }
     public function getLogout() {
         Auth::logout(); // logout user
@@ -156,11 +163,11 @@ class AdminControler extends controller {
             $getname->password = Hash::make($New_pass);
             $getname->changePass = 1;
             $getname->save();
-            return redirect()->route('dashboard');
+            return redirect()->route('dashboard')->with(['flash_level' => 'success', 'flash_message' => 'Change password success!']);
 
         }
         else{
-            return Redirect()->route('changePassword');
+            return Redirect()->route('changePassword')->with(['flash_level' => 'danger', 'flash_message' => 'Change password error, please check current password or new password']);
         }
 
     }

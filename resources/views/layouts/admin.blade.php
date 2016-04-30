@@ -109,7 +109,7 @@
         <!-- header-right -->
     </div>
     <div class="page-content page-thin ">
-        <div class="col-md-12">
+        <div class="col-md-8 col-md-offset-3">
             @if(Session::has('flash_message'))
                 <div class="alert alert-{!! Session::get('flash_level') !!}">
                     {!! Session::get('flash_message') !!}

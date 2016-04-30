@@ -11,19 +11,20 @@
     <body>
         <div class="container">
             <div class="row">
+
                     <form action='postLogin' method="post" id="form_login_admin" name="form_login_admin" class="form-horizontal">
                     {!! csrf_field() !!}
                         <input type="hidden" name="_token" value="{!! csrf_token() !!}">
                     <div class="form-group input_user ">
                         <label for="username" class="col-lg-offset-1 col-sm-3 control-label"> Username </label>
                         <div class="col-sm-7">
-                            <input type="text" name="username" id="username" class="form-control" placeholder="UserName">
+                            <input type="text" name="username" id="username" class="form-control" placeholder="UserName" value="{{old('username')}}">
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="password" class="col-lg-offset-1 col-sm-3 control-label"> Password </label>
                         <div class="col-sm-7">
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Password" value="{{old('password')}}">
                         </div>
                     </div>
                     <div class="form-group">
@@ -48,6 +49,14 @@
                             @endforeach
                         </ul>
                     @endif
+
+                        <div class="col-md-12">
+                            @if(Session::has('flash_message'))
+                                <div class="alert alert-{!! Session::get('flash_level') !!}">
+                                    {!! Session::get('flash_message') !!}
+                                </div>
+                            @endif
+                        </div>
                 </div>
             </div>
         </div>
