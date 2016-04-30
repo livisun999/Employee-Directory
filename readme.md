@@ -72,7 +72,7 @@ git clone https://github.com/livisun999/Employee-Directory.git
 ```
 
 - để tải các dependencies chạy lệnh: 
-    - trên linux và macos:  
+    - trên linux và macos:
     ```sudo composer install```
     - trên windows:
     ```composer install```
