@@ -82,7 +82,7 @@ git clone https://github.com/livisun999/Employee-Directory.git
 
 - tạo cơ sở dữ liệu (csld) mới tên là "demo_laravel".
 
-- chỉnh sửa lại cấu hình trong file "config/database.php":
+- chỉnh sửa lại cấu hình trong file "config/database.php":  
     - 'host' => env('DB_HOST', '127.0.0.1'),   
     - 'port': cổng mysql   
     - 'database': tên csld vừa tạo (demo_laravel). 
