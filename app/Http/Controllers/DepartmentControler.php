@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use App\Extentions\AjaxResponse;
 use App\Http\Requests\newDepartmentRequest;
+use App\Http\Requests\DeletionRequest;
 use App\Models\Depar;
 use App\Models\Employee;
 use Session;
@@ -96,5 +97,15 @@ class DepartmentControler extends Controller {
         $department->master(['name', 'id']);
         $department->load('employees');
         return AjaxResponse::ok($department);
+    }
+
+    public function deleteDepartment(DeletionRequest $request){
+    	$id = $request->id;
+    	$dep = Depar::findOrFail($id);
+    	if($dep->delete()){
+    		return AjaxResponse::okMessage('department has been removed');
+    	} else {
+    		return AjaxResponse::error('unable to delete department');
+    	}
     }
 }

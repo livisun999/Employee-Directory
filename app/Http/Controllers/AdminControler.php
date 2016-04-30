@@ -47,7 +47,6 @@ class AdminControler extends controller {
         }
 
         return redirect()->route('login')->with(['flash_level' => 'danger', 'flash_message' => 'login error, Please check your name or password and try again']);
-        echo $request->username;
 
     }
     public function getResign(){

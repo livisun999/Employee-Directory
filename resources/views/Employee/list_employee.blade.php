@@ -23,7 +23,7 @@
                             <td data="job_title" class="data">{{$list_employ->job_title}}</td>
                             <td class="Action">
                                 <a href="javascript:void(0)" class="showEditProfile" data-id="{{$list_employ['id']}}"><span class="glyphicon glyphicon-pencil edit_depaerment"> </span> </a>
-                                <a href="#" class="delete_depaerment" ><span class="glyphicon glyphicon-trash "></span></a>
+                                <a href="#" class="open-delete-modal" data-id="{{$list_employ['id']}}" data-name="{{$list_employ['name']}}"><span class="glyphicon glyphicon-trash "></span></a>
                             </td>
                         </tr>
                         {{--*/ $dem++ /*--}}
@@ -151,7 +151,33 @@
             </div>
         </div>
     </div>
+    <!-- MODAL SHOW DELETE CONFRIM DETAIL -->
+    <div class="container">
+        <!-- Modal -->
+        <div class="modal fade" id="deletemodal" role="delete-dialog">
+            <div class="modal-dialog">
 
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h1 class="modal-title name">delete confrim</h1>
+                    </div>
+
+                    <div class="modal-body">
+                        are you sure to delete&nbsp;
+                        <span class="name">something<span>
+                        &nbsp;?<br>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary close_modal delete" data-dismiss="modal">yes</button>
+                        <button type="button" class="btn btn-default close_modal" data-dismiss="modal">no</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
             <!-- MODAL SHOW EMPLOYEE DETAIL -->
             <div class="container">
                 <!--Modal employee -->
@@ -240,6 +266,7 @@
             <script type="text/javascript">
 
                 $(document).ready(function(){
+                	$('#deletemodal button.delete').click(deleteEmp);
                     imgInputPrev('#edit_profile_img');
                     $('a.getEmInfo, button.getEmInfo').click(function(){
                         getProfile.call(this, createEmployeeModal);

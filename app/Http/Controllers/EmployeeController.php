@@ -15,6 +15,7 @@ use App\Models\Depar;
 use App\Models\Employee;
 use App\Http\Requests\EmployeeProfileRequest;
 use App\Http\Requests\HandledEmployeeProfileRequest;
+use App\Http\Requests\DeletionRequest;
 use App\Extentions\AjaxResponse;
 use Session;
 
@@ -65,5 +66,14 @@ class EmployeeController extends controller
             return Redirect()->back();
         }
         return Redirect()->route('listemployee');
+    }
+    public function deleteEmployee(DeletionRequest $request){
+    	$id = $request->id;
+    	$em = Employee::findOrFail($id);
+    	if($em->delete()){
+    		return AjaxResponse::okMessage('employee has been removed');
+    	} else {
+    		return AjaxResponse::error('unable to delete employee');
+    	}
     }
 }

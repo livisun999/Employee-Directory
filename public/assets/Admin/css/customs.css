@@ -416,3 +416,6 @@ footer {
 .I_top-main {
     background-image: url("../images/bg_.jpg");
 }
+div[role=delete-dialog]{
+	font-size: 120%;
+}

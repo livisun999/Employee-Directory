@@ -104,7 +104,7 @@
                                     <div class="col-md-4" id="{{$employ['id']}}">
                                         <div class="I_list_depart col-md-12">
                                             <div class="col-md-12 text-center">
-                                                <img src="public/uploads/profile_img/{{$employ['image']}}" class="img-circle">
+                                                <img src="public/uploads/profile_img/{{$employ['image']?$employ['image']:'dsefault.png'}}" class="img-circle">
                                             </div>
                                                 <table class="table table-hover">
                                                     <tr>

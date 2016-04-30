@@ -44,7 +44,7 @@
                                     >
                                     <span class="glyphicon glyphicon-pencil edit_depaerment" data-toggle="tooltip" data-placement="top" title="Edit"></span>
                                 </a>
-                                <a data-id="{{$depar['id']}}" class="delete_depaerment" data-toggle="modal" href="#deletemodal"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
+                                <a data-id="{{$depar['id']}}" data-name="{{$depar['Dep_name']}}" class="open-delete-modal delete_depaerment" href="javascript:void(0)"><span class="glyphicon glyphicon-trash" title="Delete"></span></a>
                             </td>
                         </tr>
                         {{--*/ $i++ /*--}}
@@ -52,10 +52,10 @@
                     @endforeach
                 </table>
             </div>
-            <!-- MODAL SHOW DEPARTMENT DETAIL -->
+            <!-- MODAL SHOW DELE CONFRIM DETAIL -->
             <div class="container">
                 <!-- Modal -->
-                <div class="modal fade" id="deletemodal" role="dialog">
+                <div class="modal fade" id="deletemodal" role="delete-dialog">
                     <div class="modal-dialog">
 
                         <!-- Modal content-->
@@ -66,10 +66,12 @@
                             </div>
 
                             <div class="modal-body">
-                                are you sure tho delete this department?
+                                are you sure to delete&nbsp;
+                                <span class="name">something<span>
+                                &nbsp;?<br>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary close_modal" data-dismiss="modal">yes</button>
+                                <button type="button" class="btn btn-primary close_modal delete" data-dismiss="modal">yes</button>
                                 <button type="button" class="btn btn-default close_modal" data-dismiss="modal">no</button>
                             </div>
                         </div>
@@ -216,6 +218,8 @@
             $('a.getEmInfo, button.getEmInfo').click(function(){
                         getProfile.call(this, createEmployeeModal);
             });
+
+            $('#deletemodal button.delete').click(deleteDep);
             $('a.show_modal').click(function() {
                 var depId = $(this).attr('data-id');
                 //createModal(data);

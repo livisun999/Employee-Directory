@@ -2,7 +2,16 @@ $(document).ready(function(){
 	setTimeout(function(){
 		$('.alert.auto-hide').fadeOut();
 	}, 10000);
+
+	$('.open-delete-modal').click(function(){
+		var id = $(this).attr('data-id');
+		var name =  $(this).attr('data-name');
+		$('#deletemodal span.name').text(name);
+		$('#deletemodal button.delete').attr('data-id', id);
+		$('#deletemodal').modal('show');
+	});
 });
+
 
 function createNoty(type, content, ttl) {
     var n = noty({
@@ -328,3 +337,58 @@ function createEditModal(data) {
         $(row + '>.dep_phone').text(dep.Dep_Phone);
         $(row + '>.room_number').text(dep.Dep_number);
     }
+ function deleteDep(){
+             	var id = $(this).attr('data-id');
+             	var token = $('meta[name=csrf-token]').attr('content');
+             	var data = {
+             		'_token': token,
+             		method: 'delete',
+             		id: id
+             	};
+             	$.ajax({
+             		url: 'department/delete',
+             		type: 'DELETE',
+             		data: data,
+             		dataType: 'json',
+             		success: function(respone){
+             			$('tr#depart_'+id).remove();
+             			createNoty('success', respone.message, 5000);
+             		},
+             		error: function(err){
+             			var res = $.parseJSON(err.responseText);
+             			var mes = res.message;
+             			if(!mes){
+             				mes = 'unable to delete';
+             			}
+             			createNoty('error', mes, 5000);
+             		}
+             	});
+             }
+
+             function deleteEmp(){
+                         	var id = $(this).attr('data-id');
+                         	var token = $('meta[name=csrf-token]').attr('content');
+                         	var data = {
+                         		'_token': token,
+                         		method: 'delete',
+                         		id: id
+                         	};
+                         	$.ajax({
+                         		url: 'employee/delete',
+                         		type: 'DELETE',
+                         		data: data,
+                         		dataType: 'json',
+                         		success: function(respone){
+                         			$('tr#emrow'+id).remove();
+                         			createNoty('success', respone.message, 5000);
+                         		},
+                         		error: function(err){
+                         			var res = $.parseJSON(err.responseText);
+                         			var mes = res.message;
+			             			if(!mes){
+			             				mes = 'unable to delete';
+			             			}
+			             			createNoty('error', mes, 5000);
+                         		}
+                         	});
+                         }             

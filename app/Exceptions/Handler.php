@@ -80,7 +80,7 @@ class Handler extends ExceptionHandler
                 }  
             }
             
-            return AjaxResponse::errorData($data, $message, $code);
+            //return AjaxResponse::errorData($data, $message, $code);
         }
         
         return parent::render($request, $e);

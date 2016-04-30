@@ -18,7 +18,9 @@ class AjaxResponse extends Response{
 	public static function ok($data, $message = []){
 		self::send(200, 'ok', $message, $data);
 	} 
-
+	public static function okMessage($message, $code = 200){
+		self::noData($code, 'ok', $message);
+	}
 	public static function noData($code, $status, $message){
 		self::send($code, $status, $message, null);	
 	}

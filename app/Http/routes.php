@@ -10,9 +10,8 @@
 | and give it the controller to call when that URI is requested.
 |
 */
-
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('dashboard');
 });
 
 /*
@@ -57,6 +56,7 @@ Route::group(['middleware' => ['web']], function () {
                 Route::post('/postNewDepartment',['as'=>'postNewDepartment','uses'=>'DepartmentControler@postNewDepartment']);
                 Route::post('postEditDepartment', ['as' => 'postEditDepartment', 'uses'=>'DepartmentControler@postEditDepartment']);
                 Route::get('getDepartmentDetails/{id}', ['as' => 'getDepartmentDetails', 'uses'=>'DepartmentControler@getDepartmentDetails']);
+                Route::delete('department/delete',['as' => 'deleteDepartment', 'uses' => 'DepartmentControler@deleteDepartment']);
 
                 // route for employee
                 Route::get('listemployee',['as'=>'listemployee','uses'=>'EmployeeController@getListEmployee']);
@@ -65,6 +65,7 @@ Route::group(['middleware' => ['web']], function () {
                 Route::get('newemployee',['as'=>'newemployee','uses'=>'EmployeeController@getNewEmployee']);
                 Route::post('postnewemployee',['as'=>'postnewemployee','uses'=>'EmployeeController@postNewEmployee']);
                 Route::post('employee/update/{id}', ['as'=>'emupdate', 'uses'=>'EmployeeController@updateProfile']);
+                Route::delete('employee/delete', ['as' => 'deleteEmployee', 'uses' => 'EmployeeController@deleteEmployee']);
         });
 
 

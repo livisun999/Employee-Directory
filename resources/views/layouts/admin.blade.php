@@ -119,7 +119,7 @@
     <div class="page-content page-thin ">
         <div class="col-md-12">
             @if($errors->any())
-            <div class="alert auto-hide alert-danger">
+            <div class="alert auto-hide alert-waring">
                 something went wrong here!
             </div>
             @endif
@@ -135,15 +135,14 @@
             @yield('content')
         </div>
     </div> <!-- end .page-content-->
-    <footer>
-        <div class="F_infor">
-            <h4 class="text-center"> Developer by MVH Team!</h4>
-            <h5 class="text-center"> Contact to MVH Team: emplouyeedirectory@gmail.com </h5>
-            <h5 class="text-center"> Phone: 0972 114 187</h5>
-        </div>
-    </footer>
 </div> <!-- end .main-content-->
-
+<footer>
+    <div class="F_infor">
+        <h4 class="text-center"> Developer by MVH Team!</h4>
+        <h5 class="text-center"> Contact to MVH Team: luk.mink@gmail.com </h5>
+        <h5 class="text-center"> Phone: 0972 114 187</h5>
+    </div>
+</footer>
 </body>
 
 </html>
