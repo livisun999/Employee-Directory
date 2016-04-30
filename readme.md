@@ -63,24 +63,27 @@ danh sách thành viên ```MVH K58-CB``` team:
 ##  Hướng Dẫn:
 #### 1. cài đặt
  - clone repo về thư mục gốc của apache (có thể là www hoặc htdocs) bằng lệnh:  
- ```{r, engine='bash', count_lines}
+ ```
 git clone https://github.com/livisun999/Employee-Directory.git
 ```
- - khi clone repo về chạy lệnh : sudo composer install (tren ubuntu, MacOs)
-                                            composer install (windows)
-    trên linux và macos bạn phải cấp quền ghi cho các thư mục  "Storage", "resources" ,"public/uploads/profile_img", "public/uploads/admin_img" ,và "bootstrap"
-  - tạo cơ sở dữ liệu (csld) mới tên là "demo_laravel".
-  - chỉnh sửa lại cấu hình trong file "config/database.php"  : 'host' => env('DB_HOST', '127.0.0.1'),
-                                                               'port': cổng mysql
-                                                               'database': tên csld vừa tạo (demo_laravel).
-                                                               'username': username của bạn trên CSDL (default là root)
-                                                               'password': password của bạn trên CSDL (default là '' )
+ - đet tải các dependencies chạy lệnh: 
+    - trên linux và macos:  
+    ```sudo composer install```
+    - trên windows:
+    ```composer install```
+- trên linux và macos bạn phải cấp quền ghi cho các thư mục  ```Storage```, ```resources``` , ```public/uploads/profile_img```, ```public/uploads/admin_img``` ,và ```bootstrap```
+- tạo cơ sở dữ liệu (csld) mới tên là "demo_laravel".
+- chỉnh sửa lại cấu hình trong file "config/database.php"  :   'host' => env('DB_HOST', '127.0.0.1'),   
+                                                               'port': cổng mysql   
+                                                               'database': tên csld vừa tạo (demo_laravel). 
+                                                               'username': username của bạn trên CSDL (default là root) 
+                                                               'password': password của bạn trên CSDL (default là '' )  
 
-  - khởi tại csql bằng lệnh: php artisan migrate
-  - tại dữ liệu mẫu bằng lệnh: php artisan db:seed
+  - khởi tại csql bằng lệnh: ```php artisan migrate```
+  - tại dữ liệu mẫu bằng lệnh: ```php artisan db:seed```
 
 
-  - trên trình duyệt gõ đường dẫn: localhost/Employee-Director
+  - trên trình duyệt gõ đường dẫn: ```localhost/Employee-Director```
   
 #### 2. đăng nhập 
 tài khoản admin mặc định: ***admin1***  
