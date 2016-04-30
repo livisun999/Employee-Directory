@@ -94,6 +94,19 @@
                 }
             });
 
+
+            $('#New_password_confirmation').change(function(){
+            	var pwd = $('#New_password').val();
+            	var error = null;
+            	if(pwd == ""){
+            		error = "please enter password first";
+            	} else if(pwd == this.value) {
+            		//remov err
+            		//tick
+            	} else {
+            		error = "Re-Password does not match";
+            	}
+            });
         });
     </script>
 @stop

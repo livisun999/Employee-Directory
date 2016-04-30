@@ -32,17 +32,19 @@
                     <input type="text" name="Email_Admin" id="Email_Admin" class="form-control col-sm-10" value="{{Auth::user()->email}}" disabled>
                 </div>
             </div>
+            <div id="hide" class="hidden">
             <div class="form-group ">
                 <label for="password" class="col-sm-3 control-label label_pas"> Password</label>
                 <div class="col-sm-6 current_pas">
                     <input type="password" name="password" id="password" class="form-control" placeholder="********" disabled>
                 </div>
             </div>
-            <div class="new_pas form-group">
-
-            </div>
-            <div class="new_pas_confirmation form-group">
-
+	            <div class="form-group ">
+	                <label for="password" class="col-sm-3 control-label label_pas"> Password</label>
+	                <div class="col-sm-6 current_pas">
+	                    <input type="password" name="password" id="password" class="form-control" placeholder="********" disabled>
+	                </div>
+	            </div>           
             </div>
             <div class="form-group">
                 <div class="col-sm-offset-3 col-sm-9">
@@ -50,18 +52,6 @@
 
                 </div>
             </div>
-
-
-        </div>
-        <div class="error_login">
-            @if ( $errors->any() )
-                <ul class="form_error">
-                    <h2> * Form Error </h2>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            @endif
         </div>
     </form>
 </div >
@@ -70,36 +60,13 @@
 
 @section('script_')
     <script>
-        $(document).ready(function(){
-
-           $('#update').click(function(){
-               var bt_up = $('#update').attr('value');
-               if(bt_up == "Change"){
-                   $('.new_pas').html(' <label for="password" class="col-sm-3 control-label"> New Password</label> ' +
-                           '<div class="col-sm-6">'+
-                           '<input type="password" name="password" id="password" class="form-control" placeholder="New Password" > </div>'
-                   );
-                   $('.new_pas_confirmation').html(' <label for="pas_confirmation" class="col-sm-3 control-label"> Re-Password</label> ' +
-                           '<div class="col-sm-6">'+
-                           '<input type="password" name="pas_confirmation" id="pas_confirmation" class="form-control" placeholder="Re - Password" > </div>'
-                   );
-                   $('.label_pas').html('Current Password');
-                   $('.current_pas').html('<input type="password" name="password" id="password" class="form-control" placeholder="Current Password">');
-                   $('.admin_name').html('<input type="text" name="yourname" id="yourname" class="form-control col-sm-10" value="{{Auth::user()->yourname}}">');
-                   $('#update').attr('value','Update');
-                   $('#update').html('Update');
-               }
-               if(bt_up == "Update") {
-                   $('.new_pas').html('');
-                   $('.new_pas_confirmation').html('');
-                   $('.current_pas').html('<input type="password" name="password" id="password" class="form-control" placeholder="********" disabled>');
-                   $('.label_pas').html('Password');
-                   $('.admin_name').html('<input type="text" name="yourname" id="yourname" class="form-control col-sm-10" value="{{Auth::user()->yourname}}"disabled    > ');
-                   $('#update').attr('value','Change');
-                   $('#update').html('Change');
-
-               }
-           });
-        });
+    	$(document).ready(function(){
+    		$('#update').click(function(){
+    			if($('#hide').attr('class') ==  'hidden'){
+    				$('#hide').removeClass('hidden');
+    				$('#ChangePassword input').attr('disabled', null);
+    			}
+    		});
+    	});
     </script>
 @stop

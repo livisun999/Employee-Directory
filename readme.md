@@ -1,27 +1,85 @@
-# Laravel PHP Framework
+# Eployee-Directory
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+***github repository:***  [https://github.com/livisun999/Employee-Directory](https://github.com/livisun999/Employee-Directory)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+**Employee-directry** là một ứng dụng web phất triển trên  framework  ```laravel 5.2```. đây là một ứng dụng quản lý nhân  sự  cho  các  doanh nghiệp hặc các tổ chức vừa và nhỏ với số lượng nhân sự không quá nhiều.
+## thông tin
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+- nhóm: ```MVH  K58-CB```   
+- môn:  ```phát triển ứng dụng web```   
+- lớp: ```INT3306 2```  
+- giảng viên: ```Lê Đình Thanh```   
+- trường: ```ĐH Công Nghệ - ĐHQGHN```
+- học kỳ: ```Kỳ 1 năm học 2015 - 2016```
 
-## Official Documentation
+## Nhóm phát triển
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+danh sách thành viên ```MVH K58-CB``` team:
 
-## Contributing
+| stt   |    thành viên     | lớp     | vai trò   | ghi chú       |
+|:-----:|:----------------: |-------- |---------  |-------------  |
+| 1     |   Lục Văn Minh    | K58-CB  | DEV       | nhóm trưởng   |
+| 2     | Nguyễn Như Vương  | K58-CB  | DEV       | thành viên    |
+| 3     |  Đinh Xuân Hưng   | K58-CB  | QA        | thành viên    |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+## các chức năng
+- **quản trị viên**
+    - thêm quản trị viên
+    - sủa thông tin quản trị viên
+    - thay đổi ảnh đại diện
+    - đăng nhập 
+    - đăng xuất
+    - xóa quản trị viên
+- **phòng ban**
+    - thêm mới phòng ban
+    - xem danh sách phòng ban
+    - xem thông tin phòng ban
+    - xem danh sách nhân viên của phòng ban
+    - sửa thông tin phòng ban
+    - xóa phòng ban
+- **nhân viên**
+   - thêm mới nhân viên 
+   - đặt ảnh nhân vien
+   - xem danh sách nhân viên
+   - sửa thông tin, ảnh đại diện 
+   - tìm kiếm nhân viên
+   - xóa nhân viên
+   
 
-## Security Vulnerabilities
+## Yêu cầu phi chức năng
+#### 1. giao diện
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+-  giao diện sán, thân thiện
 
-## License
+#### 2. Bảo mật
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT).
+- mật khẩu người dùng được mã hóa
+- các tác vụ yêu cầu xác thực, được các  thực  phiên đăng nhập trước khi  thực hiện 
+
+#### 3. data validate
+
+- tất cả data gửi lên đều phải qua  modul validate  để kiểm tra 
+
+##  Hướng Dẫn:
+#### 1. cài đặt
+ 
+ - Khi clone ve: truoc tien can chay lenh: sudo composer install (tren ubuntu, MacOs)
+                                            composer install (windows)
+    Tren ubuntu va MacOs thi can phan quyen truy cap cho cac thu muc "Storage", "resources" ,public/uploads ,va "bootstrap"
+  - Tao 1 co so du lieu moi voi ten la "demo_laravel".
+  - chinh sua lai cau hinh truy cap tai config/database.php  : 'host' => env('DB_HOST', '127.0.0.1'),
+                                                               'port': so cong ma apache dang chay
+                                                               'database': ten CSDL ban vua tao luc truoc (demo_laravel).
+                                                               'username': username cua ban tren CSDL (default la root)
+                                                               'password': password cua ban tren CSDL (default la '' )
+
+  - Tao bang CSDL chay lenh: php artisan migrate
+  - Tao data trong CSDL chay lenh: php artisan db:seed
+
+
+  - tren trinh duyet: chay duong dan: localhost/Employee-Directory => trang chu
+  
+### 2. đăng nhập 
+tài khoản admin mặc định: ***admin1***  
+mát khẩu admin mặc định: ***admin1***   
+
