@@ -19,7 +19,7 @@
     <script type="text/javascript" src="public/assets/Admin/js/main.js"></script>
 </head>
 
-<body style="padding-top: 50px">
+<body>
     <div class="container">
         <div class="row">
             <nav class="navbar navbar-inner I_nav navbar-fixed-top">
@@ -28,8 +28,8 @@
                         <div class="topnav ">
                             <ul class="header-menu nav navbar-nav I_header-menu">
                                 <li><a href="#" class="toggle-sidebar-top"><i class="icon-home"></i> <span>Home</span></a></li>
-                                <li><a href="#I_department"><i class="glyphicon glyphicon-list-alt"></i> <span>List Department</span></a></li>
-                                <li><a href="#I_employee"><i class="glyphicon glyphicon-user"></i><span> List Employee</span></a></li>
+                                <li><a href="#neo1"><i class="glyphicon glyphicon-list-alt"></i> <span>List Department</span></a></li>
+                                <li><a href="#neo2"><i class="glyphicon glyphicon-user"></i><span> List Employee</span></a></li>
 
                             </ul>
                         </div>
@@ -47,10 +47,10 @@
         </div>
     </div>
             <main>
-                <div class="top-main col-md-12">
-
+                <div class="top-main col-md-12 I_top-main" >
+                    <h1 class="text-center"><strong><i> Wellcom to Employee Directory!</i></strong></h1>
                 </div>
-                <div class="backspace_ col-md-12">
+                <div class="backspace_ col-md-12" id="neo1">
                     <h1 class="text-center"> Department</h1>
                 </div>
                 <div class="container">
@@ -72,7 +72,7 @@
                                         </div>
                                         <div class="I_depart_employ col-md-12">
 
-                                            <h3> Nhân viên</h3>
+                                            <h3> List Employee</h3>
                                             {{--*/ $dem = 1 /*--}}
                                             <table class="table table-hover">
                                                 @foreach($allEmploy as $employ)
@@ -98,7 +98,7 @@
                 </div>
                 <div class="container">
                     <div class="row">
-                        <div class="I_employee" id="I_employee" name="I_employee">
+                        <div class="I_employee" id="neo2" name="I_employee">
                                 {{--*/ $dem = 1 /*--}}
                                 @foreach($allEmploy as $employ)
                                     <div class="col-md-4" id="{{$employ['id']}}">
@@ -160,10 +160,34 @@
                     </div>
                 </div>
             </main>
+    <a href="javascript:void(0);" id="scroll" title="Scroll to Top" style="display: none;">Top<span></span></a>
             <footer>
-
+                <div class="F_infor">
+                    <h4 class="text-center"> Developer by MVH Team!</h4>
+                    <h5 class="text-center"> Contact to MVH Team: emplouyeedirectory@gmail.com </h5>
+                    <h5 class="text-center"> Phone: 0972 114 187</h5>
+                </div>
             </footer>
         </div>
     </div>
 </body>
 </html>
+<script>
+    $(document).ready(function () {
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 100) {
+                $('#scroll').fadeIn();
+            } else {
+                $('#scroll').fadeOut();
+            }
+        });
+
+        $('#scroll').click(function () {
+            $("html, body").animate({
+                scrollTop: 0
+            }, 600);
+            return false;
+        });
+
+    });
+</script>
