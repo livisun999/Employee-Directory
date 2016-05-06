@@ -24,7 +24,7 @@
                     <div class="form-group">
                         <label for="password" class="col-lg-offset-1 col-sm-3 control-label"> Password </label>
                         <div class="col-sm-7">
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Password" value="{{old('password')}}">
+                            <input type="password" name="password" id="password" class="form-control" placeholder="Password" value="">
                         </div>
                     </div>
                     <div class="form-group">

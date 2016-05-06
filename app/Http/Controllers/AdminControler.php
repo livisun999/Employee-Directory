@@ -46,7 +46,7 @@ class AdminControler extends controller {
             return redirect()->route('listdepartment')->with(['flash_level' => 'success', 'flash_message' => 'login Success']);;
         }
 
-        return redirect()->route('login')->with(['flash_level' => 'danger', 'flash_message' => 'login error, Please check your name or password and try again']);
+        return redirect()->route('login')->with(['flash_level' => 'danger', 'flash_message' => 'login error, Please check your name or password and try again'])->withInput();
 
     }
     public function getResign(){
@@ -63,7 +63,7 @@ class AdminControler extends controller {
     }
     public function getLogout() {
         Auth::logout(); // logout user
-        return Redirect()->route('login'); //redirect back to login
+        return Redirect()->route('dashboard'); //redirect back to login
     }
     public function getNewAdmin() {
         return view('admin.NewAdmin');
