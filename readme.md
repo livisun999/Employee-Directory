@@ -6,16 +6,16 @@
 
 ## thông tin
 
-- nhóm: ```MVH  K58-CB```   
+- nhóm: ```MVH```   
 - môn:  ```phát triển ứng dụng web```   
 - lớp: ```INT3306 2```  
 - giảng viên: ```Lê Đình Thanh```   
 - trường: ```ĐH Công Nghệ - ĐHQGHN```
-- học kỳ: ```Kỳ 1 năm học 2015 - 2016```
+- học kỳ: ```Kỳ 2 năm học 2015 - 2016```
 
 ## Nhóm phát triển
 
-danh sách thành viên ```MVH K58-CB``` team:
+danh sách thành viên ```MVH`` team:
 
 | stt   |    thành viên     | lớp     | vai trò   | ghi chú       |
 |:-----:|:----------------: |-------- |---------  |-------------  |
