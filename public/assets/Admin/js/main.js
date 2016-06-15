@@ -232,7 +232,7 @@ function createEditModal(data) {
     if (data == null) return;
     var dpid = data.id;
     var removeList = [];
-    $('.name').html(" <input required type='text' class='trans' value='" + data.Dep_name + "' > ");
+    $('.name').html('<input required type="text" class="trans" name="DepartmentName" value="' + data.Dep_name + '" >');
     $('.room_number').html(" <input type='text' value='" + data.Dep_number + "' > ");
     $('.master').html('');
     $('.phone').html(" <input type='text' value='0" + data.Dep_Phone + "' > ");
@@ -272,12 +272,13 @@ function createEditModal(data) {
                 data: {
                     'depId': dpid,
                     'depMaster': $('.master>select').val(), 
-                    'DepartmentName':  $('.name>input').val(),
+                    'DepartmentName':  $('.name>input').get(2).value,
                     'RoomNumber': $('.room_number>input').val(),
                     'DepartmentPhone': $('.phone>input').val(),
                     'removeList': removeList,
                     '_token': token
                 },
+
                 complete: function(){
 
                 },
@@ -331,11 +332,11 @@ function createEditModal(data) {
         var id = dep.id;
         var row = '#depart_' + id;
         if (!(row).length) return;
-        var a = $(row + '>.show_modal').text(dep.Dep_name);
-        $(row + '>.dep_master a').text(dep.master.name);
-        $(row + '>.dep_master a').attr('data-id', dep.master.id);
-        $(row + '>.dep_phone').text(dep.Dep_Phone);
-        $(row + '>.room_number').text(dep.Dep_number);
+        $(row + ' .show_modal').text(dep.Dep_name);
+        $(row + ' .dep_master a').text(dep.master.name);
+        $(row + ' .dep_master a').attr('data-id', dep.master.id);
+        $(row + ' .dep_phone').text(dep.Dep_Phone);
+        $(row + ' .number_room').text(dep.Dep_number);
     }
  function deleteDep(){
              	var id = $(this).attr('data-id');
